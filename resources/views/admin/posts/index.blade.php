@@ -4,19 +4,19 @@
 
 @section('subcontent')
 @if(session('info'))
-    
+
 <input id="infomensaje" type="hidden" value="{{ session('info') }}" >
 <input id="colormensaje" type="hidden" value="{{ session('color') }}" >
- 
+
 @endif
 
 @section('subcontent')
 <div class="flex flex-col items-center mt-8 intro-y sm:flex-row">
     <h2 class="mr-auto text-lg font-medium">Lista de Posts</h2>
     <div class="flex w-full mt-4 sm:w-auto sm:mt-0">
-         
-        <a href="{{ route('admin.posts.create') }}" 
-        class="flex items-center justify-center mb-2 mr-2 text-white shadow-md button bg-theme-1" 
+
+        <a href="{{ route('admin.posts.create') }}"
+        class="flex items-center justify-center mb-2 mr-2 text-white shadow-md button bg-theme-1"
         wire:ignore>
             Crear Post <i data-feather="plus" class="w-5 h-5 ml-2 text-white"></i>
        </a>
@@ -30,7 +30,8 @@
                 <label class="flex-none w-12 mr-2 xl:w-auto xl:flex-initial">Filtro</label>
                 <select class="w-full mt-2 border input xxl:w-full sm:mt-0 sm:w-auto" id="tabulator-html-filter-field">
                     <option value="name">Nombre</option>
-                    <option value="tags">Tag</option>
+                    <option value="category.name">Categorias</option>
+                    
                 </select>
             </div>
             <div class="items-center mt-2 sm:flex sm:mr-4 xl:mt-0">
@@ -55,7 +56,7 @@
             </div>
         </form>
         <div class="flex mt-5 sm:mt-0">
-            
+
             <div class="w-1/2 dropdown sm:w-auto">
                 <button class="flex items-center w-full text-gray-700 border dropdown-toggle button sm:w-auto dark:bg-dark-5 dark:text-gray-300">
                     <i data-feather="file-text" class="w-4 h-4 mr-2"></i> Opciones <i data-feather="chevron-down" class="w-4 h-4 ml-auto sm:ml-2"></i>
@@ -63,7 +64,7 @@
                 <div class="w-40 dropdown-box">
                     <div class="p-2 dropdown-box__content box dark:bg-dark-1">
                         <a href="javascript:;" class="flex items-center p-2 transition duration-300 ease-in-out bg-white rounded-md dark:bg-dark-1 hover:bg-gray-200 dark:hover:bg-dark-2" id="tabulator-print">
-                            <i data-feather="file-text" class="w-4 h-4 mr-2"></i> Imprimir 
+                            <i data-feather="file-text" class="w-4 h-4 mr-2"></i> Imprimir
                         </a>
                         <a href="javascript:;" class="flex items-center p-2 transition duration-300 ease-in-out bg-white rounded-md dark:bg-dark-1 hover:bg-gray-200 dark:hover:bg-dark-2" id="tabulator-export-csv">
                             <i data-feather="file-text" class="w-4 h-4 mr-2"></i> Exportar CSV
@@ -88,4 +89,3 @@
 </div>
 <!-- END: HTML Table Data -->
 @endsection
-      

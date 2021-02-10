@@ -8,7 +8,7 @@ import Tabulator from "tabulator-tables";
     // Tabulator
     if (cash("#tabulator").length) {
         // Setup Tabulator
-        let id = "7";
+        let id = "18";
         let api_key = "key_cur_prod_fnPqT5xQEi5Vcb9wKwbCf65c3BjVGyBB";
         let table = new Tabulator("#tabulator", {
             pagination: 'local',
@@ -51,6 +51,21 @@ import Tabulator from "tabulator-tables";
                     }
                 },
                 {
+                    title: 'Categorias',
+                    minWidth: 250,
+                    responsive: 0,
+                    field: 'category.name',
+                    vertAlign: 'middle',
+                    print: false,
+                    download: false,
+                    visible: false,
+                    formatter(cell, formatterParams) {
+                        return `<div>
+                            <div class="font-medium whitespace-no-wrap">${cell.getData().category['name']}</div>
+                        </div>`
+                    }
+                },
+                {
                     title: 'Imagen',
                     minWidth: 150,
                     field: 'image',
@@ -63,7 +78,7 @@ import Tabulator from "tabulator-tables";
                             <div class="intro-x w-10 h-10 image-fit">
                                 <img alt="Midone Tailwind HTML Admin Template" class="rounded-full" src="/storage/${cell.getData().image['url']}">
                             </div>
-                             
+
                         </div>`
                     }
                 },
@@ -71,10 +86,11 @@ import Tabulator from "tabulator-tables";
                     title: 'Etiquetas',
                     minWidth: 200,
                     responsive: 0,
-                    field: 'tags',
+                    field: 'tags.[].name',
                     vertAlign: 'middle',
                     print: false,
                     download: false,
+                    cheese: true,
                     formatter(cell, formatterParams) {
                         var dt = '';
 
@@ -84,6 +100,7 @@ import Tabulator from "tabulator-tables";
 
 
                         });
+
                         return dt;
                     }
                 },

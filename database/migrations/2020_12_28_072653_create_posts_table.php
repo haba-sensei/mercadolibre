@@ -17,8 +17,8 @@ class CreatePostsTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('slug');
-            $table->text('extract');
-            $table->longText('body');
+            $table->text('extract')->nullable();
+            $table->longText('body')->nullable(); 
             //esta tabla en ves de ir booleam es de tipo enum con un default de 1
             $table->enum('status', [1,2])->default(1);
             $table->unsignedBigInteger('user_id');
