@@ -1,6 +1,9 @@
 {
-    "/dist/js/dash.js": "/dist/js/dash.js?id=94b227dad1bc35a4326c",
-    "/js/app.js": "/js/app.js?id=7f418c8ce0fb404d6d95",
+    "/dist/js/dash.js": "/dist/js/dash.js?id=564856185a6480522952",
+    "/dist/js/web.js": "/dist/js/web.js?id=e3ad6e9816546660f65f",
+    "/js/app.js": "/js/app.js?id=7eaf9ac64a5274886dd8",
     "/css/app.css": "/css/app.css?id=2d3ab4da18803ee084b6",
-    "/dist/css/dash.css": "/dist/css/dash.css?id=18448fdfbce6e72efcc3"
+    "/dist/css/dash.css": "/dist/css/dash.css?id=18448fdfbce6e72efcc3",
+    "/dist/css/web.css": "/dist/css/web.css?id=826581fecd108ad61097",
+    "/dist/css/base_web.css": "/dist/css/base_web.css?id=801cd1c805a1e58713b0"
 }
