@@ -16,7 +16,7 @@
         <link href="https://fonts.googleapis.com/css?family=Work+Sans:300,400,500,600,700&amp;amp;subset=latin-ext" rel="stylesheet">
         <!-- Styles -->
 
-        <link rel="stylesheet" href="{{ mix('dist/css/web.css') }}" />
+        <link rel="stylesheet" href="{{ mix('dist/css/base_web.css') }}" />
 
         @livewireStyles
 
@@ -27,7 +27,7 @@
     </head>
     <body >
 
-        <div class="ps-block--promotion-header bg--cover" style="background-image: url('{{ Storage::url('/promociones/header-promotion.jpg') }}'); ">
+        <div class="ps-block--promotion-header bg--cover" style="background-image: url('{{ Storage::url('promotions/header-promotion.jpg') }}'); ">
             <div class="container">
                 <div class="ps-block__left">
                     <h3>20%</h3>
@@ -174,7 +174,7 @@
                                 </ul>
                             </div>
                         </div>
-                        <a class="ps-logo" href="index.html"><img src="{{ Storage::url('/logos/logo.png') }}" alt=""></a>
+                        <a class="ps-logo" href="index.html"><img src="{{ Storage::url('/variados/logo.png') }}" alt=""></a>
                     </div>
                     <div class="header__content-center">
                         <form class="ps-form--quick-search" action="index.html" method="get">
@@ -574,7 +574,7 @@
             </div>
             <div class="navigation--mobile">
                 <div class="navigation__left">
-                    <a class="ps-logo" href="index.html"><img src="{{ Storage::url('/logos/logo_light.png') }}" alt=""></a>
+                    <a class="ps-logo" href="index.html"><img src="{{ Storage::url('/variados/logo_light.png') }}" alt=""></a>
                 </div>
                 <div class="navigation__right">
                     <div class="header__actions">

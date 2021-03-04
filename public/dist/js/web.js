@@ -869,7 +869,7 @@
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\laragon\www\blog2\resources\js\web.js */"./resources/js/web.js");
+module.exports = __webpack_require__(/*! C:\laragon\www\mercadolibre\resources\js\web.js */"./resources/js/web.js");
 
 
 /***/ })
