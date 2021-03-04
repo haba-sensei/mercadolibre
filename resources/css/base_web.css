@@ -1,3 +1,12 @@
-@import 'plugins.css';
+@import '../plugins/font-awesome/css/font-awesome.min.css';
+@import '../fonts/Linearicons/Linearicons/Font/demo-files/demo.css';
+@import '../plugins/bootstrap/css/bootstrap.min.css';
+@import '../plugins/owl-carousel/assets/owl.carousel.min.css';
+@import '../plugins/owl-carousel/assets/owl.theme.default.min.css';
+@import '../plugins/slick/slick/slick.css';
+@import '../plugins/nouislider/nouislider.min.css';
+@import '../plugins/lightGallery-master/dist/css/lightgallery.min.css';
+@import '../plugins/jquery-bar-rating/dist/themes/fontawesome-stars.css';
+@import '../plugins/select2/dist/css/select2.min.css';
 @import 'web.css';
 @import 'tienda.css';
