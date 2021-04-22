@@ -8,12 +8,13 @@ import Tabulator from "tabulator-tables";
     // Tabulator
     if (cash("#tabulator").length) {
         // Setup Tabulator
-        let id = "18";
-        let api_key = "key_cur_prod_fnPqT5xQEi5Vcb9wKwbCf65c3BjVGyBB";
+
+        let id = document.getElementById("id_user").value;
+        let api_key = document.getElementById("token_user").value;
         let table = new Tabulator("#tabulator", {
             pagination: 'local',
             height: "100%",
-            ajaxURL: "../api/posts/" + id + "?api_key=" + api_key,
+            ajaxURL: "../api/products/" + id + "?api_key=" + api_key,
             ajaxFiltering: false,
             ajaxSorting: false,
             printAsHtml: true,
@@ -37,7 +38,7 @@ import Tabulator from "tabulator-tables";
                 },
                 {
                     title: 'Nombre',
-                    minWidth: 250,
+                    minWidth: 350,
                     responsive: 0,
                     field: 'name',
                     vertAlign: 'middle',
@@ -70,6 +71,7 @@ import Tabulator from "tabulator-tables";
                     minWidth: 150,
                     field: 'image',
                     hozAlign: 'center',
+                    responsive: 0,
                     vertAlign: 'middle',
                     print: false,
                     download: false,
@@ -82,33 +84,43 @@ import Tabulator from "tabulator-tables";
                         </div>`
                     }
                 },
+
                 {
-                    title: 'Etiquetas',
-                    minWidth: 200,
+                    title: 'Precio',
+                    minWidth: 100,
+                    field: 'amount',
                     responsive: 0,
-                    field: 'tags.[].name',
+                    hozAlign: 'center',
                     vertAlign: 'middle',
                     print: false,
                     download: false,
-                    cheese: true,
                     formatter(cell, formatterParams) {
-                        var dt = '';
-
-                        cell.getData().tags.forEach(d => {
-                            dt += '<div> <div class="text-white whitespace-no-wrap bg-' + d.color + '-500 px-2 py-1 mr-2 rounded-full"> ' + d.name + ' </div> </div>';
-
-
-
-                        });
-
-                        return dt;
+                        return `
+                            ${cell.getData().amount }
+                         `
+                    }
+                },
+                {
+                    title: 'Stock',
+                    minWidth: 50,
+                    field: 'stock',
+                    hozAlign: 'center',
+                    responsive: 0,
+                    vertAlign: 'middle',
+                    print: false,
+                    download: false,
+                    formatter(cell, formatterParams) {
+                        return `
+                             ${cell.getData().stock }
+                         `
                     }
                 },
                 {
                     title: 'Status',
-                    minWidth: 200,
+                    minWidth: 50,
                     field: 'status',
                     hozAlign: 'center',
+                    responsive: 1,
                     vertAlign: 'middle',
                     print: false,
                     download: false,
@@ -119,6 +131,29 @@ import Tabulator from "tabulator-tables";
                     }
                 },
                 {
+                    title: 'Etiquetas',
+                    minWidth: 200,
+                    responsive: 1,
+                    field: 'tags.[].name',
+                    vertAlign: 'middle',
+                    print: false,
+                    download: false,
+                    cheese: true,
+                    formatter(cell, formatterParams) {
+                        var dt = '';
+
+                        cell.getData().tags.forEach(d => {
+                            dt += '<div> <div class="text-white whitespace-no-wrap bg-' + d.color + '-500 px-2 py-1 mr-2 mb-4 rounded-full"> ' + d.name + ' </div> </div>';
+
+
+
+                        });
+
+                        return dt;
+                    }
+                },
+
+                {
                     title: 'Acciones',
                     minWidth: 200,
                     field: 'actions',
@@ -128,12 +163,15 @@ import Tabulator from "tabulator-tables";
                     print: false,
                     download: false,
                     formatter(cell, formatterParams) {
+                        var deletePostUri = cell.getData().slug;
+                        console.log(deletePostUri);
+                       
                         return `<div class="flex lg:justify-center items-center">
-                            <a class="flex items-center mr-3" href="">
+                            <a class="flex items-center mr-3" href="products/${cell.getData().slug}/edit">
                                 <i data-feather="check-square" class="w-4 h-4 mr-1"></i> Edit
                             </a>
-                            <a class="flex items-center text-theme-6" href="">
-                                <i data-feather="trash-2" class="w-4 h-4 mr-1"></i> Delete
+                            <a class="flex items-center text-theme-6" href="products/${cell.getData().slug}/destroy">
+                                <i data-feather="trash-2" class="w-4 h-4 mr-1"></i> Eliminar
                             </a>
                         </div>`
                     }

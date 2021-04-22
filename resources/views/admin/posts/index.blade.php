@@ -31,7 +31,7 @@
                 <select class="w-full mt-2 border input xxl:w-full sm:mt-0 sm:w-auto" id="tabulator-html-filter-field">
                     <option value="name">Nombre</option>
                     <option value="category.name">Categorias</option>
-                    
+
                 </select>
             </div>
             <div class="items-center mt-2 sm:flex sm:mr-4 xl:mt-0">

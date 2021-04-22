@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\PostController;
+use App\Http\Controllers\Admin\ProductController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -22,10 +23,10 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 
 Route::group(["middleware" => "apikey.validate"], function () {
-     
+
   Route::get('posts/{id}', [PostController::class, 'getAll']);
-    
-  
+  Route::get('products/{id}', [ProductController::class, 'getAll']);
+
+
 });
 
- 

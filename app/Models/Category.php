@@ -7,8 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Category extends Model
 {
-    use HasFactory; 
-    
+    use HasFactory;
+
 
     /* ASIGNACION MASIVA  */
     protected $fillable = ['name', 'slug'];
@@ -17,12 +17,18 @@ class Category extends Model
     public function getRouteKeyName()
     {
         return "slug";
-    } 
+    }
 
     /* RELACION 1 A MUCHOS */
     public function posts()
     {
         return $this->hasMany(Post::class);
+    }
+
+    /* RELACION 1 A MUCHOS */
+    public function products()
+    {
+        return $this->hasMany(Product::class);
     }
 
     /* BUSQUEDA DE CATEGORIA */
@@ -33,5 +39,5 @@ class Category extends Model
                 ->OrWhere('slug', 'like', '%'.$val.'%');
     }
 
-    
+
 }

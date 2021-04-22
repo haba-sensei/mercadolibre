@@ -9,20 +9,20 @@ class HomeController extends Controller
     public function render($pageName = 'home')
     {
         $activeMenu = $this->activeMenu($pageName);
-         
+
 
         return view('admin/'. $pageName, [
             'side_menu' => $this->sideMenu(),
             'first_page_name' => $activeMenu['first_page_name'],
             'second_page_name' => $activeMenu['second_page_name'],
             'third_page_name' => $activeMenu['third_page_name'],
-            'page_name' => $pageName, 
-            'ruta' => 'listar',  
+            'page_name' => $pageName,
+            'ruta' => 'listar',
             'theme' => 'light',
             'layout' => 'content',
             'titulo' => $this->sideMenu()
         ]);
-        
+
     }
     /* MANEJADOR DE MENU ACTIVO | SUB MENUS HASTA 3 NIVELES */
     public function activeMenu($pageName)
@@ -49,19 +49,19 @@ class HomeController extends Controller
                                 $firstPageName = $menu['page_name'];
                                 $secondPageName = $subMenu['page_name'];
                                 $thirdPageName = $lastSubmenu['page_name'];
-                            }       
+                            }
                         }
                     }
                 }
             }
         }
-             
+
 
         return [
             'first_page_name' => $firstPageName,
             'second_page_name' => $secondPageName,
-            'third_page_name' => $thirdPageName 
-             
+            'third_page_name' => $thirdPageName
+
         ];
     }
 
@@ -73,15 +73,6 @@ class HomeController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function sideMenu()
-
-    // 'posts' => [
-    //     'icon' => 'file-text',
-    //     'menuPrincipal' => 'si',
-    //     'ruta' => 'listar',
-    //     'page_name' => 'posts',
-    //     'title' => 'Post'
-       
-    // ],
     {
         return [
             'home' => [
@@ -90,39 +81,24 @@ class HomeController extends Controller
                 'page_name' => 'home',
                 'ruta' => 'listar',
                 'title' => 'Home'
-                 
+
             ],
-            'posts' => [
-                'icon' => 'file-text',
-                'page_name' => 'posts',
-                'title' => 'Posts',
-                'sub_menu' => [
-                    'index' => [
-                        'icon' => 'list',
-                        'page_name' => 'posts',
-                        'menuPrincipal' => 'si',
-                        'ruta' => 'listar',
-                        'title' => 'Listar Posts',
-                        
-                    ],
-                    'create' => [
-                        'icon' => 'inbox',
-                        'page_name' => 'posts/show',
-                        'menuPrincipal' => 'si',
-                        'ruta' => 'listar',
-                        'title' => 'Crear Post',
-                    ],
-                     
-                ]
+            'products' => [
+                'icon' => 'tag',
+                'menuPrincipal' => 'si',
+                'ruta' => 'listar',
+                'page_name' => 'products',
+                'title' => 'Productos'
+
             ],
-            
+
             'categories' => [
                 'icon' => 'layers',
                 'menuPrincipal' => 'si',
                 'ruta' => 'listar',
                 'page_name' => 'categories',
                 'title' => 'Categorias'
-               
+
             ],
             'tags' => [
                 'icon' => 'bookmark',
@@ -130,9 +106,9 @@ class HomeController extends Controller
                 'ruta' => 'listar',
                 'page_name' => 'tags',
                 'title' => 'Etiquetas'
-               
+
             ]
-            
+
         ];
     }
-} 
+}

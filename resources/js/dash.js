@@ -25,3 +25,6 @@ import "./accordion";
 import "./side-menu";
 import "./mobile-menu";
 import "./side-menu-tooltip";
+
+
+//scripts

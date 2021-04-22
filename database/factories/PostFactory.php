@@ -14,7 +14,7 @@ class PostFactory extends Factory
      * The name of the factory's corresponding model.
      *
      * @var string
-     */ 
+     */
     protected $model = Post::class;
 
     /**
@@ -24,8 +24,8 @@ class PostFactory extends Factory
      */
     public function definition()
     {
-        //ok aca uso el soporte de Str de iluminate en la linea 7 para crear un slug 
-        //luego almaceno en una variable unica de 20 palabras el metodo faker para ambas tablas 
+        //ok aca uso el soporte de Str de iluminate en la linea 7 para crear un slug
+        //luego almaceno en una variable unica de 20 palabras el metodo faker para ambas tablas
 
         $name = $this->faker->unique()->sentence();
 
@@ -38,6 +38,6 @@ class PostFactory extends Factory
            'category_id' => Category::all()->random()->id,
            'user_id' => User::all()->random()->id
 
-        ];
+        ]; 
     }
 }

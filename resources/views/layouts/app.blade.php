@@ -8,7 +8,7 @@
         <meta name="description" content="Admin HabaDash multiVentas">
         <meta name="author" content="HabaSensei">
         <meta name="csrf-token" content="{{ csrf_token() }}">
-
+        <link href="{{ asset('dist/images/fast-food.svg') }}" rel="shortcut icon">
         <title>{{ config('app.name', 'Laravel') }}</title>
 
         <!-- Fonts -->
@@ -38,7 +38,7 @@
                 </div>
                 <div class="ps-block__center">
                     <p>Enter Promotion<span>Sale2019</span></p>
-                    
+
                 </div><a class="ps-btn ps-btn--sm" href="#">Shop now</a>
             </div>
         </div>
@@ -219,33 +219,28 @@
                                     </div>
                                 </div>
                             </div>
-                            
+
                             @auth
                             <div class="ps-block--user-header">
                                 <div class="ps-block__left"><i class="icon-user"></i></div>
                                     <div class="ps-block__right">
                                         {{-- @auth('admin') --}}
                                         <a href="{{ route('dash') }}"  class="px-3 py-2 text-sm font-medium text-gray-300 rounded-md hover:bg-gray-700 hover:text-white">
-                                        Dashboard Admin
+                                        Dashboard
                                         </a>
                                         {{-- @endauth --}}
                                         <a href="{{ route('profile.show') }}"  class="px-3 py-2 text-sm font-medium text-gray-300 rounded-md hover:bg-gray-700 hover:text-white">
-                                            Tu Perfil
+                                        Perfil
                                         </a>
+                                        <form method="POST" action="{{ route('logout') }}">
+                                            @csrf
+                                                <a href="{{ route('logout') }}" onclick="event.preventDefault(); this.closest('form').submit();"  class="px-3 py-2 text-sm font-medium text-gray-300 rounded-md hover:bg-gray-700 hover:text-white">
+                                                Cerrar
+                                                </a>
+                                            </form>
                                     </div>
                             </div>
-                                 
-                            @else    
-                                 {{-- <form method="POST" action="{{ route('logout') }}">
-                                   @csrf   
-                                   
-                                   <a href="{{ route('logout') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem" 
-                                     onclick="event.preventDefault(); this.closest('form').submit();">
-                                     Cerrar Sesion
-                                   </a>
-                                 
-                                 </form> --}}
-                             
+                            @else
                             <div class="ps-block--user-header">
                                 <div class="ps-block__left"><i class="icon-user"></i></div>
                                     <div class="ps-block__right">
@@ -257,12 +252,9 @@
                                         </a>
                                     </div>
                             </div>
-                              
-                             
-                             
                            @endauth
-                           
-                            
+
+
                         </div>
                     </div>
                 </div>
@@ -580,7 +572,7 @@
                 </div>
             </nav>
         </header>
-       
+
         <header class="header header--mobile" data-sticky="true">
             <div class="header__top">
                 <div class="header__left">
@@ -662,7 +654,7 @@
                 </form>
             </div>
         </header>
-       
+
         <div id="homepage-3">
             <div class="ps-home-banner">
                 <div class="ps-carousel--nav-inside owl-slider" data-owl-auto="true" data-owl-loop="true" data-owl-speed="5000" data-owl-gap="0" data-owl-nav="true" data-owl-dots="true" data-owl-item="1" data-owl-item-xs="1" data-owl-item-sm="1" data-owl-item-md="1"
@@ -683,8 +675,8 @@
                     </div>
                 </div>
             </div>
-           
-           
+
+
             <div class="ps-site-features">
                 <div class="container">
                     <div class="ps-block--site-features ps-block--site-features-2">
@@ -1902,7 +1894,7 @@
                 </div>
             </div>
         </div>
-       
+
         <footer class="ps-footer">
             <div class="container">
                 <div class="ps-footer__widgets">
@@ -1976,7 +1968,7 @@
                 </div>
             </div>
         </footer>
-        
+
 
         <div id="back2top"><i class="icon icon-arrow-up"></i></div>
         <div class="ps-site-overlay"></div>

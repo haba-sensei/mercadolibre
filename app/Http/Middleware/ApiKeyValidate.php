@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
+use App\Models\Flutter;
 
 class ApiKeyValidate
 {
@@ -22,9 +23,12 @@ class ApiKeyValidate
               'message' => 'Acceso no autorizado',
             ], 401);
           }
-      
+
           if ($request->has("api_key")) {
-            $api_key = "key_cur_prod_fnPqT5xQEi5Vcb9wKwbCf65c3BjVGyBB";
+
+            $flutter_token = Flutter::find(1)->access_token;
+
+            $api_key = $flutter_token;
             if ($request->input("api_key") != $api_key) {
               return response()->json([
                 'status' => 401,
@@ -32,8 +36,8 @@ class ApiKeyValidate
               ], 401);
             }
           }
-      
+
           return $next($request);
         }
     }
- 
+

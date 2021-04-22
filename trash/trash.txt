@@ -1,0 +1,23 @@
+ // 'posts' => [
+    //     'icon' => 'file-text',
+    //     'page_name' => 'posts',
+    //     'title' => 'Posts',
+    //     'sub_menu' => [
+    //         'index' => [
+    //             'icon' => 'list',
+    //             'page_name' => 'posts',
+    //             'menuPrincipal' => 'si',
+    //             'ruta' => 'listar',
+    //             'title' => 'Listar Posts',
+                
+    //         ],
+    //         'create' => [
+    //             'icon' => 'inbox',
+    //             'page_name' => 'posts/show',
+    //             'menuPrincipal' => 'si',
+    //             'ruta' => 'listar',
+    //             'title' => 'Crear Post',
+    //         ],
+             
+    //     ]
+    // ],
