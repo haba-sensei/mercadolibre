@@ -1,6 +1,6 @@
 ---
 deployment:
   tasks:
-    - export DEPLOYPATH=/home/vlrrywof/public_html/medicos/
+    - export DEPLOYPATH=/home/vlrrywof/public_html/mercadolibre/
     - /bin/cp -R * $DEPLOYPATH
     - cp .htaccess $DEPLOYPATH
