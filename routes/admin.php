@@ -1,17 +1,17 @@
 <?php
-
 use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\TagController;
 use App\Http\Controllers\Admin\PostController;
 use App\Http\Controllers\Admin\ProductController;
-
-
+use App\Http\Controllers\Admin\UserController;
 use Illuminate\Support\Facades\Route;
 
 /* HOME DASHBOARD ROUTES PREFIX DASH */
 Route::get('/', [HomeController::class, 'render'])->name('dash');
 
+/* CRUD RESOURCE'S USUARIOS*/
+Route::resource('users', UserController::class)->names('admin.users');
 
 /* CRUD RESOURCE'S */
 

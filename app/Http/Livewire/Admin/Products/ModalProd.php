@@ -17,7 +17,7 @@ class ModalProd extends Component
     public function delete($id)
     {
         if($id){
-            Product::where('id',$id)->delete();
+            Product::where('id', $id)->delete();
             session()->flash('message', 'Users Deleted Successfully.');
         }
     }

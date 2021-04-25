@@ -9,7 +9,7 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
-
+use Spatie\Permission\Traits\HasRoles;
 class User extends Authenticatable
 {
     use HasApiTokens;
@@ -17,12 +17,15 @@ class User extends Authenticatable
     use HasProfilePhoto;
     use Notifiable;
     use TwoFactorAuthenticatable;
+    use HasRoles;
 
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
+
+
     protected $fillable = [
         'name',
         'email',
@@ -59,6 +62,12 @@ class User extends Authenticatable
         'profile_photo_url',
     ];
 
+    // /* CAMBIO DE URL DE ID -> SLUG  */
+    // public function getRouteKeyName()
+    // {
+    //     return "name";
+    // }
+
     //relacion 1 a muchos
     public function posts(){
         return $this->hasMany(Post::class);
@@ -70,6 +79,14 @@ class User extends Authenticatable
      //relacion 1 a 1
      public function profiles(){
         return $this->hasOne(Profiles::class);
+    }
+
+    /* BUSQUEDA DE USUARIOS */
+    public function scopeSearch($query, $val)
+    {
+        return $query
+                ->where('name', 'like', '%'.$val.'%')
+                ->OrWhere('email', 'like', '%'.$val.'%');
     }
 
 }

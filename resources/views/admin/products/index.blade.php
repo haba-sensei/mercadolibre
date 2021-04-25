@@ -20,6 +20,7 @@
         wire:ignore>
             Crear Productos <i data-feather="plus" class="w-5 h-5 ml-2 text-white"></i>
        </a>
+       
     </div>
 </div>
 <!-- BEGIN: HTML Table Data -->

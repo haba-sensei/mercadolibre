@@ -35,7 +35,8 @@ class ProductFactory extends Factory
            'amount' => $this->faker->randomFloat(2, 0, 100),
            'stock' => $this->faker->randomElement([5,10]),
            'status' => $this->faker->randomElement([1,2]),
-           'user_id' => User::all()->random()->id,
+        //    'user_id' => User::all()->random()->id,
+           'user_id' => 1,
            'category_id' => Category::all()->random()->id
 
         ];

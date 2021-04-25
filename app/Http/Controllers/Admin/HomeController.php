@@ -83,6 +83,16 @@ class HomeController extends Controller
                 'title' => 'Home'
 
             ],
+
+            'users' => [
+                'icon' => 'users',
+                'menuPrincipal' => 'si',
+                'ruta' => 'listar',
+                'page_name' => 'users',
+                'title' => 'Usuarios'
+
+            ],
+
             'products' => [
                 'icon' => 'tag',
                 'menuPrincipal' => 'si',

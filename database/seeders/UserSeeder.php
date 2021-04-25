@@ -8,6 +8,7 @@ use Illuminate\Support\Str;
 
 class UserSeeder extends Seeder
 {
+
     /**
      * Run the database seeds.
      *
@@ -15,13 +16,17 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
+
         User::create([
             'name' => 'Haba Sensei',
             'email' => 'lycantroponatural@gmail.com',
             'password' => bcrypt('12345678'),
-            'remember_token' => Str::random(10)
-        ]);
+            'remember_token' => Str::random(10),
+            'profile_photo_path' => 'admin.jpg'
+        ])->assignRole('Alpha');
+
         User::factory(9)->create();
+
 
     }
 }

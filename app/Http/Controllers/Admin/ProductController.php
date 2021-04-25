@@ -22,7 +22,7 @@ class ProductController extends Controller
 
     }
 
-    public function getAll($id){
+    public function getAll($id){ 
 
         $product = Product::with('image', 'category', 'tags')
                      ->where('status', 2)
