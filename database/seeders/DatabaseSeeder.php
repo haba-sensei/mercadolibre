@@ -21,12 +21,8 @@ class DatabaseSeeder extends Seeder
         Storage::deleteDirectory('users');
         Storage::makeDirectory('users');
 
-        Storage::deleteDirectory('posts');
-        Storage::makeDirectory('posts');
-
         Storage::deleteDirectory('products');
         Storage::makeDirectory('products');
-
 
         $this->call(RoleSeeder::class);
         $this->call(UserSeeder::class);
@@ -34,9 +30,8 @@ class DatabaseSeeder extends Seeder
         $this->call(TiendaSeeder::class);
 
         Category::factory(4)->create();
-        Tag::factory(8)->create();
+        Tag::factory(8)->create(); 
 
-        $this->call(PostSeeder::class);
         $this->call(ProductSeeder::class);
         $this->call(PerfilesSeeder::class);
         $this->call(FlutterSeeder::class);

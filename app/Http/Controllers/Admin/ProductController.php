@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Flutter;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 
 class ProductController extends Controller
@@ -22,7 +23,7 @@ class ProductController extends Controller
 
     }
 
-    public function getAll($id){ 
+    public function getAll($id){
 
         $product = Product::with('image', 'category', 'tags')
                      ->where('status', 2)
@@ -52,7 +53,8 @@ class ProductController extends Controller
              'page_name' => $pageName,
              'theme' => 'light',
              'layout' => 'content',
-             'titulo' => $this->HomeController->sideMenu()
+             'titulo' => $this->HomeController->sideMenu(),
+             'userauth' => Auth::user()
          ], compact('products', 'tokenFlutter'));
      }
 
@@ -71,7 +73,8 @@ class ProductController extends Controller
              'page_name' => $pageName,
              'theme' => 'light',
              'layout' => 'content',
-             'titulo' => $this->HomeController->sideMenu()
+             'titulo' => $this->HomeController->sideMenu(),
+             'userauth' => Auth::user()
 
          ]);
      }
@@ -97,7 +100,8 @@ class ProductController extends Controller
              'page_name' => $pageName,
              'theme' => 'light',
              'layout' => 'content',
-             'titulo' => $this->HomeController->sideMenu()
+             'titulo' => $this->HomeController->sideMenu(),
+             'userauth' => Auth::user()
 
          ]);
      }
@@ -121,7 +125,8 @@ class ProductController extends Controller
             'ruta' => 'editar',
             'theme' => 'light',
             'layout' => 'content',
-            'titulo' => $this->HomeController->sideMenu()
+            'titulo' => $this->HomeController->sideMenu(),
+            'userauth' => Auth::user()
 
         ], compact('product'));
      }

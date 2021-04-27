@@ -25,7 +25,10 @@ class UserSeeder extends Seeder
             'profile_photo_path' => 'admin.jpg'
         ])->assignRole('Alpha');
 
-        User::factory(9)->create();
+
+        User::factory(9)->create()->each(function ($user) {
+            $user->assignRole('Comprador');
+        });;
 
 
     }

@@ -1,22 +1,19 @@
 <?php
- 
+
 use Illuminate\Support\Facades\Route;
 
-use App\Http\Controllers\PostController;
-
+use App\Http\Controllers\Web\WebController;
 
 
 /* RUTAS  */
 
+Route::get('/', [WebController::class, 'index'])->name('web.home');
 
+// Route::get('posts/{post}', [PostController::class, 'show'])->name('posts.show');
 
-Route::get('/', [PostController::class, 'index'] )->name('posts.index');
+// Route::get('category/{category}', [PostController::class, 'category'] )->name('posts.category');
 
-Route::get('posts/{post}', [PostController::class, 'show'])->name('posts.show');
-
-Route::get('category/{category}', [PostController::class, 'category'] )->name('posts.category');
-
-Route::get('tag/{tag}', [PostController::class, 'tag'])->name('posts.tag');
+// Route::get('tag/{tag}', [PostController::class, 'tag'])->name('posts.tag');
 
 
 

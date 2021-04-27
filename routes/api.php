@@ -24,7 +24,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::group(["middleware" => "apikey.validate"], function () {
 
-  Route::get('posts/{id}', [PostController::class, 'getAll']);
+//   Route::get('posts/{id}', [PostController::class, 'getAll']);
   Route::get('products/{id}', [ProductController::class, 'getAll']);
 
 

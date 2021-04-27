@@ -9,10 +9,14 @@
     <ul>
 
         @foreach ($side_menu as $menu)
+        @can($menu['can'])
+
             @if ($menu == 'devider')
                 <li class="my-6 side-nav__devider"></li>
             @else
+
                 <li>
+
                     <a href="{{ isset($menu['menuPrincipal']) ? route('page', ['pageName' => $menu['page_name']]) : 'javascript:;' }}"
                         class="{{ $first_page_name == $menu['page_name'] ? 'side-menu side-menu--active' : 'side-menu' }}">
                         <div class="side-menu__icon">
@@ -63,9 +67,13 @@
                             @endforeach
                         </ul>
                     @endif
+
                 </li>
 
             @endif
+            @endcan
         @endforeach
+
+
     </ul>
 </nav>

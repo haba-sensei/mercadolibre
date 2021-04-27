@@ -10,9 +10,9 @@ class UsersIndex extends Component
     /* PAGINACION REACTIVA */
     use WithPagination;
     /* VARIABLES SORT BY  */
-    public $sortBy='name';
+    public $sortBy='id';
     public $sortDirection = 'asc';
-    public $perPage = 5;
+    public $perPage = 6;
     public $search;
 
     public function render()

@@ -2,9 +2,9 @@
    <h2 class="mt-10 text-lg font-medium intro-y">Lista de Categorias</h2>
    <div class="grid grid-cols-12 gap-6 mt-5">
        <div class="flex flex-wrap items-center col-span-12 mt-2 intro-y sm:flex-no-wrap">
-    
-           <a href="{{ route('admin.categories.create') }}" 
-            class="flex items-center justify-center mb-2 mr-2 text-white shadow-md button bg-theme-1" 
+
+           <a href="{{ route('admin.categories.create') }}"
+            class="flex items-center justify-center mb-2 mr-2 text-white shadow-md button bg-theme-1"
             wire:ignore>
                <i data-feather="plus" class="w-5 h-5 mr-2 text-white"></i> Agregar Categoria
            </a>
@@ -16,24 +16,24 @@
                </div>
            </div>
        </div>
-   
+
         <div class="col-span-12 overflow-auto intro-y lg:overflow-visible">
                 <table class="table -mt-2 table-report">
                     <thead>
                         <tr>
-                            
-                            <th wire:click="sortBy('name')"  class="whitespace-no-wrap cursor-pointer ">NOMBRE 
+
+                            <th wire:click="sortBy('name')"  class="whitespace-no-wrap cursor-pointer ">NOMBRE
                                 @include('partials._sort-icon', ['campo' => 'name'])
                             </th>
                             <th wire:click="sortBy('slug')" class="whitespace-no-wrap cursor-pointer ">SLUG
                                 @include('partials._sort-icon', ['campo' => 'slug'])
                             </th>
                             <th  class="whitespace-no-wrap">ACCION</th>
-                            
+
                         </tr>
-                    </thead> 
+                    </thead>
                     <tbody>
-                        @foreach ($categories as $category) 
+                        @foreach ($categories as $category)
                             <tr class="">
                             <td>{{ $category->name }}</td>
                             <td>{{ $category->slug }}</td>
@@ -42,24 +42,24 @@
                                     <a class="flex items-center mr-3"  href="{{ route('admin.categories.edit', $category) }}">
                                         <img class="w-4 h-4 mr-1 shadow-inner" src="{{ asset('dist/images/edit.svg') }}" width="10" height="10"/> Editar
                                     </a>
-                                    
+
                                     <form action="{{ route('admin.categories.destroy', $category) }}" method="POST">
                                         @csrf
                                         @method('delete')
-                                        
+
                                         <button type="submit" class="flex items-center text-theme-6">
                                             <img class="w-4 h-4 mr-1 shadow-inner" src="{{ asset('dist/images/delete.svg') }}" width="10" height="10"/>
                                                 Eliminar
                                         </button>
 
                                     </form>
-                                    
-                                
+
+
                                 </div>
-                            </td> 
+                            </td>
                             </tr>
-                           
-                           
+
+
                         @endforeach
 
                         @if($categories->count() == 0 )
@@ -68,21 +68,21 @@
                                 <h1>Sin Resultados</h1>
                             </td>
                             <td class="">
-                                 
+
                             </td>
                             <td class="">
-                                 
+
                             </td>
-                             
+
                         </tr>
                         @endif
                     </tbody>
                 </table>
 
                 <div class="">
-                    
+
                         {{ $categories->links() }}
-                        
+
                         <select wire:model="perPage" class="w-20 mt-3 input box sm:mt-0">
                             <option>2</option>
                             <option>5</option>
@@ -92,12 +92,12 @@
                             <option>100</option>
                         </select>
                 </div>
-                
+
             </div>
- 
+
 
     </div>
 
 
- 
-</div> 
+
+</div>

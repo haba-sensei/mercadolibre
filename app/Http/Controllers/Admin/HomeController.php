@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -20,7 +21,9 @@ class HomeController extends Controller
             'ruta' => 'listar',
             'theme' => 'light',
             'layout' => 'content',
-            'titulo' => $this->sideMenu()
+            'titulo' => $this->sideMenu(),
+            'userauth' => Auth::user(),
+
         ]);
 
     }
@@ -80,8 +83,17 @@ class HomeController extends Controller
                 'menuPrincipal' => 'si',
                 'page_name' => 'home',
                 'ruta' => 'listar',
-                'title' => 'Home'
+                'title' => 'Home',
+                'can' => 'dash.home'
+            ],
 
+            'roles' => [
+                'icon' => 'eye',
+                'menuPrincipal' => 'si',
+                'ruta' => 'listar',
+                'page_name' => 'roles',
+                'title' => 'Roles',
+                'can' => 'dash.roles.index'
             ],
 
             'users' => [
@@ -89,16 +101,17 @@ class HomeController extends Controller
                 'menuPrincipal' => 'si',
                 'ruta' => 'listar',
                 'page_name' => 'users',
-                'title' => 'Usuarios'
-
-            ],
+                'title' => 'Usuarios',
+                'can' => 'dash.users.index'
+            ], 
 
             'products' => [
                 'icon' => 'tag',
                 'menuPrincipal' => 'si',
                 'ruta' => 'listar',
                 'page_name' => 'products',
-                'title' => 'Productos'
+                'title' => 'Productos',
+                'can' => 'dash.products.index'
 
             ],
 
@@ -107,7 +120,8 @@ class HomeController extends Controller
                 'menuPrincipal' => 'si',
                 'ruta' => 'listar',
                 'page_name' => 'categories',
-                'title' => 'Categorias'
+                'title' => 'Categorias',
+                'can' => 'dash.categories.index'
 
             ],
             'tags' => [
@@ -115,7 +129,8 @@ class HomeController extends Controller
                 'menuPrincipal' => 'si',
                 'ruta' => 'listar',
                 'page_name' => 'tags',
-                'title' => 'Etiquetas'
+                'title' => 'Etiquetas',
+                'can' => 'dash.tags.index'
 
             ]
 

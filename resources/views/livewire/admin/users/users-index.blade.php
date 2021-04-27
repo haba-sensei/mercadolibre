@@ -3,83 +3,54 @@
     <div class="grid grid-cols-12 gap-6 mt-5">
         <div class="flex flex-wrap items-center col-span-12 mt-2 intro-y sm:flex-no-wrap">
 
-            <a href="{{ route('admin.users.create') }}"
-             class="flex items-center justify-center mb-2 mr-2 text-white shadow-md button bg-theme-1"
-             wire:ignore>
-                <i data-feather="plus" class="w-5 h-5 mr-2 text-white"></i> Agregar Usuario
-            </a>
-            <div class="hidden mx-auto text-gray-600 md:block"> Total de Usuarios: {{ $users->total() }}</div>
+            <div class="hidden mr-auto text-gray-600 md:block"> Total de Usuarios: {{ $users->total() }}</div>
             <div class="w-full mt-3 sm:w-auto sm:mt-0 sm:ml-auto md:ml-0">
                 <div class="relative w-56 text-gray-700 dark:text-gray-300">
                     <input wire:model.debounce.300ms="search" type="text" class="w-56 pr-10 input box placeholder-theme-13" placeholder="Busqueda...">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="absolute inset-y-0 right-0 w-4 h-4 my-auto mr-3 feather feather-search"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
                 </div>
-            </div> 
+            </div>
         </div>
 
-         <div class="col-span-12 overflow-auto intro-y lg:overflow-visible">
-                 <table class="table -mt-2 table-report">
-                     <thead>
-                         <tr>
 
-                             <th wire:click="sortBy('name')"  class="whitespace-no-wrap cursor-pointer ">NOMBRE
-                                 @include('partials._sort-icon', ['campo' => 'name'])
-                             </th>
-                             <th wire:click="sortBy('email')" class="whitespace-no-wrap cursor-pointer ">EMAIL
-                                 @include('partials._sort-icon', ['campo' => 'email'])
-                             </th>
-                             <th  class="whitespace-no-wrap">ACCION</th>
+        @foreach ($users as $user)
 
-                         </tr>
-                     </thead>
-                     <tbody>
-                         @foreach ($users as $user)
-                             <tr class="">
-                             <td>{{ $user->name }}</td>
-                             <td>{{ $user->email }}</td>
-                             <td class="w-56 table-report__action">
-                                 <div class="flex items-center justify-center">
-                                     <a class="flex items-center mr-3"  href="{{ route('admin.users.edit', $user) }}">
-                                         <img class="w-4 h-4 mr-1 shadow-inner" src="{{ asset('dist/images/edit.svg') }}" width="10" height="10"/> Editar
-                                     </a>
+                <div class="col-span-12 intro-y md:col-span-6">
+                    <div class="box">
+                        <div class="flex flex-col items-center p-5 lg:flex-row">
+                            <div class="w-24 h-24 lg:w-12 lg:h-12 image-fit lg:mr-1">
+                                <img alt="Midone " class="rounded-full" src="{{ asset($user->profile_photo_url) }}" >
+                            </div>
+                            <div class="mt-3 text-center lg:ml-2 lg:mr-auto lg:text-left lg:mt-0">
+                                <a href="{{ route('admin.users.edit', $user) }}" class="font-medium">{{ $user->name }}</a>
+                                <div class="text-gray-600 text-xs mt-0.5">{{ $user->email }}</div>
+                            </div>
+                            <div class="flex mt-4 lg:mt-0">
+                                <a href="{{ route('admin.users.edit', $user) }}" class="mr-2 text-white button button--sm bg-theme-1" wire:ignore><i data-feather="eye" class="mx-auto" ></i> Permisos</a>
 
-                                     <form action="{{ route('admin.users.destroy', $user) }}" method="POST">
-                                         @csrf
-                                         @method('delete')
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-                                         <button type="submit" class="flex items-center text-theme-6">
-                                             <img class="w-4 h-4 mr-1 shadow-inner" src="{{ asset('dist/images/delete.svg') }}" width="10" height="10"/>
-                                                 Eliminar
-                                         </button>
+        @endforeach
 
-                                     </form>
+        @if($users->count() == 0 )
+        <tr class="">
+            <td class="">
+                <h1>Sin Resultados</h1>
+            </td>
+            <td class="">
 
+            </td>
+            <td class="">
 
-                                 </div>
-                             </td>
-                             </tr>
+            </td>
 
+        </tr>
+        @endif
 
-                         @endforeach
-
-                         @if($users->count() == 0 )
-                         <tr class="">
-                             <td class="">
-                                 <h1>Sin Resultados</h1>
-                             </td>
-                             <td class="">
-
-                             </td>
-                             <td class="">
-
-                             </td>
-
-                         </tr>
-                         @endif
-                     </tbody>
-                 </table>
-
-                 <div class="">
+                <div class="col-span-12 intro-y md:col-span-12">
 
                          {{ $users->links() }}
 
@@ -91,13 +62,9 @@
                              <option>50</option>
                              <option>100</option>
                          </select>
-                 </div>
-
-             </div>
+                </div>
 
 
-     </div>
-
-
+    </div>
 
  </div>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Tag;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class TagController extends Controller
 {
@@ -16,7 +17,7 @@ class TagController extends Controller
     {
         $this->HomeController = $HomeController;
     }
- 
+
     /* {{ METODO INDEX | DATA MENU LATERAL }} */
     public function index()
     {
@@ -34,12 +35,13 @@ class TagController extends Controller
             'page_name' => $pageName,
             'theme' => 'light',
             'layout' => 'content',
-            'titulo' => $this->HomeController->sideMenu()
-        ], compact('tags') ); 
-        
+            'titulo' => $this->HomeController->sideMenu(),
+            'userauth' => Auth::user()
+        ], compact('tags') );
+
     }
 
-    /* {{ METODO CREATE | DATA MENU LATERAL }} */  
+    /* {{ METODO CREATE | DATA MENU LATERAL }} */
     public function create()
     {
         $pageName = 'tags';
@@ -51,9 +53,9 @@ class TagController extends Controller
             'purple' => 'Color Morado',
             'pink' => 'Color Rosado'
         ];
- 
+
         $activeMenu = $this->HomeController->activeMenu($pageName);
-  
+
         return view('admin.tags.create',[
             'side_menu' => $this->HomeController->sideMenu(),
             'first_page_name' => $activeMenu['first_page_name'],
@@ -63,11 +65,12 @@ class TagController extends Controller
             'page_name' => $pageName,
             'theme' => 'light',
             'layout' => 'content',
-            'titulo' => $this->HomeController->sideMenu()
-        ], compact('colors') ); 
+            'titulo' => $this->HomeController->sideMenu(),
+            'userauth' => Auth::user()
+        ], compact('colors') );
     }
 
-    /* {{ METODO STORE | CREATE TAG | VALIDACION | MENSAJE }} */  
+    /* {{ METODO STORE | CREATE TAG | VALIDACION | MENSAJE }} */
     public function store(Request $request)
     {
        /* validacion de formulario */
@@ -82,13 +85,13 @@ class TagController extends Controller
         return redirect()->route('admin.tags.edit', compact('tag'))->with(['info' => 'La etiqueta se creó con éxito', 'color' => '#63b716']);
     }
 
-    /* {{ METODO SHOW | DATA MENU LATERAL | INSTANCIA TAG }} */  
+    /* {{ METODO SHOW | DATA MENU LATERAL | INSTANCIA TAG }} */
     public function show(Tag $tag)
     {
         $pageName= 'tags';
- 
+
          $activeMenu = $this->HomeController->activeMenu($pageName);
-   
+
          return view('admin.tags.show',[
              'side_menu' => $this->HomeController->sideMenu(),
              'first_page_name' => $activeMenu['first_page_name'],
@@ -98,11 +101,12 @@ class TagController extends Controller
              'page_name' => $pageName,
              'theme' => 'light',
              'layout' => 'content',
-             'titulo' => $this->HomeController->sideMenu()
-         ], compact('tag') ); 
+             'titulo' => $this->HomeController->sideMenu(),
+             'userauth' => Auth::user()
+         ], compact('tag') );
     }
 
-    /* {{ METODO EDIT | DATA MENU LATERAL | INSTANCIA TAG }} */  
+    /* {{ METODO EDIT | DATA MENU LATERAL | INSTANCIA TAG }} */
     public function edit(Tag $tag)
     {
         $pageName= 'tags';
@@ -117,7 +121,7 @@ class TagController extends Controller
         ];
 
          $activeMenu = $this->HomeController->activeMenu($pageName);
-   
+
          return view('admin.tags.edit',[
              'side_menu' => $this->HomeController->sideMenu(),
              'first_page_name' => $activeMenu['first_page_name'],
@@ -127,11 +131,12 @@ class TagController extends Controller
              'page_name' => $pageName,
              'theme' => 'light',
              'layout' => 'content',
-             'titulo' => $this->HomeController->sideMenu()
+             'titulo' => $this->HomeController->sideMenu(),
+             'userauth' => Auth::user()
          ], compact('tag', 'colors') );
     }
 
-    /* {{ METODO DE UPDATE | VALIDACION | MENSAJE | REDIRECCION  }} */   
+    /* {{ METODO DE UPDATE | VALIDACION | MENSAJE | REDIRECCION  }} */
     public function update(Request $request, Tag $tag)
     {
          /* validacion de formulario ignorando actualizar del slug por ID */
@@ -140,15 +145,15 @@ class TagController extends Controller
             'slug' => "required|unique:tags,slug,$tag->id",
             'color' => "required"
         ]);
-        
+
          /* update */
-        $tag->update($request->all()); 
-        
+        $tag->update($request->all());
+
         /* redirect a la vista edit */
-        return redirect()->route('admin.tags.edit', $tag)->with(['info' => 'La etiqueta se actualizo con éxito', 'color' => '#1c3faa']); 
+        return redirect()->route('admin.tags.edit', $tag)->with(['info' => 'La etiqueta se actualizo con éxito', 'color' => '#1c3faa']);
     }
 
-    /* {{ METODO DESTROY | REDIRECCION }} */ 
+    /* {{ METODO DESTROY | REDIRECCION }} */
     public function destroy(Tag $tag)
     {
        /* delete id instancia tag */

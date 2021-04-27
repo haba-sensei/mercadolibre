@@ -157,4 +157,11 @@ class Role extends Model implements RoleContract
 
         return $this->permissions->contains('id', $permission->id);
     }
+
+    /* BUSQUEDA DE USUARIOS */
+    public function scopeSearch($query, $val)
+    {
+        return $query
+                ->where('name', 'like', '%'.$val.'%');
+    }
 }

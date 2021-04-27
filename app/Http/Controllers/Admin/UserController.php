@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Spatie\Permission\Models\Role;
 
 class UserController extends Controller
@@ -15,7 +16,7 @@ class UserController extends Controller
     /* {{ METODO CONSTRUCTOR | DATA MENU LATERAL }} */
 
     public function __construct(HomeController $HomeController)
-    {
+    { 
         $this->HomeController = $HomeController;
     }
 
@@ -35,50 +36,14 @@ class UserController extends Controller
             'page_name' => $pageName,
             'theme' => 'light',
             'layout' => 'content',
-            'titulo' => $this->HomeController->sideMenu()
+            'titulo' => $this->HomeController->sideMenu(),
+            'userauth' => Auth::user()
         ]);
 
 
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit(User $user)
     {
         /* aca llamo a todos los roles */
@@ -96,33 +61,23 @@ class UserController extends Controller
             'second_page_name' => $activeMenu['second_page_name'],
             'third_page_name' => $activeMenu['third_page_name'],
             'page_name' => $pageName,
-            'ruta' => 'editar',
+            'ruta' => 'roles y permisos',
             'theme' => 'light',
             'layout' => 'content',
-            'titulo' => $this->HomeController->sideMenu()
+            'titulo' => $this->HomeController->sideMenu(),
+            'userauth' => Auth::user()
         ], compact('user', 'roles'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
+
+    public function update(Request $request, User $user)
     {
+        $user->roles()->sync($request->roles);
+
+        return redirect()->route('admin.users.edit', $user)->with(['info' => 'El rol se actualizo con éxito', 'color' => '#1c3faa']);
 
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
+
+
 }

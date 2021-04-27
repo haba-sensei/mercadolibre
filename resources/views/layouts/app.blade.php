@@ -224,11 +224,10 @@
                             <div class="ps-block--user-header">
                                 <div class="ps-block__left"><i class="icon-user"></i></div>
                                     <div class="ps-block__right">
-                                        {{-- @auth('admin') --}}
+
                                         <a href="{{ route('dash') }}"  class="px-3 py-2 text-sm font-medium text-gray-300 rounded-md hover:bg-gray-700 hover:text-white">
                                         Dashboard
                                         </a>
-                                        {{-- @endauth --}}
                                         <a href="{{ route('profile.show') }}"  class="px-3 py-2 text-sm font-medium text-gray-300 rounded-md hover:bg-gray-700 hover:text-white">
                                         Perfil
                                         </a>

@@ -33,15 +33,15 @@
 @endsection
 
 @section('script')
-    <script type="text/javascript" src="{{ asset('plugins/stringToSlug-1.3/jquery.stringToSlug.min.js') }}"></script>
-     
+    <script type="text/javascript" src="{{ asset('dist/plugins/stringToSlug-1.3/jquery.stringToSlug.min.js') }}"></script>
+
     <script>
         $(document).ready(function() {
             $("#name").stringToSlug({
                 setEvents: 'keyup keydown blur',
                 getPut: '#slug',
                 space: '-'
-                 
+
             });
         });
 
