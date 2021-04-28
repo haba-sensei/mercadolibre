@@ -46,6 +46,8 @@ class RoleController extends Controller
     public function create()
     {
         $permissions = Permission::all();
+
+
         $pageName= 'roles';
 
         $activeMenu = $this->HomeController->activeMenu($pageName);
@@ -65,24 +67,23 @@ class RoleController extends Controller
     }
 
 
-    public function store(Role $role)
+    public function store(Request $request)
     {
-        $pageName= 'roles';
 
-        $activeMenu = $this->HomeController->activeMenu($pageName);
+        $request->validate([
+            'name' => 'required|not_in:Alpha'
 
-        return view('admin.roles.store',[
-            'side_menu' => $this->HomeController->sideMenu(),
-            'first_page_name' => $activeMenu['first_page_name'],
-            'second_page_name' => $activeMenu['second_page_name'],
-            'third_page_name' => $activeMenu['third_page_name'],
-            'ruta' => 'listar',
-            'page_name' => $pageName,
-            'theme' => 'light',
-            'layout' => 'content',
-            'titulo' => $this->HomeController->sideMenu(),
-            'userauth' => Auth::user()
-        ], compact('role'));
+        ]);
+
+        $role = Role::create($request->all());
+
+        $role->permissions()->sync($request->permissions);
+
+        return redirect()->route('admin.roles.edit', $role)
+        ->with([
+            'info' => 'El Rol se creo con éxito',
+            'color' => '#63b716'
+        ]);
     }
 
 
@@ -109,6 +110,7 @@ class RoleController extends Controller
 
     public function edit(Role $role)
     {
+        $permissions = Permission::all();
         $pageName= 'roles';
 
         $activeMenu = $this->HomeController->activeMenu($pageName);
@@ -124,33 +126,36 @@ class RoleController extends Controller
             'layout' => 'content',
             'titulo' => $this->HomeController->sideMenu(),
             'userauth' => Auth::user()
-        ], compact('role'));
+        ], compact('role', 'permissions'));
     }
 
 
     public function update(Request $request, Role $role)
     {
-        $pageName= 'roles';
+        $request->validate([
+            'name' => 'required|not_in:Alpha',
+        ]);
 
-        $activeMenu = $this->HomeController->activeMenu($pageName);
+        $role->update($request->all());
 
-        return view('admin.roles.update',[
-            'side_menu' => $this->HomeController->sideMenu(),
-            'first_page_name' => $activeMenu['first_page_name'],
-            'second_page_name' => $activeMenu['second_page_name'],
-            'third_page_name' => $activeMenu['third_page_name'],
-            'ruta' => 'actualizar',
-            'page_name' => $pageName,
-            'theme' => 'light',
-            'layout' => 'content',
-            'titulo' => $this->HomeController->sideMenu(),
-            'userauth' => Auth::user()
-        ], compact('role'));
+        $role->permissions()->sync($request->permissions);
+
+        return redirect()->route('admin.roles.edit', $role)
+        ->with([
+            'info' => 'El Rol se actualizo con éxito',
+            'color' => '#1c3faa'
+        ]);
     }
 
 
     public function destroy(Role $role)
-    {
+    { 
+        $role->delete();
 
+        return redirect()->route('admin.roles.index', $role)
+        ->with([
+            'info' => 'El Rol se elimino con éxito',
+            'color' => '#f44336'
+        ]);
     }
 }

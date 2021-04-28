@@ -19,12 +19,12 @@
                 </div>
                 <div class="p-5" id="vertical-form">
 
-                    <div class="preview" style="display: block; opacity: 1;">
+                    <div class="mb-4 preview" style="display: block; opacity: 1;">
 
                         {!! Form::open(['route' => 'admin.roles.store']) !!}
 
                         <div>
-                            {!! Form::label('name', 'Nombre del Rol') !!}
+                            {!! Form::label('name', 'Nombre del Rol' , ['class' => 'text-lg font-medium']) !!}
                             {!! Form::text('name', null, ['class' => 'w-full mt-2 border input', 'placeholder' => 'Ingrese el Rol', 'autocomplete' => 'off']) !!}
                             @error('name')
                                 <span class="text-theme-6">
@@ -34,22 +34,27 @@
                         </div>
 
                         <div>
+                        <br>
+                        <h2 class="mr-auto text-2xl font-medium">Seleccionar Permisos</h2>
+                        <br>
 
                         @foreach ($permissions as $permission)
 
-                        <div class="flex items-center">
-                            <div class="pl-4 mb-4 border-l-2 border-theme-1">
-                                <span class="font-medium">{{ $permission->name }}</span>
-
+                        <div class="flex items-center ">
+                            <div class="w-full pl-1 mb-4">
+                                <span class="inline-flex font-medium"><i data-feather="activity" class="w-4 h-4 mr-2"></i> {{ $permission->description }}</span>
+                                {!! Form::checkbox('permissions[]', $permission->id, null, ['class' => 'float-right border input']) !!}
                             </div>
-                            {!! Form::checkbox('permissions[]', $permission->id, null, ['class' => 'ml-auto border input']) !!}
+
                         </div>
 
                         @endforeach
 
+
                         </div>
 
                         <div class="mt-5 text-center">
+
                             {!! Form::submit('Crear Rol', ['class' => 'w-34 text-white button bg-theme-1']) !!}
                         </div>
 

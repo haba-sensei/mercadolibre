@@ -8,7 +8,6 @@ import "./tippy";
 import "./datepicker";
 import "./tail-select";
 import "./dropzone";
-import "./ckeditor";
 import "./validation";
 import "./zoom";
 import "./svg-loader";

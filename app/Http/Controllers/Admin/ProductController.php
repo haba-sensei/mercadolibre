@@ -8,6 +8,10 @@ use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
+use App\Models\Category;
+use App\Models\Tag;
+
+
 
 class ProductController extends Controller
 {
@@ -61,6 +65,19 @@ class ProductController extends Controller
      /* {{ METODO CREATE | DATA MENU LATERAL }} */
      public function create()
      {
+        /* METODO PLUCK UTILIZADO PARA CAMBIAR EL FORMATO DEL OBJETO A ESTA ESTRUCTURA
+
+        {
+            '1' => 'valor'
+        }
+
+        atributo o key => valor
+
+        */
+        $categories = Category::pluck('name', 'id');
+        $tags = Tag::pluck('name', 'id');
+
+
          $pageName= 'products';
          $activeMenu = $this->HomeController->activeMenu($pageName);
 
@@ -76,7 +93,7 @@ class ProductController extends Controller
              'titulo' => $this->HomeController->sideMenu(),
              'userauth' => Auth::user()
 
-         ]);
+         ], compact('categories', 'tags'));
      }
 
      /* {{ METODO STORE | CREATE POST | VALIDACION | MENSAJE }} */

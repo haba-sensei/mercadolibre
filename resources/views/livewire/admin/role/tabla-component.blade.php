@@ -51,7 +51,7 @@
                                         @csrf
                                         @method('delete')
 
-                                        <button type="submit" class="flex items-center text-theme-6">
+                                        <button type="submit" class="flex items-center text-theme-6 " {{ $rol->name == "Alpha" ? 'disabled' : '' }}>
                                             <img class="w-4 h-4 mr-1 shadow-inner"
                                                 src="{{ asset('dist/images/delete.svg') }}" width="10" height="10" />
                                             Eliminar
