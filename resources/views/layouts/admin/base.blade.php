@@ -14,6 +14,8 @@
     @livewireStyles
     <!-- BEGIN: CSS Assets-->
     <link rel="stylesheet" href="{{ mix('dist/css/dash.css') }}" />
+    <link rel="stylesheet" href="{{ asset('dist/plugins/dropzone/basic.css') }}" />
+
     <!-- END: CSS Assets-->
 </head>
 <!-- END: Head -->

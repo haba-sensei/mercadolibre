@@ -12,11 +12,7 @@ class Tag extends Model
     /* ASIGNACION MASIVA  */
     protected $fillable = ['name', 'slug', 'color'];
 
-    /* RELACION MUCHOS A MUCHOS */
-    public function posts(){
-        return $this->belongsToMany(Post::class);
-    }
-
+       
      /* RELACION MUCHOS A MUCHOS */
      public function products(){
         return $this->belongsToMany(Product::class);

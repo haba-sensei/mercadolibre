@@ -19,7 +19,6 @@
         "cross-env": "^7.0.0",
         "datatables.net-dt": "^1.10.23",
         "dayjs": "^1.10.4",
-        "dropzone": "^5.7.6",
         "feather-icons": "^4.28.0",
         "fizzy-ui-utils": "^3.0.0",
         "font-awesome": "^4.7.0",

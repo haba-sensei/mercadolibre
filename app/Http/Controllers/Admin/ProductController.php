@@ -10,7 +10,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 use App\Models\Category;
 use App\Models\Tag;
-
+use Illuminate\Support\Facades\Storage;
+use App\Http\Requests\StoreProductsRequest;
 
 
 class ProductController extends Controller
@@ -97,9 +98,24 @@ class ProductController extends Controller
      }
 
      /* {{ METODO STORE | CREATE POST | VALIDACION | MENSAJE }} */
-     public function store(Request $request)
+     public function store(StoreProductsRequest $request)
      {
-         //
+
+        return Storage::disk('public_upload')->put('products', $request->file('file'));
+        // Storage::put('products', $request->file('file'), 'public_upload');
+        // $product = Product::create( $request->all() );
+
+        // if($request->tag_id){
+        //     $product->tags()->attach($request->tag_id);
+        // }
+
+        // /* retorno a la vista category index */
+        // return redirect()->route('admin.products.edit', $product)
+        // ->with([
+        //     'info' => 'El Producto se creo con éxito',
+        //     'color' => '#63b716'
+        // ]);
+
      }
 
      /* {{ METODO SHOW | DATA MENU LATERAL | INSTANCIA POST }} */
@@ -149,7 +165,7 @@ class ProductController extends Controller
      }
 
      /* {{ METODO DE UPDATE | VALIDACION | MENSAJE | REDIRECCION  }} */
-     public function update(Request $request, Product $product)
+     public function update( Product $product)
      {
          //
      }

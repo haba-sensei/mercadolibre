@@ -20,7 +20,7 @@ class ImageFactory extends Factory
      * @return array
      */
     public function definition()
-    { 
+    {
         //dentro del metodo image tiene la url donde se almacenara luego
         // el width y el height luego la categoria pero ya no se descarga asi que queda null
         // luego hay 2 opciones la primera en true para guardar la url: public/storage/posts/imagen.jpg

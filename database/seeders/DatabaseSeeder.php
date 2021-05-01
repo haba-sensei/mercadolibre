@@ -18,11 +18,16 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        Storage::deleteDirectory('users');
-        Storage::makeDirectory('users');
 
-        Storage::deleteDirectory('products');
-        Storage::makeDirectory('products');
+
+        Storage::deleteDirectory('public/users');
+        Storage::makeDirectory('public/users');
+
+        Storage::deleteDirectory('public/products');
+        Storage::makeDirectory('public/products');
+
+        Storage::deleteDirectory('public/gallery');
+        Storage::makeDirectory('public/gallery');
 
         $this->call(RoleSeeder::class);
         $this->call(UserSeeder::class);
@@ -30,7 +35,7 @@ class DatabaseSeeder extends Seeder
         $this->call(TiendaSeeder::class);
 
         Category::factory(4)->create();
-        Tag::factory(8)->create(); 
+        Tag::factory(8)->create();
 
         $this->call(ProductSeeder::class);
         $this->call(PerfilesSeeder::class);

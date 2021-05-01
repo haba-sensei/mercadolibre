@@ -9,11 +9,14 @@ class Product extends Model
 {
     use HasFactory;
 
-     /* CAMBIO DE URL DE ID -> SLUG  */
-     public function getRouteKeyName()
-     {
-         return "slug";
-     }
+    /* ASIGNACION MASIVA TIPO GUARDED SOLO ELEMENTOS QUE NO QUEREMOS QUE SEAN ASIGNADOS MASIVAMENTE */
+    protected $guarded = ['id', 'create_at', 'update_at'];
+
+    /* CAMBIO DE URL DE ID -> SLUG  */
+    public function getRouteKeyName()
+    {
+        return "slug";
+    }
 
      //relacion 1 a muchos inversa
      public function tienda(){
@@ -35,4 +38,11 @@ class Product extends Model
         return $this->morphOne(Image::class, 'imageable');
 
    }
+
+    //relacion 1 a muchos
+    public function gallery(){
+
+    return $this->belongsToMany(Gallery::class, 'imageable');
+
+    }
 }
