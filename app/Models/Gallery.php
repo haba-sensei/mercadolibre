@@ -9,16 +9,15 @@ class Gallery extends Model
 {
     use HasFactory;
     /* ASIGNACION MASIVA  */
-    protected $fillable = ['imageable_id', 'imageable_type'];
-
+    protected $fillable = ['url', 'imageable_id'];
 
     /* RELACION MUCHOS A MUCHOS */
     public function products(){
-    return $this->belongsToMany(Product::class);
+        return $this->belongsToMany(Product::class);
     }
 
-    //relacion polimorfica
+    // relacion polimorfica
     public function imageable(){
-        return $this->morphTo();
+        return $this->morphMany(Gallery::class, 'imageable');
     }
 }

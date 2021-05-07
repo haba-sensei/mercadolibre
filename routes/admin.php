@@ -22,7 +22,7 @@ Route::resource('roles', RoleController::class)->middleware('can:dash.roles.inde
 /* CRUD RESOURCE'S */
 
 Route::resource('categories', CategoryController::class)->middleware('can:dash.categories.index')->names('admin.categories');
-Route::resource('tags', TagController::class)->middleware('can:dash.tags.index')->names('admin.tags');
+Route::resource('tags', TagController::class)->middleware('can:dash.tags.index')->names('admin.tags'); 
 Route::resource('products', ProductController::class)->middleware('can:dash.products.index')->names('admin.products');
 
 

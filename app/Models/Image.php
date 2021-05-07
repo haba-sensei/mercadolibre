@@ -8,6 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Image extends Model
 {
     use HasFactory;
+    /* ASIGNACION MASIVA  */
+    protected $fillable = ['url'];
 
     //relacion polimorfica
     public function imageable(){

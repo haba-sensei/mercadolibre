@@ -42,7 +42,9 @@ class StoreProductsRequest extends FormRequest
                   'extract' => 'required',
                   'category_id' => 'required',
                   'tag_id' => 'required',
-                //   'gallery' => 'required|image|max:2048'
+                  'bulkfiles.*' => 'required|mimes:jpeg,jpg,png',
+                  'bulkfilesNum' => 'numeric|min:1|max:5',
+
               ]);
           }
 

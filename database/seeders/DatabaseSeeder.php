@@ -8,6 +8,7 @@ use App\Models\Tienda;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Storage;
 
+use Illuminate\Support\Facades\File as FacadesFile;
 
 class DatabaseSeeder extends Seeder
 {
@@ -17,17 +18,10 @@ class DatabaseSeeder extends Seeder
      * @return void
      */
     public function run()
-    {
-
-
-        Storage::deleteDirectory('public/users');
-        Storage::makeDirectory('public/users');
-
-        Storage::deleteDirectory('public/products');
-        Storage::makeDirectory('public/products');
-
-        Storage::deleteDirectory('public/gallery');
-        Storage::makeDirectory('public/gallery');
+    { 
+        FacadesFile::deleteDirectory( public_path() . '/storage/products/', true);
+        FacadesFile::deleteDirectory( public_path() . '/storage/users/', true);
+        FacadesFile::deleteDirectory( public_path() . '/storage/gallery/', true);
 
         $this->call(RoleSeeder::class);
         $this->call(UserSeeder::class);

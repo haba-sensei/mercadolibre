@@ -16,7 +16,7 @@ class UserController extends Controller
     /* {{ METODO CONSTRUCTOR | DATA MENU LATERAL }} */
 
     public function __construct(HomeController $HomeController)
-    { 
+    {
         $this->HomeController = $HomeController;
     }
 
@@ -34,7 +34,7 @@ class UserController extends Controller
             'third_page_name' => $activeMenu['third_page_name'],
             'ruta' => 'listar',
             'page_name' => $pageName,
-            'theme' => 'light',
+            'theme' => $this->HomeController->omega(),
             'layout' => 'content',
             'titulo' => $this->HomeController->sideMenu(),
             'userauth' => Auth::user()
@@ -62,7 +62,7 @@ class UserController extends Controller
             'third_page_name' => $activeMenu['third_page_name'],
             'page_name' => $pageName,
             'ruta' => 'roles y permisos',
-            'theme' => 'light',
+            'theme' => $this->HomeController->omega(),
             'layout' => 'content',
             'titulo' => $this->HomeController->sideMenu(),
             'userauth' => Auth::user()

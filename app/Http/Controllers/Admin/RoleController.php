@@ -36,7 +36,7 @@ class RoleController extends Controller
             'third_page_name' => $activeMenu['third_page_name'],
             'ruta' => 'listar',
             'page_name' => $pageName,
-            'theme' => 'light',
+            'theme' => $this->HomeController->omega(),
             'layout' => 'content',
             'titulo' => $this->HomeController->sideMenu(),
             'userauth' => Auth::user()
@@ -59,7 +59,7 @@ class RoleController extends Controller
             'third_page_name' => $activeMenu['third_page_name'],
             'ruta' => 'agregar',
             'page_name' => $pageName,
-            'theme' => 'light',
+            'theme' => $this->HomeController->omega(),
             'layout' => 'content',
             'titulo' => $this->HomeController->sideMenu(),
             'userauth' => Auth::user()
@@ -100,7 +100,7 @@ class RoleController extends Controller
             'third_page_name' => $activeMenu['third_page_name'],
             'ruta' => 'listar',
             'page_name' => $pageName,
-            'theme' => 'light',
+            'theme' => $this->HomeController->omega(),
             'layout' => 'content',
             'titulo' => $this->HomeController->sideMenu(),
             'userauth' => Auth::user()
@@ -122,7 +122,7 @@ class RoleController extends Controller
             'third_page_name' => $activeMenu['third_page_name'],
             'ruta' => 'editar',
             'page_name' => $pageName,
-            'theme' => 'light',
+            'theme' => $this->HomeController->omega(),
             'layout' => 'content',
             'titulo' => $this->HomeController->sideMenu(),
             'userauth' => Auth::user()
@@ -149,7 +149,7 @@ class RoleController extends Controller
 
 
     public function destroy(Role $role)
-    { 
+    {
         $role->delete();
 
         return redirect()->route('admin.roles.index', $role)

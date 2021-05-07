@@ -42,7 +42,7 @@ class Product extends Model
     //relacion 1 a muchos
     public function gallery(){
 
-    return $this->belongsToMany(Gallery::class, 'imageable');
+    return $this->morphMany(Gallery::class, 'imageable');
 
     }
 }

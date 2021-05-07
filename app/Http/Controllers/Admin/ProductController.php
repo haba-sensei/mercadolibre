@@ -1,7 +1,5 @@
 <?php
-
 namespace App\Http\Controllers\Admin;
-
 use App\Http\Controllers\Controller;
 use App\Models\Flutter;
 use App\Models\Product;
@@ -12,8 +10,11 @@ use App\Models\Category;
 use App\Models\Tag;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\StoreProductsRequest;
-
-
+use App\Http\Requests\UpdateProductRequest;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Cache;
+use Intervention\Image\ImageManagerStatic as ImagenCompress;
 class ProductController extends Controller
 {
 
@@ -47,6 +48,8 @@ class ProductController extends Controller
         $products = Product::all();
         $pageName= 'products';
 
+        Cache::has('product') ? Cache::put('product', $products) : '';
+
          $activeMenu = $this->HomeController->activeMenu($pageName);
 
          return view('admin.products.index',[
@@ -56,7 +59,7 @@ class ProductController extends Controller
              'third_page_name' => $activeMenu['third_page_name'],
              'ruta' => 'listar',
              'page_name' => $pageName,
-             'theme' => 'light',
+             'theme' => $this->HomeController->omega(),
              'layout' => 'content',
              'titulo' => $this->HomeController->sideMenu(),
              'userauth' => Auth::user()
@@ -77,6 +80,7 @@ class ProductController extends Controller
         */
         $categories = Category::pluck('name', 'id');
         $tags = Tag::pluck('name', 'id');
+        $tags_charged = [];
 
 
          $pageName= 'products';
@@ -89,32 +93,65 @@ class ProductController extends Controller
              'third_page_name' => $activeMenu['third_page_name'],
              'ruta' => 'agregar',
              'page_name' => $pageName,
-             'theme' => 'light',
+             'theme' => $this->HomeController->omega(),
              'layout' => 'content',
              'titulo' => $this->HomeController->sideMenu(),
              'userauth' => Auth::user()
 
-         ], compact('categories', 'tags'));
+         ], compact('categories', 'tags', 'tags_charged'));
      }
 
      /* {{ METODO STORE | CREATE POST | VALIDACION | MENSAJE }} */
+      // Storage::put('products', $request->file('file'), 'public_upload');
+    //   public function store(StoreProductsRequest $request)
      public function store(StoreProductsRequest $request)
      {
+         $product = Product::create( $request->all() );
 
-        return Storage::disk('public_upload')->put('products', $request->file('file'));
-        // Storage::put('products', $request->file('file'), 'public_upload');
-        // $product = Product::create( $request->all() );
+        //  $url = Storage::disk('public_upload')->put('products', $request->file('file'));
 
-        // if($request->tag_id){
-        //     $product->tags()->attach($request->tag_id);
-        // }
+        $filename =  Str::random(32).".".File::extension($request->file('file')->getClientOriginalName());
+        $url = "products/".$filename;
+        $product_url = public_path(). '\storage\products/'.$filename;
 
-        // /* retorno a la vista category index */
-        // return redirect()->route('admin.products.edit', $product)
-        // ->with([
-        //     'info' => 'El Producto se creo con éxito',
-        //     'color' => '#63b716'
-        // ]);
+        ImagenCompress::make($request->file('file'))
+        ->resize(600, 600)
+        ->save($product_url);
+
+        $product->image()->create([
+        'url' => $url
+        ]);
+
+        if ($request->hasFile('bulkfiles')){
+
+            foreach ($request->file('bulkfiles') as $file) {
+
+                $filename_bulk =  Str::random(32).".".File::extension($file->getClientOriginalName());
+                $path = 'gallery/';
+                $bulk_url = public_path(). '\storage\gallery/'.$filename_bulk;
+
+                ImagenCompress::make(file_get_contents($file))
+                ->resize(600, 600)
+                ->save($bulk_url);
+
+                $product->gallery()->create([
+                'url' => $path.$filename_bulk
+                ]);
+
+            }
+
+        }
+
+        if($request->tag_id){
+            $product->tags()->attach($request->tag_id);
+        }
+
+        /* retorno a la vista category index */
+        return redirect()->route('admin.products.edit', $product)
+        ->with([
+            'info' => 'El Producto se creo con éxito',
+            'color' => '#63b716'
+        ]);
 
      }
 
@@ -131,7 +168,7 @@ class ProductController extends Controller
              'third_page_name' => $activeMenu['third_page_name'],
              'ruta' => 'agregar',
              'page_name' => $pageName,
-             'theme' => 'light',
+             'theme' => $this->HomeController->omega(),
              'layout' => 'content',
              'titulo' => $this->HomeController->sideMenu(),
              'userauth' => Auth::user()
@@ -142,7 +179,18 @@ class ProductController extends Controller
      /* {{ METODO EDIT | DATA MENU LATERAL | INSTANCIA POST }} */
      public function edit(Product $product)
      {
-         /* variable nombre pagina */
+        $categories = Category::pluck('name', 'id');
+
+        $tags = Tag::pluck('name', 'id');
+
+        $tags_charged = DB::table('product_tag')
+                     ->where('product_id', $product->id)
+                     ->pluck('tag_id');
+
+
+        Cache::has('product') ? Cache::put('product', $product) : '';
+
+        /* variable nombre pagina */
         $pageName= 'products';
 
         /* menu lateral activo */
@@ -156,18 +204,107 @@ class ProductController extends Controller
             'third_page_name' => $activeMenu['third_page_name'],
             'page_name' => $pageName,
             'ruta' => 'editar',
-            'theme' => 'light',
+            'theme' => $this->HomeController->omega(),
             'layout' => 'content',
             'titulo' => $this->HomeController->sideMenu(),
             'userauth' => Auth::user()
 
-        ], compact('product'));
+        ], compact('product', 'categories', 'tags', 'tags_charged'));
      }
 
      /* {{ METODO DE UPDATE | VALIDACION | MENSAJE | REDIRECCION  }} */
-     public function update( Product $product)
+     public function update(UpdateProductRequest $request, Product $product)
      {
-         //
+
+
+        /* update */
+        $product->update($request->all());
+
+        if($request->file('file')){
+            $filename =  Str::random(32).".".File::extension($request->file('file')->getClientOriginalName());
+            $url = "products/".$filename;
+            $product_url = public_path(). '\storage\products/'.$filename;
+
+            ImagenCompress::make($request->file('file'))
+            ->resize(600, 600)
+            ->save($product_url);
+
+            if($product->image){
+                Storage::disk('public_upload')->delete($product->image->url);
+
+                $product->image->update([
+                    'url' => $url
+                ]);
+            }else {
+                $product->image()->create([
+                    'url' => $url
+                ]);
+            }
+        }
+
+        $id_bulkfiles = [];
+
+        foreach ($product->gallery as $key) {
+
+            $id_bulkfiles[] = "$key->id";
+
+            if($request->bulkfilesOld == NULL){
+
+                $product->gallery()->findOrFail($key->id)->delete();
+
+                Storage::disk('public_upload')->delete($key->url);
+
+            }else {
+                $imagen_diff = array_diff($id_bulkfiles, $request->bulkfilesOld);
+
+                $imagen_id_elim = array_values($imagen_diff);
+
+                foreach ($imagen_id_elim as $key2) {
+
+                    if($key2 == $key->id){
+
+                            $product->gallery()->findOrFail($key->id)->delete();
+
+                            Storage::disk('public_upload')->delete($key->url);
+
+                    }
+
+                }
+            }
+
+
+
+        }
+
+        if ($request->hasFile('bulkfiles')){
+
+            foreach ($request->file('bulkfiles') as $fileUp) {
+
+                $filename_bulk_up =  Str::random(32).".".File::extension($fileUp->getClientOriginalName());
+                $pathUp = 'gallery/';
+                $bulk_urlUp = public_path(). '\storage\gallery/'. $filename_bulk_up;
+
+                ImagenCompress::make(file_get_contents($fileUp))
+                ->resize(600, 600)
+                ->save($bulk_urlUp);
+                $img_path_up =  $pathUp. $filename_bulk_up;
+
+                $product->gallery()->create([
+                'url' => $img_path_up
+                ]);
+
+
+            }
+
+        }
+
+        /* retorno a la vista category index */
+        return redirect()->route('admin.products.edit', $product)
+        ->with([
+            'info' => 'El Producto se actualizo con éxito',
+            'color' => '#63b716'
+        ]);
+
      }
 
      /* {{ METODO DESTROY | REDIRECCION }} */
@@ -175,7 +312,7 @@ class ProductController extends Controller
      {
           /* delete id instancia category */
           $product->delete();
-
+        //   Storage::delete('file.jpg');
           /* retorno a la vista category index */
            return redirect()->route('admin.products.index')
                             ->with([

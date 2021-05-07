@@ -33,7 +33,7 @@ class CategoryController extends Controller
             'third_page_name' => $activeMenu['third_page_name'],
             'ruta' => 'listar',
             'page_name' => $pageName,
-            'theme' => 'light',
+            'theme' => $this->HomeController->omega(),
             'layout' => 'content',
             'titulo' => $this->HomeController->sideMenu(),
             'userauth' => Auth::user()
@@ -54,7 +54,7 @@ class CategoryController extends Controller
             'third_page_name' => $activeMenu['third_page_name'],
             'ruta' => 'agregar',
             'page_name' => $pageName,
-            'theme' => 'light',
+            'theme' => $this->HomeController->omega(),
             'layout' => 'content',
             'titulo' => $this->HomeController->sideMenu(),
             'userauth' => Auth::user()
@@ -92,7 +92,7 @@ class CategoryController extends Controller
              'third_page_name' => $activeMenu['third_page_name'],
              'ruta' => 'listar',
              'page_name' => $pageName,
-             'theme' => 'light',
+             'theme' => $this->HomeController->omega(),
              'layout' => 'content',
              'titulo' => $this->HomeController->sideMenu(),
              'userauth' => Auth::user()
@@ -116,7 +116,7 @@ class CategoryController extends Controller
             'third_page_name' => $activeMenu['third_page_name'],
             'page_name' => $pageName,
             'ruta' => 'editar',
-            'theme' => 'light',
+            'theme' => $this->HomeController->omega(),
             'layout' => 'content',
             'titulo' => $this->HomeController->sideMenu(),
             'userauth' => Auth::user()

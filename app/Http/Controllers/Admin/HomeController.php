@@ -19,7 +19,7 @@ class HomeController extends Controller
             'third_page_name' => $activeMenu['third_page_name'],
             'page_name' => $pageName,
             'ruta' => 'listar',
-            'theme' => 'light',
+            'theme' => $this->omega(),
             'layout' => 'content',
             'titulo' => $this->sideMenu(),
             'userauth' => Auth::user(),
@@ -103,7 +103,7 @@ class HomeController extends Controller
                 'page_name' => 'users',
                 'title' => 'Usuarios',
                 'can' => 'dash.users.index'
-            ], 
+            ],
 
             'products' => [
                 'icon' => 'tag',
@@ -135,5 +135,13 @@ class HomeController extends Controller
             ]
 
         ];
+    }
+
+    public function omega(){
+
+        $themeColor = 'light';
+
+        return $themeColor;
+
     }
 }
