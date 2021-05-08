@@ -313,16 +313,20 @@ class ProductController extends Controller
      /* {{ METODO DESTROY | REDIRECCION }} */
      public function destroy(Product $product)
      {
+        /* delete id instancia product */
+        $product->delete();
+        $product->image()->findOrFail($product->image->id)->delete();
+        Storage::disk('public_upload')->delete($product->image->url);
 
-        return "Hloa";
-          /* delete id instancia category */
-        //   $product->delete();
-        // //   Storage::delete('file.jpg');
-        //   /* retorno a la vista category index */
-           return redirect()->route('admin.products.index')
-                            ->with([
-                                'info' => 'El Producto se elimino con éxito',
-                                'color' => '#f44336'
-                            ]);
+        foreach ($product->gallery as $item) {
+           $product->gallery()->findOrFail($item->id)->delete();
+           Storage::disk('public_upload')->delete($item->url);
+        }
+
+        /* retorno a la vista product index */
+        return redirect()->route('admin.products.index')
+                        ->with([
+                            'eliminar' => 'ok'
+                        ]);
      }
 }

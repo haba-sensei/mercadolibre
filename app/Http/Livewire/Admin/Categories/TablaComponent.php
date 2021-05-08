@@ -7,7 +7,7 @@ use Livewire\Component;
 use Livewire\WithPagination;
 
 
-class TablaComponent extends Component
+class TablaComponent extends Component 
 {
     /* PAGINACION REACTIVA */
     use WithPagination;
@@ -17,14 +17,14 @@ class TablaComponent extends Component
     public $perPage = 5;
     public $search = '';
 
-    /* RENDER COMPONENT TABLA  */ 
+    /* RENDER COMPONENT TABLA  */
     public function render()
     {
         $categories =  Category::query()
         ->search($this->search)
         ->orderBy($this->sortBy, $this->sortDirection)
         ->paginate($this->perPage);
-        
+
         return view('livewire.admin.categories.tabla-component',
         compact('categories'));
     }
@@ -38,7 +38,7 @@ class TablaComponent extends Component
             $this->sortDirection= 'asc';
         }
 
-        return $this->sortBy = $campo; 
+        return $this->sortBy = $campo;
     }
 
     /* ACTUALIZANDO DATA EN LA BUSQUEDA */

@@ -45,4 +45,12 @@ class Product extends Model
     return $this->morphMany(Gallery::class, 'imageable');
 
     }
+
+    /* BUSQUEDA DE CATEGORIA */
+    public function scopeSearch($query, $val)
+    {
+        return $query
+                ->where('name', 'like', '%'.$val.'%')
+                ->OrWhere('slug', 'like', '%'.$val.'%');
+    }
 }

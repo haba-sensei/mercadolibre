@@ -11,14 +11,14 @@ class ModalProd extends Component
 
     public function render()
     {
-        return view('livewire.admin.products.modal-prod');
+        return view('admin.products.index');
     }
 
     public function delete($id)
     {
         if($id){
-            Product::where('id', $id)->delete();
-            session()->flash('message', 'Users Deleted Successfully.');
+            // Product::where('id', $id)->delete();
+            return view('admin.products.index');
         }
     }
 

@@ -4,13 +4,13 @@
 
 @section('subcontent')
 @if(session('info'))
-    
+
 <input id="infomensaje" type="hidden" value="{{ session('info') }}" >
 <input id="colormensaje" type="hidden" value="{{ session('color') }}" >
 
 @endif
 
-     <livewire:admin.categories.tabla-component /> 
-     
+     <livewire:admin.categories.tabla-component />
+
 @endsection
- 
+

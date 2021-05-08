@@ -171,7 +171,7 @@ import Tabulator from "tabulator-tables";
                                 <i data-feather="check-square" class="w-4 h-4 mr-1"></i> Edit
                             </a>
 
-                            <button class="flex items-center text-theme-6" data-id="${cell.getData().id}" data-action="{{ route('admin.products.destroy', ${cell.getData().id}) }}" onclick="deleteConfirmation(${cell.getData().id})">
+                            <button class="flex items-center text-theme-6" wire:click="delete(${cell.getData().id})">
                             <img class="w-4 h-4 mr-1 shadow-inner" src="/dist/images/delete.svg" width="10" height="10"/>
                             Eliminar
                             </button>
