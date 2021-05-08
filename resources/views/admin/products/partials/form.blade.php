@@ -56,10 +56,10 @@
                             {!! Html::decode(Form::label('attach', '<i data-feather="image" class="w-4 h-4 mr-2"></i> Seleccionar Galeria de Imagenes', [ 'class' => 'flex items-center justify-center w-full mb-2 mr-2 text-white button button--sm bg-theme-1'])) !!}
                             <div class="DragArea" id="preview_img">
                                 @isset($product->gallery)
-                                <span id="text_img_drop" class="hidden"> Click o Arrastra tus imagenes Aqui </span>
+                                <strong id="text_img_drop" class="hidden"> CLICK O ARRASTRA TUS IMAGENES AQUI <br> <br> | MAXIMO 5 IMAGENES | PNG - JPG - JPEG | <br> <br> MAX 2MB POR IMAGEN</strong>
 
                                 @else
-                                <span id="text_img_drop" > Click o Arrastra tus imagenes Aqui </span>
+                                <strong id="text_img_drop" > CLICK O ARRASTRA TUS IMAGENES AQUI <br> <br> | MAXIMO 5 IMAGENES | PNG - JPG - JPEG |<br> <br> MAX 2MB </strong>
                                 @endisset
 
 
@@ -83,7 +83,7 @@
                             {{ $message }}
                             </span>
                             @enderror
-                            
+
                             {!! Form::hidden('bulkfilesNum', null,['id' => 'bulkfilesNum']) !!}
 
                             @error('bulkfilesNum')

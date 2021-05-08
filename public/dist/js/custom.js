@@ -7,16 +7,101 @@ $(document).ready(function() {
     });
 
     ClassicEditor
-        .create(document.querySelector('#extract'))
+        .create(document.querySelector('#extract'), {
+            heading: {
+                options: [
+                    { model: 'paragraph', title: 'Paragraph', class: 'ck-heading_paragraph' },
+                    { model: 'heading1', view: 'h1', title: 'Heading 1', class: 'ck-heading_heading1 text-4xl font-medium leading-none"' },
+                    { model: 'heading2', view: 'h2', title: 'Heading 2', class: 'ck-heading_heading2' }
+                ]
+            },
+            toolbar: {
+                items: [
+                    'heading',
+                    '|',
+                    'bold',
+                    'italic',
+                    '|',
+                    'bulletedList',
+                    'numberedList',
+                    '|',
+                    'insertTable',
+                    '|',
+                    'link',
+                    '|',
+                    'blockQuote',
+                    '|',
+                    'fontSize',
+                    '|',
+                    'undo',
+                    'redo'
+                ]
+            },
+            fontSize: {
+                options: [
+                    'tiny',
+                    'default',
+                    'big'
+                ]
+            },
+
+            table: {
+                contentToolbar: ['tableColumn', 'tableRow', 'mergeTableCells']
+            },
+            language: 'es'
+        })
         .catch(error => {
             console.error(error);
         });
 
     ClassicEditor
-        .create(document.querySelector('#body'))
+        .create(document.querySelector('#body'), {
+            heading: {
+                options: [
+                    { model: 'paragraph', title: 'Paragraph', class: 'ck-heading_paragraph' },
+                    { model: 'heading1', view: 'h1', title: 'Heading 1', class: 'ck-heading_heading1 text-4xl font-medium leading-none"' },
+                    { model: 'heading2', view: 'h2', title: 'Heading 2', class: 'ck-heading_heading2' }
+                ]
+            },
+            toolbar: {
+                items: [
+                    'heading',
+                    '|',
+                    'bold',
+                    'italic',
+                    '|',
+                    'bulletedList',
+                    'numberedList',
+                    '|',
+                    'insertTable',
+                    '|',
+                    'link',
+                    '|',
+                    'blockQuote',
+                    '|',
+                    'fontSize',
+                    '|',
+                    'undo',
+                    'redo'
+                ]
+            },
+            fontSize: {
+                options: [
+                    'tiny',
+                    'default',
+                    'big'
+                ]
+            },
+
+            table: {
+                contentToolbar: ['tableColumn', 'tableRow', 'mergeTableCells']
+            },
+            language: 'es'
+        })
         .catch(error => {
             console.error(error);
         });
+
 
     document.getElementById("file").addEventListener('change', cambiarImagen);
 
@@ -160,6 +245,7 @@ $(document).ready(function() {
 
         if (imagenes_creadas == 0) {
             $('#text_img_drop').removeClass('hidden');
+            document.getElementById('attach').value = null;
         }
         contaImg();
     });

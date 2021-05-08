@@ -297,7 +297,10 @@ class ProductController extends Controller
             }
 
         }
-
+        /* sincronizacion de etiquetas evitando el duplicado */
+        if($request->tag_id){
+            $product->tags()->sync($request->tag_id);
+        }
         /* retorno a la vista category index */
         return redirect()->route('admin.products.edit', $product)
         ->with([
@@ -310,10 +313,12 @@ class ProductController extends Controller
      /* {{ METODO DESTROY | REDIRECCION }} */
      public function destroy(Product $product)
      {
+
+        return "Hloa";
           /* delete id instancia category */
-          $product->delete();
-        //   Storage::delete('file.jpg');
-          /* retorno a la vista category index */
+        //   $product->delete();
+        // //   Storage::delete('file.jpg');
+        //   /* retorno a la vista category index */
            return redirect()->route('admin.products.index')
                             ->with([
                                 'info' => 'El Producto se elimino con éxito',

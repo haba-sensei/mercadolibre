@@ -20,7 +20,7 @@
         wire:ignore>
             Crear Productos <i data-feather="plus" class="w-5 h-5 ml-2 text-white"></i>
        </a>
-       
+
     </div>
 </div>
 <!-- BEGIN: HTML Table Data -->
@@ -95,3 +95,41 @@
 <!-- END: HTML Table Data -->
 @endsection
 
+
+@section('script')
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <script>
+//
+        function deleteConfirmation(id){
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+
+        if (result.isConfirmed) {
+            var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+
+            $.ajax({
+                type: 'POST',
+                url: "{{url('products')}}/" + id,
+                data: {_token: CSRF_TOKEN},
+                success: function (results) {
+                        alert("pase");
+                }
+            });
+        }
+        })
+
+
+
+
+
+        }
+
+    </script>
+@endsection

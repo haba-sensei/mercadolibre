@@ -164,15 +164,19 @@ import Tabulator from "tabulator-tables";
                     download: false,
                     formatter(cell, formatterParams) {
                         var deletePostUri = cell.getData().slug;
-                        console.log(deletePostUri);
-                       
+
+
                         return `<div class="flex lg:justify-center items-center">
                             <a class="flex items-center mr-3" href="products/${cell.getData().slug}/edit">
                                 <i data-feather="check-square" class="w-4 h-4 mr-1"></i> Edit
                             </a>
-                            <a class="flex items-center text-theme-6" href="products/${cell.getData().slug}/destroy">
-                                <i data-feather="trash-2" class="w-4 h-4 mr-1"></i> Eliminar
-                            </a>
+
+                            <button class="flex items-center text-theme-6" data-id="${cell.getData().id}" data-action="{{ route('admin.products.destroy', ${cell.getData().id}) }}" onclick="deleteConfirmation(${cell.getData().id})">
+                            <img class="w-4 h-4 mr-1 shadow-inner" src="/dist/images/delete.svg" width="10" height="10"/>
+                            Eliminar
+                            </button>
+
+
                         </div>`
                     }
                 },
