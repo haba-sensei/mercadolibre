@@ -6,12 +6,15 @@
 
     <x-web.descuento />
 
-    <x-web.menu-desk />
-    <x-web.menu-mobile />
+    <x-web.header-desk :color="$color" :background="$background" :categories="$categories" />
 
-    <x-web.home-slider />
+    <x-web.header-mobile :color="$color" :background="$background"  :mobilcolor="$mobilcolor" :mobilbackground="$mobilbackground"   />
+    <x-web.menu-mobile :color="$color" :background="$background" :categories="$categories"   :mobilcolor="$mobilcolor" :mobilbackground="$mobilbackground"   />
+
+
 
     <div id="homepage-3">
+        <x-web.home-slider />
 
         <x-web.features />
 
@@ -19,9 +22,9 @@
 
         {{-- aqui van los componentes dinamicos --}}
 
-        <x-web.oferta-dia />
+        <x-web.lista-por-tags />
 
-        <x-web.lista-por-categorias />
+        <x-web.productos-por-categorias />
 
 
         {{-- fin  --}}
@@ -35,22 +38,4 @@
         <x-web.search />
 
     </div>
-
-
-
-
 @endsection
-
-
-
-
-
-
-
-
-
-
-
-
-
-{{-- <x-app-layout></x-app-layout> --}}
