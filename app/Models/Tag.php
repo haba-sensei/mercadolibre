@@ -10,12 +10,16 @@ class Tag extends Model
     use HasFactory;
 
     /* ASIGNACION MASIVA  */
-    protected $fillable = ['name', 'slug', 'color'];
+    protected $guarded = ['id', 'create_at', 'update_at'];
 
-       
+
      /* RELACION MUCHOS A MUCHOS */
      public function products(){
         return $this->belongsToMany(Product::class);
+    }
+
+    public function category(){
+        return $this->belongsTo(Category::class);
     }
 
     /* CAMBIO DE URL DE ID -> SLUG  */

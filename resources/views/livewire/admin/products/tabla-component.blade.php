@@ -58,7 +58,7 @@
                                     </div>
                                 </td>
                                 <td style="width:48%">
-                                    <a href="javascript:" class="font-medium whitespace-nowrap">{{ $product->name }}</a>
+                                    <a href="javascript:" class="font-medium ">{{ $product->name }}</a>
                                     <div class="text-gray-600 text-xs whitespace-nowrap mt-0.5">{{ $product->category->name }}</div>
                                     <div class="text-gray-600 text-xs whitespace-nowrap mt-0.5">Stock: {{ $product->stock }}</div>
 

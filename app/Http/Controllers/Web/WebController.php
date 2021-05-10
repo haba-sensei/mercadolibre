@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
 use App\Models\Category;
+use App\Models\Tag;
 use Illuminate\Http\Request;
 
 class WebController extends Controller
@@ -20,11 +21,10 @@ class WebController extends Controller
         $mobilbackground = "#fcb800";
         $mobilcolor = "#000";
         $categories = Category::all();
-        $tag1 = "asdasd";
+        $tag = Tag::all();
 
-        return view('web.home.index', compact('color', 'background', 'mobilbackground', 'mobilcolor', 'categories' ) );
+        return view('web.home.index', compact('color', 'background', 'mobilbackground', 'mobilcolor', 'categories', 'tag' ) );
     }
-
 
 
 

@@ -18,18 +18,19 @@ class DatabaseSeeder extends Seeder
      * @return void
      */
     public function run()
-    { 
+    {
         FacadesFile::deleteDirectory( public_path() . '/storage/products/', true);
         FacadesFile::deleteDirectory( public_path() . '/storage/users/', true);
         FacadesFile::deleteDirectory( public_path() . '/storage/gallery/', true);
+        FacadesFile::deleteDirectory( public_path() . '/storage/tags/', true);
 
         $this->call(RoleSeeder::class);
         $this->call(UserSeeder::class);
 
         $this->call(TiendaSeeder::class);
 
-        Category::factory(4)->create();
-        Tag::factory(8)->create();
+        Category::factory(14)->create();
+        Tag::factory(50)->create();
 
         $this->call(ProductSeeder::class);
         $this->call(PerfilesSeeder::class);

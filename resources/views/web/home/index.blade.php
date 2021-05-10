@@ -22,7 +22,7 @@
 
         {{-- aqui van los componentes dinamicos --}}
 
-        <x-web.lista-por-tags />
+        <x-web.lista-por-tags :tag="$tag" :tag="$tag" />
 
         <x-web.productos-por-categorias />
 
