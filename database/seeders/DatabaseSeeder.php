@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Category;
+use App\Models\OrderCategory;
 use App\Models\Tag;
 use App\Models\Tienda;
 use Illuminate\Database\Seeder;
@@ -32,9 +33,13 @@ class DatabaseSeeder extends Seeder
         Category::factory(14)->create();
         Tag::factory(50)->create();
 
+        $this->call(OrderCategorySeeder::class);
+
         $this->call(ProductSeeder::class);
         $this->call(PerfilesSeeder::class);
         $this->call(FlutterSeeder::class);
+
+
 
     }
 }

@@ -22,20 +22,20 @@
 
         {{-- aqui van los componentes dinamicos --}}
 
-        <x-web.lista-por-tags :tag="$tag" :tag="$tag" />
+        <x-web.lista-por-tags :tags="$tags" :categories="$categories" />
 
-        <x-web.productos-por-categorias />
-
+        
+        <livewire:web.home.lista-por-categoria  >
 
         {{-- fin  --}}
 
         <x-web.newsletter />
 
-        <x-web.footer />
 
+        <x-web.footer />
         <x-web.addons />
 
-        <x-web.search />
+          <x-web.search />
 
     </div>
 @endsection

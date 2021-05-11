@@ -45,7 +45,7 @@ class ProductController extends Controller
      {
 
         $tokenFlutter = Flutter::find(1)->access_token;
-        $products = Product::all();
+        $products = Product::where(['user_id' => auth()->user()->id])->get();
         $pageName= 'products';
 
         Cache::has('product') ? Cache::put('product', $products) : '';

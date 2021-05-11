@@ -61,13 +61,7 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
-
-    // /* CAMBIO DE URL DE ID -> SLUG  */
-    // public function getRouteKeyName()
-    // {
-    //     return "name";
-    // }
-
+    
     //relacion 1 a muchos
     public function posts(){
         return $this->hasMany(Post::class);

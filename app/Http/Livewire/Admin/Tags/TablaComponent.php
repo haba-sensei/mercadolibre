@@ -17,14 +17,15 @@ class TablaComponent extends Component
     public $perPage = 5;
     public $search = '';
 
-    /* RENDER COMPONENT TABLA  */ 
+    /* RENDER COMPONENT TABLA  */
     public function render()
     {
+        
         $tags =  Tag::query()
         ->search($this->search)
         ->orderBy($this->sortBy, $this->sortDirection)
         ->paginate($this->perPage);
-        
+
         return view('livewire.admin.tags.tabla-component',
         compact('tags'));
     }
@@ -38,7 +39,7 @@ class TablaComponent extends Component
             $this->sortDirection= 'asc';
         }
 
-        return $this->sortBy = $campo; 
+        return $this->sortBy = $campo;
     }
 
     /* ACTUALIZANDO DATA EN LA BUSQUEDA */

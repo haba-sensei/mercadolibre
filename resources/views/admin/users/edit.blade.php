@@ -66,7 +66,7 @@
                         <div class="flex items-center">
                             <div class="pl-4 mb-4 border-l-2 border-theme-1">
                                 <span class="font-medium">{{ $role->name }}</span>
-
+ 
                             </div>
                             {!! Form::checkbox('roles[]', $role->id, null, ['class' => 'ml-auto border input', $role->name == "Alpha" ? 'disabled' : '' ]) !!}
                         </div>
