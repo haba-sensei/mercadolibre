@@ -21,11 +21,10 @@
         <x-web.promociones-1 />
 
         {{-- aqui van los componentes dinamicos --}}
-
-        <x-web.lista-por-tags :tags="$tags" :categories="$categories" />
-
         
         <livewire:web.home.lista-por-categoria  >
+
+        <x-web.lista-por-tags :tags="$tags" :categories="$categories" />
 
         {{-- fin  --}}
 

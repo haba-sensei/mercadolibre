@@ -12,7 +12,7 @@ class ListaPorCategoria extends Component
     public function render()
     {
         $orderCatId = OrderCategory::pluck('catID');
-        $categoriasF = Category::all()->random(4);
+        $categoriasF = Category::all();
         $productosF = Product::whereIn('category_id', $orderCatId)->with(['category'])->get();
 
         return view('livewire.web.home.lista-por-categoria', [

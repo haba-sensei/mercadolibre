@@ -8,7 +8,7 @@
              wire:ignore>
                 <i data-feather="plus" class="w-5 h-5 mr-2 text-white"></i> Agregar Producto
             </a>
-            <div class="hidden mx-auto text-gray-600 md:block"> Total de Productos: {{ $products->total() }}  {{ $autorizacion->all() }}</div>
+            <div class="hidden mx-auto text-gray-600 md:block"> Total de Productos: {{ $products->total() }} </div>
             <div class="w-full mt-3 sm:w-auto sm:mt-0 sm:ml-auto md:ml-0">
                 <div class="relative w-56 text-gray-700 dark:text-gray-300">
                     <input wire:model.debounce.300ms="search" type="text" class="w-56 pr-10 input box placeholder-theme-13" placeholder="Busqueda...">

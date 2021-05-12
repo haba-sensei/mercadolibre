@@ -24,6 +24,7 @@ class DatabaseSeeder extends Seeder
         FacadesFile::deleteDirectory( public_path() . '/storage/users/', true);
         FacadesFile::deleteDirectory( public_path() . '/storage/gallery/', true);
         FacadesFile::deleteDirectory( public_path() . '/storage/tags/', true);
+        FacadesFile::deleteDirectory( public_path() . '/storage/category/', true);
 
         $this->call(RoleSeeder::class);
         $this->call(UserSeeder::class);

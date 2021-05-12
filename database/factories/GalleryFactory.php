@@ -31,7 +31,7 @@ class GalleryFactory extends Factory
 
         return [
 
-        'url' => 'gallery/' . $this->faker->image('public/storage/gallery', 640, 480, null, false),
+        'url' => 'gallery/' . $this->faker->image('public/storage/gallery', 600, 600, null, false),
 
         ];
     }

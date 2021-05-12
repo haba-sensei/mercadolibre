@@ -1,4 +1,4 @@
-<div class="ps-promotions">
+<div class=" ps-promotions" style="margin-bottom: 5.5rem;">
     <div class="container">
         <div class="row">
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 ">

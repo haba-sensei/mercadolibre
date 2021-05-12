@@ -21,17 +21,25 @@ class TablaComponent extends Component
     /* RENDER COMPONENT TABLA  */
     public function render()
     {
-        ['user_id' =>  auth()->user()->id]
 
-        if(){
-            
+
+        if(auth()->user()->id == 1){
+            $products =  Product::query()
+            ->search($this->search)
+            ->orderBy($this->sortBy, $this->sortDirection)
+            ->paginate($this->perPage);
+
+
+        }else {
+            $products =  Product::query()
+            ->where(['user_id' =>  auth()->user()->id])
+            ->search($this->search)
+            ->orderBy($this->sortBy, $this->sortDirection)
+            ->paginate($this->perPage);
+
         }
 
-        $products =  Product::query()
-        ->where()
-        ->search($this->search)
-        ->orderBy($this->sortBy, $this->sortDirection)
-        ->paginate($this->perPage);
+
 
 
 

@@ -1,4 +1,4 @@
-<div class="ps-search-trending ">
+<div class="ps-search-trending " style="padding: 0 0!important;">
     <div class="container">
         <div class="ps-section__header">
             <h3>BUSQUEDA POR TAGS </h3>
