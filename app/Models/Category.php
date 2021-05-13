@@ -11,7 +11,7 @@ class Category extends Model
 
 
     /* ASIGNACION MASIVA  */
-    protected $fillable = ['name', 'slug'];
+    protected $fillable = ['name', 'slug', 'cat_img'];
 
     /* CAMBIO DE URL DE ID -> SLUG  */
     public function getRouteKeyName()

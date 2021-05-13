@@ -17,3 +17,27 @@
         </span>
     @enderror
 </div>
+
+<div class="mt-3">
+    <label >Banner Principal</label>
+
+    <div class="mt-2">
+       @isset ($category->cat_img)
+             <img id="picture" src="{{ Storage::url($category->cat_img) }}" class="w-full h-full">
+       @else
+             <img id="picture" src="{{ asset('/storage/category.jpg') }}" class="w-full h-full">
+       @endisset
+
+
+    {!! Html::decode(Form::label('file', '<i data-feather="image" class="w-4 h-4 mr-2"></i> Seleccionar Imagen', ['class' => 'flex items-center justify-center w-full mb-2 mr-2 text-white button button--sm bg-theme-1'])) !!}
+
+    {!! Form::file('file', ['class' => 'w-full hidden', 'accept' => '.png, .jpg, .jpeg' ]) !!}
+
+    @error('file')
+    <span class="text-theme-6">
+    {{ $message }}
+    </span>
+    @enderror
+
+    </div>
+</div>

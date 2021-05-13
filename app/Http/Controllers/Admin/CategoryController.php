@@ -7,6 +7,11 @@ use App\Http\Controllers\Controller;
 use App\Http\Controllers\Admin\HomeController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Cache;
+use Intervention\Image\ImageManagerStatic as ImagenCompress;
 
 class CategoryController extends Controller
 {
@@ -68,11 +73,25 @@ class CategoryController extends Controller
         /* validacion de formulario */
         $request->validate([
             'name' => 'required',
-            'slug' => 'required|unique:categories'
+            'slug' => 'required|unique:categories',
+            'file' => 'required|image|max:2048'
          ]);
+            $filename =  Str::random(32).".".File::extension($request->file('file')->getClientOriginalName());
+            $url = "category/".$filename;
+            $product_url =  public_path('storage/category/'.$filename);
 
+            ImagenCompress::make($request->file('file'))
+            ->resize(1170, 245)
+            ->save($product_url);
         /* creacion de datos */
-         $categories = Category::create($request->all());
+
+            $categories = Category::create([
+                'name' => $request->name,
+                'slug' => $request->slug,
+                'cat_img' => $url
+            ]);
+
+
 
          return redirect()->route('admin.categories.edit', $categories)->with(['info' => 'La categoria se creó con éxito', 'color' => '#63b716']);
 
@@ -130,11 +149,30 @@ class CategoryController extends Controller
          /* validacion de formulario ignorando actualizar del slug por ID */
         $request->validate([
             'name' => 'required',
-            'slug' => "required|unique:categories,slug,$category->id"
+            'slug' => "required|unique:categories,slug,$category->id",
+            'file' => 'image|max:2048'
         ]);
 
          /* update */
         $category->update($request->all());
+
+        if($request->file('file')){
+            $filename =  Str::random(32).".".File::extension($request->file('file')->getClientOriginalName());
+            $url = "category/".$filename;
+            $product_url =  public_path('storage/category/'.$filename);
+
+            ImagenCompress::make($request->file('file'))
+            ->resize(1170, 245)
+            ->save($product_url);
+
+            if($category->cat_img){
+                Storage::disk('public_upload')->delete($category->cat_img);
+
+                $category->cat_img = $url;
+                $category->save();
+
+            }
+        }
 
         /* redirect a la vista edit */
         return redirect()->route('admin.categories.edit', $category)->with(['info' => 'La categoria se actualizo con éxito', 'color' => '#1c3faa']);

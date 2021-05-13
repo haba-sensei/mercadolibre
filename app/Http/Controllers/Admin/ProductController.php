@@ -112,7 +112,7 @@ class ProductController extends Controller
 
         $filename =  Str::random(32).".".File::extension($request->file('file')->getClientOriginalName());
         $url = "products/".$filename;
-        $product_url = public_path(). '\storage\products/'.$filename;
+        $product_url = '/storage/products/'.$filename;
 
         ImagenCompress::make($request->file('file'))
         ->resize(600, 600)
@@ -128,7 +128,7 @@ class ProductController extends Controller
 
                 $filename_bulk =  Str::random(32).".".File::extension($file->getClientOriginalName());
                 $path = 'gallery/';
-                $bulk_url = public_path(). '\storage\gallery/'.$filename_bulk;
+                $bulk_url = '/storage/gallery/'.$filename_bulk;
 
                 ImagenCompress::make(file_get_contents($file))
                 ->resize(600, 600)
@@ -223,7 +223,7 @@ class ProductController extends Controller
         if($request->file('file')){
             $filename =  Str::random(32).".".File::extension($request->file('file')->getClientOriginalName());
             $url = "products/".$filename;
-            $product_url = public_path(). '\storage\products/'.$filename;
+            $product_url =  public_path('storage/products/'.$filename);
 
             ImagenCompress::make($request->file('file'))
             ->resize(600, 600)
@@ -282,7 +282,7 @@ class ProductController extends Controller
 
                 $filename_bulk_up =  Str::random(32).".".File::extension($fileUp->getClientOriginalName());
                 $pathUp = 'gallery/';
-                $bulk_urlUp = public_path(). '\storage\gallery/'. $filename_bulk_up;
+                $bulk_urlUp = public_path('storage/gallery/'.$filename_bulk_up);
 
                 ImagenCompress::make(file_get_contents($fileUp))
                 ->resize(600, 600)

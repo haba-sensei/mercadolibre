@@ -21,7 +21,7 @@
                 <table class="table -mt-2 table-report">
                     <thead>
                         <tr>
-
+                            <th class="whitespace-no-wrap "> BANNER </th>
                             <th wire:click="sortBy('name')"  class="whitespace-no-wrap cursor-pointer ">NOMBRE
                                 @include('partials._sort-icon', ['campo' => 'name'])
                             </th>
@@ -34,7 +34,13 @@
                     </thead>
                     <tbody>
                         @foreach ($categories as $category)
-                            <tr class="">
+                            <td class="">
+                                <div class="flex">
+                                    <div class="w-10 h-10 image-fit zoom-in">
+                                        <img class="rounded-md " data-action="zoom" src="{{ Storage::url($category->cat_img) }}" >
+                                    </div>
+                                </div>
+                            </td>
                             <td>{{ $category->name }}</td>
                             <td>{{ $category->slug }}</td>
                             <td class="w-56 table-report__action">
