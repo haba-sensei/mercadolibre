@@ -44,7 +44,7 @@
                                 <p>Login con Redes:</p>
                                 <ul class="ps-list--social">
                                     <li><a class="facebook" href="{{ url('auth/facebook') }}" ><i class="fa fa-facebook"></i></a></li>
-                                    <li><a class="google" href="#"><i class="fa fa-google-plus"></i></a></li>
+                                    <li><a class="google" href="{{ url('auth/google') }}"><i class="fa fa-google-plus"></i></a></li>
                                 </ul>
                             </div>
                         </div>

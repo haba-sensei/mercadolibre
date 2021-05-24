@@ -17,8 +17,11 @@ Route::get('producto/{product}', [ProductController::class, 'show'])->name('web.
 Route::view('/carrito', 'web.shopcart.index')->name('web.shopcart.index');
 
 
-Route::get('auth/facebook', [SocialiteAccess::class, 'redirect']);
+Route::get('auth/facebook', [SocialiteAccess::class, 'redirectFacebook']);
 Route::get('auth/facebook/callback', [SocialiteAccess::class, 'signinFacebook']);
+
+Route::get('auth/google', [SocialiteAccess::class, 'redirectGoogle']);
+Route::get('auth/google/callback', [SocialiteAccess::class, 'signinGoogle']);
 
 
 // Route::get('category/{category}', [PostController::class, 'category'] )->name('posts.category');
