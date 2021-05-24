@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\Web\WebController;
 use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\Web\SocialiteAccess;
 
 /* RUTAS  */
 
@@ -15,6 +16,9 @@ Route::get('producto/{product}', [ProductController::class, 'show'])->name('web.
 
 Route::view('/carrito', 'web.shopcart.index')->name('web.shopcart.index');
 
+
+Route::get('auth/facebook', [SocialiteAccess::class, 'redirect']);
+Route::get('auth/facebook/callback', [SocialiteAccess::class, 'signinFacebook']);
 
 
 // Route::get('category/{category}', [PostController::class, 'category'] )->name('posts.category');

@@ -30,6 +30,8 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'id_fb',
+        'id_google',
     ];
 
     /**
@@ -61,7 +63,7 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
-    
+
     //relacion 1 a muchos
     public function posts(){
         return $this->hasMany(Post::class);
