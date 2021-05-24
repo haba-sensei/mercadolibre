@@ -5,7 +5,8 @@
 @endsection
 
 @section('content')
-
-    @yield('subcontent')
-
+@include('../layouts/web/header')
+    @yield('subcontent') 
+@include('../layouts/web/footer')
 @endsection
+

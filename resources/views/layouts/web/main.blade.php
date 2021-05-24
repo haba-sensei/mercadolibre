@@ -5,8 +5,8 @@
 
 
         @yield('content')
+        @yield('modals')
 
-        
         <script src="{{ asset('dist/plugins/jquery.min.js') }}"></script>
         <script src="{{ asset('dist/plugins/nouislider/nouislider.min.js') }}"></script>
         <script src="{{ asset('dist/plugins/popper.min.js') }}"></script>
@@ -23,10 +23,14 @@
         <script src="{{ asset('dist/plugins/sticky-sidebar/dist/sticky-sidebar.min.js') }}"></script>
         <script src="{{ asset('dist/plugins/select2/dist/js/select2.full.min.js') }}"></script>
         <script src="{{ asset('dist/plugins/gmap3.min.js') }}"></script>
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
         <script src="{{ asset('dist/scripts/main.js') }}" ></script>
+        <script src="{{ asset('dist/scripts/web_custom.js') }}" ></script>
+
         @livewireScripts
 
         @yield('script')
+
 
     </body>
 @endsection

@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Cache;
 use Intervention\Image\ImageManagerStatic as ImagenCompress;
+use Cart;
 class ProductController extends Controller
 {
 
@@ -29,6 +30,7 @@ class ProductController extends Controller
 
     }
 
+    /* {{ METODO PARA FLUTTER API }} */
     public function getAll($id){
 
         $product = Product::with('image', 'category', 'tags')
@@ -39,6 +41,20 @@ class ProductController extends Controller
         return response()->json(array('last_page' => 6, 'data'=>$product ));
 
     }
+
+     public function storeCart($product_id, $product_name, $product_price){
+
+        Cart::add($product_id, $product_name, 1, $product_price)
+        ->associate('App\Models\Product');
+
+        return redirect()->route('web.shopcart.index')
+        ->with([
+            'info' => 'El Producto se agrego con éxito',
+            'color' => '#63b716'
+        ]);
+
+    }
+
 
      /* {{ METODO INDEX | DATA MENU LATERAL }} */
      public function index(Request $request)
@@ -101,7 +117,7 @@ class ProductController extends Controller
          ], compact('categories', 'tags', 'tags_charged'));
      }
 
-     /* {{ METODO STORE | CREATE POST | VALIDACION | MENSAJE }} */
+     /* {{ METODO STORE | CREATE PRODUCT | VALIDACION | MENSAJE }} */
       // Storage::put('products', $request->file('file'), 'public_upload');
     //   public function store(StoreProductsRequest $request)
      public function store(StoreProductsRequest $request)
@@ -155,28 +171,20 @@ class ProductController extends Controller
 
      }
 
-     /* {{ METODO SHOW | DATA MENU LATERAL | INSTANCIA POST }} */
+     /* {{ METODO SHOW | VISTA WEB | INSTANCIA PRODUCT }} */
      public function show(Product $product)
      {
-         $pageName= 'products';
-         $activeMenu = $this->HomeController->activeMenu($pageName);
-
-         return view('admin.products.show', [
-             'side_menu' => $this->HomeController->sideMenu(),
-             'first_page_name' => $activeMenu['first_page_name'],
-             'second_page_name' => $activeMenu['second_page_name'],
-             'third_page_name' => $activeMenu['third_page_name'],
-             'ruta' => 'agregar',
-             'page_name' => $pageName,
-             'theme' => $this->HomeController->omega(),
-             'layout' => 'content',
-             'titulo' => $this->HomeController->sideMenu(),
-             'userauth' => Auth::user()
-
-         ]);
+        return view('web.products.show', compact('product'));
      }
 
-     /* {{ METODO EDIT | DATA MENU LATERAL | INSTANCIA POST }} */
+     /* {{ METODO SHOW | VISTA WEB | INSTANCIA PRODUCT }} */
+     public function showAll()
+     {
+        $products = Product::where(['status' => 2])->get();
+        return view('web.products.showAll', compact('products'));
+     }
+
+     /* {{ METODO EDIT | DATA MENU LATERAL | INSTANCIA PRODUCT }} */
      public function edit(Product $product)
      {
         $categories = Category::pluck('name', 'id');

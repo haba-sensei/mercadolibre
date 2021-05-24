@@ -1,48 +1,76 @@
 <x-guest-layout>
-    <x-jet-authentication-card>
-        <x-slot name="logo">
-            <x-jet-authentication-card-logo />
-        </x-slot>
+    <div class="ps-section__wrapper">
+        <div class="ps-section__left" style="top: -57px; position: relative;">
+            <form class="ps-form--account ps-tab-root" action="{{ route('login') }}" method="POST">
+                @csrf
+                <div class="ps-tabs">
+                    <div class="ps-tab active" id="sign-in">
+                        <div class="ps-form__content">
+                            <h5>Ingresa a tu Cuenta</h5>
+                            <div class="form-group">
+                                <x-jet-input id="email" class="form-control" type="email" name="email" :value="old('email')" required
+                                autofocus placeholder="EMAIL " />
 
-        <x-jet-validation-errors class="mb-4" />
+                            </div>
+                            <div class="form-group form-forgot">
 
-        @if (session('status'))
-            <div class="mb-4 text-sm font-medium text-green-600">
-                {{ session('status') }}
-            </div>
-        @endif
+                                <x-jet-input id="password" class="form-control" type="password" name="password" required
+                                autocomplete="current-password" placeholder="PASSWORD"/>
+                                @if (Route::has('password.request'))
+                                <a class="text-sm text-gray-600 underline hover:text-gray-900" href="{{ route('password.request') }}">
+                                    {{ __('Recuperar?') }}
+                                </a>
+                                @endif
+                            </div>
+                            <div class="form-group">
+                                <div class="ps-checkbox">
+                                    <input id="remember_me" type="checkbox" class="form-control" name="remember">
+                                    <label for="remember-me">Recuerdame</label>
+                                </div>
+                            </div>
+                            <div class="form-group submit">
+                                <x-jet-button class="ps-btn ps-btn--fullwidth">
+                                    {{ __('Login') }}
+                                </x-jet-button>
+                            </div>
 
-        <form method="POST" action="{{ route('login') }}">
-            @csrf
+                            @if (session('status'))
+                                <div class="mb-4 text-sm font-medium text-green-600">
+                                    {{ session('status') }}
+                                </div>
+                            @endif
 
-            <div>
-                <x-jet-label for="email" value="{{ __('Email') }}" />
-                <x-jet-input id="email" class="block w-full mt-1" type="email" name="email" :value="old('email')" required autofocus />
-            </div>
+                            <div class="ps-form__footer">
+                                <p>Login con Redes:</p>
+                                <ul class="ps-list--social">
+                                    <li><a class="facebook" href="#"><i class="fa fa-facebook"></i></a></li>
+                                    <li><a class="google" href="#"><i class="fa fa-google-plus"></i></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
 
-            <div class="mt-4">
-                <x-jet-label for="password" value="{{ __('Password') }}" />
-                <x-jet-input id="password" class="block w-full mt-1" type="password" name="password" required autocomplete="current-password" />
-            </div>
+                </div>
+            </form>
+        </div>
+        <div class="ps-section__right" style="position: relative; top: -38px;">
 
-            <div class="block mt-4">
-                <label for="remember_me" class="flex items-center">
-                    <input id="remember_me" type="checkbox" class="form-checkbox" name="remember">
-                    <span class="ml-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
-                </label>
-            </div>
+            <figure class="ps-section__desc">
+                <figcaption>Regístrese hoy no deje perder esta oportunidad:</figcaption>
+                <p> <strong >Empaques Para Ti - Para toda Ocasión</strong>  tiene todo cubierto desde el clic hasta la entrega. Regístrese o inicie sesión y podrá :</p>
+                <ul class="ps-list">
+                    <li><i class="icon-credit-card"></i><span>COMPRAS SEGURAS CON WOMPI Y PAYPAL</span></li>
+                    <li><i class="icon-clipboard-check"></i><span>HISTORIAL DE TODAS TUS COMPRAS</span></li>
+                    <li><i class="icon-bag2"></i><span>COMPRAS CON ENVIO NACIONAL E INTERNACIONAL</span></li>
+                    <li><i class="icon-shield-check"></i><span>PROTECCIÓN CONTRA FRAUDE Y ESTAFAS</span></li>
+                    <li><i class="icon-store"></i><span>PUEDER SOLICITAR SER UN VENDEDOR!!! <a href=""  style="font-weight: 700; --text-opacity: 1; color: #8e4b10; color: rgba(142, 75, 16, var(--text-opacity));">MAS INFORMACIÓN ACA</a></span></li>
+                </ul>
+                <div class="form-group submit">
+                    <a href="{{ route('register') }}" class="ps-btn ps-btn--fullwidth">Registrate Ya!</a>
+                </div>
+            </figure>
 
-            <div class="flex items-center justify-end mt-4">
-                @if (Route::has('password.request'))
-                    <a class="text-sm text-gray-600 underline hover:text-gray-900" href="{{ route('password.request') }}">
-                        {{ __('Forgot your password?') }}
-                    </a>
-                @endif
+        </div>
+    </div>
 
-                <x-jet-button class="ml-4">
-                    {{ __('Login') }}
-                </x-jet-button>
-            </div>
-        </form>
-    </x-jet-authentication-card>
 </x-guest-layout>

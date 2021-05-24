@@ -1819,15 +1819,15 @@ button {
 .ps-btn,
 button.ps-btn {
     display: inline-block;
-    padding: 15px 45px;
-    font-size: 16px;
-    font-weight: 600;
-    line-height: 20px;
-    color: #000;
-    border: none;
-    font-weight: 600;
-    border-radius: 4px;
-    background-color: #fcb800;
+    padding: 15px 45px!important;
+    font-size: 16px!important;
+    font-weight: 600!important;
+    line-height: 20px!important;
+    color: #000!important;
+    border: none!important;
+    font-weight: 600!important;
+    border-radius: 4px!important;
+    background-color: #fcb800!important;
     transition: all .4s ease;
     cursor: pointer;
 }
@@ -1844,18 +1844,18 @@ button.ps-btn--curve {
 
 .ps-btn--outline,
 button.ps-btn--outline {
-    border: 2px solid #fcb800;
-    color: #fcb800;
-    background-color: transparent;
+    border: 2px solid #fcb800!important;
+    color: #fcb800!important;
+    background-color: transparent!important;
     -ms-box-shadow: none;
     box-shadow: none;
-    font-weight: 500;
+    font-weight: 500!important;
 }
 
 .ps-btn--outline:hover,
 button.ps-btn--outline:hover {
-    color: #ffffff;
-    background-color: #fcb800;
+    color: #ffffff!important;
+    background-color: #fcb800!important;
 }
 
 .ps-btn--fullwidth,
@@ -1925,8 +1925,8 @@ button.ps-btn.ps-btn--black.ps-btn--outline:hover {
 .ps-btn:active,
 button.ps-btn:hover,
 button.ps-btn:active {
-    background-color: #222;
-    color: #fff;
+    background-color: #222!important;
+    color: #fff!important;
 }
 
 .ps-btn:hover.ps-btn--black,

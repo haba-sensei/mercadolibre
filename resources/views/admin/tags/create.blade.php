@@ -15,7 +15,7 @@
 
                     <div class="preview" style="display: block; opacity: 1;">
 
-                        {!! Form::open(['route' => 'admin.tags.store']) !!}
+                        {!! Form::open(['route' => 'admin.tags.store', 'autocomplete' => 'off', 'files'=>'true']) !!}
 
                         @include('admin.tags.partials.form')
 
@@ -34,17 +34,7 @@
 
 @section('script')
     <script type="text/javascript" src="{{ asset('dist/plugins/stringToSlug-1.3/jquery.stringToSlug.min.js') }}"></script>
-
-    <script>
-        $(document).ready(function() {
-            $("#name").stringToSlug({
-                setEvents: 'keyup keydown blur',
-                getPut: '#slug',
-                space: '-'
-
-            });
-        });
-
-    </script>
+    <script type="text/javascript" src="{{ asset('dist/plugins/ckeditor5/ckeditor.js') }}" ></script>
+    <script type="text/javascript" src="{{ asset('dist/js/custom.js') }}" ></script>
 
 @stop

@@ -15,6 +15,7 @@
         <link href="https://fonts.googleapis.com/css?family=Work+Sans:300,400,500,600,700&amp;amp;subset=latin-ext" rel="stylesheet">
         <!-- Styles -->
         <link rel="stylesheet" href="{{ mix('dist/css/base_web.css') }}" />
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
         @livewireStyles
         <!-- BEGIN: CSS Assets-->
         @yield('css')

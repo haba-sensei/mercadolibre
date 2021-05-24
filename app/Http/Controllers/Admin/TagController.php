@@ -3,10 +3,15 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Category;
 use App\Models\Tag;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Cache;
+use Intervention\Image\ImageManagerStatic as ImagenCompress;
 class TagController extends Controller
 {
     /* METODO PROTECTED */
@@ -53,7 +58,7 @@ class TagController extends Controller
             'purple' => 'Color Morado',
             'pink' => 'Color Rosado'
         ];
-
+        $categories = Category::pluck('name', 'id');
         $activeMenu = $this->HomeController->activeMenu($pageName);
 
         return view('admin.tags.create',[
@@ -67,7 +72,7 @@ class TagController extends Controller
             'layout' => 'content',
             'titulo' => $this->HomeController->sideMenu(),
             'userauth' => Auth::user()
-        ], compact('colors') );
+        ], compact('colors', 'categories') );
     }
 
     /* {{ METODO STORE | CREATE TAG | VALIDACION | MENSAJE }} */
@@ -77,10 +82,26 @@ class TagController extends Controller
        $request->validate([
         'name' => 'required',
         'slug' => 'required|unique:tags',
-        'color' => 'required'
+        'category_id' => 'required',
+        'color' => 'required',
+        'file' => 'required|image|max:2048'
        ]);
 
-       $tag =Tag::create($request->all());
+       $filename =  Str::random(32).".".File::extension($request->file('file')->getClientOriginalName());
+       $url = "tags/".$filename;
+       $tag_url =  public_path('storage/tags/'.$filename);
+
+       ImagenCompress::make($request->file('file'))
+       ->resize(150, 150)
+       ->save($tag_url);
+
+       $tag =Tag::create([
+        'name' => $request->name,
+        'slug' => $request->slug,
+        'color' => $request->color,
+        'tag_img' => $url,
+        'category_id' => $request->category_id
+       ]);
 
         return redirect()->route('admin.tags.edit', compact('tag'))->with(['info' => 'La etiqueta se creó con éxito', 'color' => '#63b716']);
     }
@@ -119,7 +140,7 @@ class TagController extends Controller
             'purple' => 'Color Morado',
             'pink' => 'Color Rosado'
         ];
-
+        $categories = Category::pluck('name', 'id');
          $activeMenu = $this->HomeController->activeMenu($pageName);
 
          return view('admin.tags.edit',[
@@ -133,22 +154,41 @@ class TagController extends Controller
              'layout' => 'content',
              'titulo' => $this->HomeController->sideMenu(),
              'userauth' => Auth::user()
-         ], compact('tag', 'colors') );
+         ], compact('tag', 'colors', 'categories') );
     }
 
     /* {{ METODO DE UPDATE | VALIDACION | MENSAJE | REDIRECCION  }} */
     public function update(Request $request, Tag $tag)
     {
          /* validacion de formulario ignorando actualizar del slug por ID */
-         $request->validate([
-            'name' => 'required',
-            'slug' => "required|unique:tags,slug,$tag->id",
-            'color' => "required"
+        $request->validate([
+        'name' => 'required',
+        'slug' => "required|unique:tags,slug,$tag->id",
+        'category_id' => 'required',
+        'color' => 'required',
+        'file' => 'image|max:2048'
         ]);
 
          /* update */
         $tag->update($request->all());
 
+        if($request->file('file')){
+            $filename =  Str::random(32).".".File::extension($request->file('file')->getClientOriginalName());
+            $url = "tags/".$filename;
+            $tag_url =  public_path('storage/tags/'.$filename);
+
+            ImagenCompress::make($request->file('file'))
+            ->resize(150, 150)
+            ->save($tag_url);
+
+            if($tag->tag_img){
+                Storage::disk('public_upload')->delete($tag->tag_img);
+
+                $tag->tag_img = $url;
+                $tag->save();
+
+            }
+        }
         /* redirect a la vista edit */
         return redirect()->route('admin.tags.edit', $tag)->with(['info' => 'La etiqueta se actualizo con éxito', 'color' => '#1c3faa']);
     }

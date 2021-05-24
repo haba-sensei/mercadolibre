@@ -1,7 +1,7 @@
 <div class="ps-search-trending " style="padding: 0 0!important;">
     <div class="container">
         <div class="ps-section__header">
-            <h3>BUSQUEDA POR TAGS </h3>
+            <h3>BUSQUEDA POR CATEGORIAS </h3>
         </div>
         <div class="ps-section__content">
             <div class="ps-block--categories-tabs ps-tab-root">
@@ -11,12 +11,12 @@
                         data-owl-item-sm="4" data-owl-item-md="6" data-owl-loop="true" data-owl-item-lg="6"
                         data-owl-duration="500" data-owl-mousedrag="on">
                         <a class="active" href="#tab-all">
-                            <img src="{{ Storage::url('categoria.jpg') }}">
-                            <span>Todos los Tags</span>
+
+                            <span>Lista General</span>
                         </a>
                         @foreach ($categories as $key => $category)
                             <a class="{{ $key == 0 ? '' : '' }}" href="#tab-{{ $category->id }}">
-                                <img src="{{ Storage::url('categoria.jpg') }}">
+
                                 <span>{{ $category->name }}</span>
                             </a>
                         @endforeach

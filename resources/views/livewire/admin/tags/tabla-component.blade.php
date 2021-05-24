@@ -2,9 +2,9 @@
    <h2 class="mt-10 text-lg font-medium intro-y">Lista de Etiquetas</h2>
    <div class="grid grid-cols-12 gap-6 mt-5">
        <div class="flex flex-wrap items-center col-span-12 mt-2 intro-y sm:flex-no-wrap">
-    
-           <a href="{{ route('admin.tags.create') }}" 
-            class="flex items-center justify-center mb-2 mr-2 text-white shadow-md button bg-theme-1" 
+
+           <a href="{{ route('admin.tags.create') }}"
+            class="flex items-center justify-center mb-2 mr-2 text-white shadow-md button bg-theme-1"
             wire:ignore>
                <i data-feather="plus" class="w-5 h-5 mr-2 text-white"></i> Agregar Etiquetas
            </a>
@@ -16,13 +16,15 @@
                </div>
            </div>
        </div>
-   
+
         <div class="col-span-12 overflow-auto intro-y lg:overflow-visible">
                 <table class="table -mt-2 table-report">
                     <thead>
                         <tr>
-                            
-                            <th wire:click="sortBy('name')"  class="whitespace-no-wrap cursor-pointer ">NOMBRE 
+                            <th   class="whitespace-no-wrap cursor-pointer ">IMAGEN
+
+                            </th>
+                            <th wire:click="sortBy('name')"  class="whitespace-no-wrap cursor-pointer ">NOMBRE
                                 @include('partials._sort-icon', ['campo' => 'name'])
                             </th>
                             <th wire:click="sortBy('slug')" class="whitespace-no-wrap cursor-pointer ">SLUG
@@ -31,46 +33,53 @@
                             <th wire:click="sortBy('color')" class="whitespace-no-wrap cursor-pointer ">COLOR
                                 @include('partials._sort-icon', ['campo' => 'color'])
                             </th>
-                             
+
                             <th  class="whitespace-no-wrap">ACCION</th>
-                            
+
                         </tr>
-                    </thead> 
+                    </thead>
                     <tbody>
-                        @foreach ($tags as $tag) 
+                        @foreach ($tags as $tag)
                             <tr class="">
+                            <td class="">
+                                <div class="flex">
+                                    <div class="w-10 h-10 image-fit zoom-in">
+                                        <img class="rounded-md " data-action="zoom" src="{{ Storage::url($tag->tag_img) }}" >
+                                    </div>
+                                </div>
+                            </td>
                             <td>{{ $tag->name }}</td>
                             <td>{{ $tag->slug }}</td>
-                            <td> 
+                            <td>
                                 <div class="px-2 py-1 text-xs font-medium text-white bg-{{ $tag->color }}-500 rounded-full ">
                                     {{ $tag->color }}
-                                </div> 
+                                </div>
                             </td>
-                            
-                            
+
+
                             <td class="w-56 table-report__action">
                                 <div class="flex items-center justify-center">
                                     <a class="flex items-center mr-3"  href="{{ route('admin.tags.edit', $tag) }}">
                                         <img class="w-4 h-4 mr-1 shadow-inner" src="{{ asset('dist/images/edit.svg') }}" width="10" height="10"/> Editar
                                     </a>
-                                    
+
                                     <form action="{{ route('admin.tags.destroy', $tag) }}" method="POST">
                                         @csrf
                                         @method('delete')
-                                        
+
                                         <button type="submit" class="flex items-center ">
                                             <img class="w-4 h-4 mr-1 shadow-inner" src="{{ asset('dist/images/delete.svg') }}" width="10" height="10"/>
                                                 Eliminar
                                         </button>
 
                                     </form>
-                                    
-                                
+
+
                                 </div>
-                            </td> 
+                            </td>
                             </tr>
-                           
-                           
+
+
                         @endforeach
 
                         @if($tags->count() == 0 )
@@ -79,21 +88,21 @@
                                 <h1>Sin Resultados</h1>
                             </td>
                             <td class="">
-                                 
+
                             </td>
                             <td class="">
-                                 
+
                             </td>
-                             
+
                         </tr>
                         @endif
                     </tbody>
                 </table>
 
                 <div class="">
-                    
+
                         {{ $tags->links() }}
-                        
+
                         <select wire:model="perPage" class="w-20 mt-3 input box sm:mt-0">
                             <option>2</option>
                             <option>5</option>
@@ -103,12 +112,12 @@
                             <option>100</option>
                         </select>
                 </div>
-                
+
             </div>
- 
+
 
     </div>
 
 
- 
-</div> 
+
+</div>

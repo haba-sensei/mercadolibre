@@ -155,6 +155,7 @@ class ComposerStaticInit21b5d3fb3ea37ffd82fdb57d53b55af8
             'GuzzleHttp\\Promise\\' => 19,
             'GuzzleHttp\\' => 11,
             'GrahamCampbell\\ResultType\\' => 26,
+            'Gloudemans\\Shoppingcart\\' => 24,
         ),
         'F' => 
         array (
@@ -478,6 +479,10 @@ class ComposerStaticInit21b5d3fb3ea37ffd82fdb57d53b55af8
         array (
             0 => __DIR__ . '/..' . '/graham-campbell/result-type/src',
         ),
+        'Gloudemans\\Shoppingcart\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/hardevine/shoppingcart/src',
+        ),
         'Fruitcake\\Cors\\' => 
         array (
             0 => __DIR__ . '/..' . '/fruitcake/laravel-cors/src',
@@ -611,7 +616,13 @@ class ComposerStaticInit21b5d3fb3ea37ffd82fdb57d53b55af8
         'App\\Http\\Livewire\\Admin\\Tags\\TablaComponent' => __DIR__ . '/../..' . '/app/Http/Livewire/Admin/Tags/TablaComponent.php',
         'App\\Http\\Livewire\\Admin\\Users\\UsersIndex' => __DIR__ . '/../..' . '/app/Http/Livewire/Admin/Users/UsersIndex.php',
         'App\\Http\\Livewire\\Navigation' => __DIR__ . '/../..' . '/app/Http/Livewire/Navigation.php',
+        'App\\Http\\Livewire\\Web\\HeaderDesk' => __DIR__ . '/../..' . '/app/Http/Livewire/Web/HeaderDesk.php',
+        'App\\Http\\Livewire\\Web\\HeaderMobile' => __DIR__ . '/../..' . '/app/Http/Livewire/Web/HeaderMobile.php',
         'App\\Http\\Livewire\\Web\\Home\\ListaPorCategoria' => __DIR__ . '/../..' . '/app/Http/Livewire/Web/Home/ListaPorCategoria.php',
+        'App\\Http\\Livewire\\Web\\MenuMobile' => __DIR__ . '/../..' . '/app/Http/Livewire/Web/MenuMobile.php',
+        'App\\Http\\Livewire\\Web\\Product\\QuickView' => __DIR__ . '/../..' . '/app/Http/Livewire/Web/Product/QuickView.php',
+        'App\\Http\\Livewire\\Web\\Product\\SidebarProduct' => __DIR__ . '/../..' . '/app/Http/Livewire/Web/Product/SidebarProduct.php',
+        'App\\Http\\Livewire\\Web\\Product\\TableProduct' => __DIR__ . '/../..' . '/app/Http/Livewire/Web/Product/TableProduct.php',
         'App\\Http\\Middleware\\ApiKeyValidate' => __DIR__ . '/../..' . '/app/Http/Middleware/ApiKeyValidate.php',
         'App\\Http\\Middleware\\Authenticate' => __DIR__ . '/../..' . '/app/Http/Middleware/Authenticate.php',
         'App\\Http\\Middleware\\EncryptCookies' => __DIR__ . '/../..' . '/app/Http/Middleware/EncryptCookies.php',
@@ -627,6 +638,7 @@ class ComposerStaticInit21b5d3fb3ea37ffd82fdb57d53b55af8
         'App\\Models\\Flutter' => __DIR__ . '/../..' . '/app/Models/Flutter.php',
         'App\\Models\\Gallery' => __DIR__ . '/../..' . '/app/Models/Gallery.php',
         'App\\Models\\Image' => __DIR__ . '/../..' . '/app/Models/Image.php',
+        'App\\Models\\OrderCategory' => __DIR__ . '/../..' . '/app/Models/OrderCategory.php',
         'App\\Models\\Perfiles' => __DIR__ . '/../..' . '/app/Models/Perfiles.php',
         'App\\Models\\Product' => __DIR__ . '/../..' . '/app/Models/Product.php',
         'App\\Models\\Tag' => __DIR__ . '/../..' . '/app/Models/Tag.php',
@@ -824,6 +836,7 @@ class ComposerStaticInit21b5d3fb3ea37ffd82fdb57d53b55af8
         'Database\\Factories\\FlutterFactory' => __DIR__ . '/../..' . '/database/factories/FlutterFactory.php',
         'Database\\Factories\\GalleryFactory' => __DIR__ . '/../..' . '/database/factories/GalleryFactory.php',
         'Database\\Factories\\ImageFactory' => __DIR__ . '/../..' . '/database/factories/ImageFactory.php',
+        'Database\\Factories\\OrderCategoryFactory' => __DIR__ . '/../..' . '/database/factories/OrderCategoryFactory.php',
         'Database\\Factories\\PerfilesFactory' => __DIR__ . '/../..' . '/database/factories/PerfilesFactory.php',
         'Database\\Factories\\ProductFactory' => __DIR__ . '/../..' . '/database/factories/ProductFactory.php',
         'Database\\Factories\\TagFactory' => __DIR__ . '/../..' . '/database/factories/TagFactory.php',
@@ -831,6 +844,7 @@ class ComposerStaticInit21b5d3fb3ea37ffd82fdb57d53b55af8
         'Database\\Factories\\UserFactory' => __DIR__ . '/../..' . '/database/factories/UserFactory.php',
         'Database\\Seeders\\DatabaseSeeder' => __DIR__ . '/../..' . '/database/seeders/DatabaseSeeder.php',
         'Database\\Seeders\\FlutterSeeder' => __DIR__ . '/../..' . '/database/seeders/FlutterSeeder.php',
+        'Database\\Seeders\\OrderCategorySeeder' => __DIR__ . '/../..' . '/database/seeders/OrderCategorySeeder.php',
         'Database\\Seeders\\PerfilesSeeder' => __DIR__ . '/../..' . '/database/seeders/PerfilesSeeder.php',
         'Database\\Seeders\\ProductSeeder' => __DIR__ . '/../..' . '/database/seeders/ProductSeeder.php',
         'Database\\Seeders\\RoleSeeder' => __DIR__ . '/../..' . '/database/seeders/RoleSeeder.php',
@@ -1604,6 +1618,16 @@ class ComposerStaticInit21b5d3fb3ea37ffd82fdb57d53b55af8
         'Fideloper\\Proxy\\TrustedProxyServiceProvider' => __DIR__ . '/..' . '/fideloper/proxy/src/TrustedProxyServiceProvider.php',
         'Fruitcake\\Cors\\CorsServiceProvider' => __DIR__ . '/..' . '/fruitcake/laravel-cors/src/CorsServiceProvider.php',
         'Fruitcake\\Cors\\HandleCors' => __DIR__ . '/..' . '/fruitcake/laravel-cors/src/HandleCors.php',
+        'Gloudemans\\Shoppingcart\\CanBeBought' => __DIR__ . '/..' . '/hardevine/shoppingcart/src/CanBeBought.php',
+        'Gloudemans\\Shoppingcart\\Cart' => __DIR__ . '/..' . '/hardevine/shoppingcart/src/Cart.php',
+        'Gloudemans\\Shoppingcart\\CartItem' => __DIR__ . '/..' . '/hardevine/shoppingcart/src/CartItem.php',
+        'Gloudemans\\Shoppingcart\\CartItemOptions' => __DIR__ . '/..' . '/hardevine/shoppingcart/src/CartItemOptions.php',
+        'Gloudemans\\Shoppingcart\\Contracts\\Buyable' => __DIR__ . '/..' . '/hardevine/shoppingcart/src/Contracts/Buyable.php',
+        'Gloudemans\\Shoppingcart\\Exceptions\\CartAlreadyStoredException' => __DIR__ . '/..' . '/hardevine/shoppingcart/src/Exceptions/CartAlreadyStoredException.php',
+        'Gloudemans\\Shoppingcart\\Exceptions\\InvalidRowIDException' => __DIR__ . '/..' . '/hardevine/shoppingcart/src/Exceptions/InvalidRowIDException.php',
+        'Gloudemans\\Shoppingcart\\Exceptions\\UnknownModelException' => __DIR__ . '/..' . '/hardevine/shoppingcart/src/Exceptions/UnknownModelException.php',
+        'Gloudemans\\Shoppingcart\\Facades\\Cart' => __DIR__ . '/..' . '/hardevine/shoppingcart/src/Facades/Cart.php',
+        'Gloudemans\\Shoppingcart\\ShoppingcartServiceProvider' => __DIR__ . '/..' . '/hardevine/shoppingcart/src/ShoppingcartServiceProvider.php',
         'GrahamCampbell\\ResultType\\Error' => __DIR__ . '/..' . '/graham-campbell/result-type/src/Error.php',
         'GrahamCampbell\\ResultType\\Result' => __DIR__ . '/..' . '/graham-campbell/result-type/src/Result.php',
         'GrahamCampbell\\ResultType\\Success' => __DIR__ . '/..' . '/graham-campbell/result-type/src/Success.php',
