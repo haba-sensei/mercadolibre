@@ -4,6 +4,7 @@ namespace Database\Factories;
 
 use App\Models\Category;
 use App\Models\Product;
+use App\Models\Tienda;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
@@ -35,8 +36,8 @@ class ProductFactory extends Factory
            'stock' => $this->faker->randomElement([5,10]),
            'status' => $this->faker->randomElement([1,2]),
            'user_id' => User::all()->random()->id,
-           'category_id' => Category::all()->random()->id
-
+           'category_id' => Category::all()->random()->id,
+           'tienda_id' => Tienda::pluck('id')->unique()->random() 
         ];
     }
 }

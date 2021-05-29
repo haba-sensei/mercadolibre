@@ -3,8 +3,13 @@
 @include('../components/admin/nav-title')
 
 @section('subcontent')
+    @if (session('info'))
 
-{{-- Componente Anonimo //-- home reporte general --// => views/components/admin/home  --}}   
+    <input id="infomensaje" type="hidden" value="{{ session('info') }}">
+    <input id="colormensaje" type="hidden" value="{{ session('color') }}">
+
+    @endif
+{{-- Componente Anonimo //-- home reporte general --// => views/components/admin/home  --}}
      <x-admin.home />
 
 @endsection

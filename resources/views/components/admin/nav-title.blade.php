@@ -1,3 +1,3 @@
 @section('subhead')
- <title>HabaDash  {{ $titulo[$page_name]['title'] }}  </title>
+ <title>Empaques Para Ti |  {{ $titulo[$page_name]['title'] }}  </title>
 @endsection

@@ -25,13 +25,14 @@ class DatabaseSeeder extends Seeder
         FacadesFile::deleteDirectory( public_path() . '/storage/gallery/', true);
         FacadesFile::deleteDirectory( public_path() . '/storage/tags/', true);
         FacadesFile::deleteDirectory( public_path() . '/storage/category/', true);
+        FacadesFile::deleteDirectory( public_path() . '/storage/tiendas/', true);
+
 
         $this->call(RoleSeeder::class);
         $this->call(UserSeeder::class);
 
-        $this->call(TiendaSeeder::class);
-
         Category::factory(14)->create();
+        $this->call(TiendaSeeder::class);
         Tag::factory(50)->create();
 
         $this->call(OrderCategorySeeder::class);

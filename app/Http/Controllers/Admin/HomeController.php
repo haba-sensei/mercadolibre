@@ -105,6 +105,16 @@ class HomeController extends Controller
                 'can' => 'dash.users.index'
             ],
 
+
+            'tienda' => [
+                'icon' => 'shopping-cart',
+                'menuPrincipal' => 'si',
+                'ruta' => 'listar',
+                'page_name' => 'tienda',
+                'title' => 'Crear Tienda',
+                'can' => 'dash.tienda.index'
+            ],
+
             'products' => [
                 'icon' => 'tag',
                 'menuPrincipal' => 'si',

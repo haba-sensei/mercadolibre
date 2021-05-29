@@ -22,11 +22,14 @@
                                 <img alt="Midone " class="rounded-full" src="{{ asset($user->profile_photo_url) }}" >
                             </div>
                             <div class="mt-3 text-center lg:ml-2 lg:mr-auto lg:text-left lg:mt-0">
-                                <a href="{{ route('admin.users.edit', $user) }}" class="font-medium">{{ $user->name }}</a>
+                                <a href="{{ route('admin.users.edit', $user) }}" class="font-medium capitalize">{{ $user->name }}</a>
                                 <div class="text-gray-600 text-xs mt-0.5">{{ $user->email }}</div>
                             </div>
                             <div class="flex mt-4 lg:mt-0">
-                                <a href="{{ route('admin.users.edit', $user) }}" class="mr-2 text-white button button--sm bg-theme-1" wire:ignore><i data-feather="eye" class="mx-auto" ></i> Permisos</a>
+                                <a href="{{ route('admin.users.edit', $user) }}" class="mr-2 text-white button button--sm bg-theme-1" >
+                                    
+                                    Permisos
+                                </a>
 
                             </div>
                         </div>

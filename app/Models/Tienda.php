@@ -9,11 +9,19 @@ class Tienda extends Model
 {
     use HasFactory;
 
+    /* ASIGNACION MASIVA  */
+    protected $fillable = ['name', 'slug', 'resumen', 'email', 'phone', 'url_perfil', 'status', 'user_id'];
+
+
+    public function getRouteKeyName()
+    {
+        return "slug";
+    }
+
      //relacion 1 a muchos
      public function products(){
         return $this->hasMany(Product::class);
     }
-
 
     //relacion 1 a 1 inversa
     public function user(){

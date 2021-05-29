@@ -30,7 +30,11 @@
     <!-- BEGIN: MENU CUENTA | PERFIL | CERRAR SESSION -->
     <div class="w-8 h-8 intro-x dropdown">
         <div class="w-8 h-8 overflow-hidden rounded-full shadow-lg dropdown-toggle image-fit zoom-in">
-            <img alt="Admin Picture" src="{{ asset('/storage/'.$userauth->profile_photo_path) }}">
+            @if (isset($userauth->profile_photo_path))
+                <img alt="profile pic" src="{{ asset('/storage/'.$userauth->profile_photo_path) }}">
+            @else
+                <img alt="profile pic" src="{{ asset('/storage/account.svg') }}">
+            @endif
         </div>
         <div class="w-56 dropdown-box">
             <div class="text-white dropdown-box__content box bg-theme-38 dark:bg-dark-6">

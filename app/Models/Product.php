@@ -20,6 +20,7 @@ class Product extends Model
 
      //relacion 1 a muchos inversa
      public function tienda(){
+
         return $this->belongsTo(Tienda::class);
     }
 
@@ -51,6 +52,7 @@ class Product extends Model
     {
         return $query
                 ->where('name', 'like', '%'.$val.'%')
-                ->OrWhere('slug', 'like', '%'.$val.'%');
+                ->OrWhere('slug', 'like', '%'.$val.'%')
+                ->OrWhere('category_id', '=', $val);
     }
 }

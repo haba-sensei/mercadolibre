@@ -16,16 +16,15 @@
 
                                 <x-jet-input id="password" class="form-control" type="password" name="password" required
                                 autocomplete="current-password" placeholder="PASSWORD"/>
-                                @if (Route::has('password.request'))
-                                <a class="text-sm text-gray-600 underline hover:text-gray-900" href="{{ route('password.request') }}">
-                                    {{ __('Recuperar?') }}
-                                </a>
-                                @endif
+
                             </div>
                             <div class="form-group">
                                 <div class="ps-checkbox">
-                                    <input id="remember_me" type="checkbox" class="form-control" name="remember">
-                                    <label for="remember-me">Recuerdame</label>
+                                    
+                                    @if (Route::has('password.request'))
+                                       <a class="text-sm text-gray-600 underline hover:text-gray-900" href="{{ route('password.request') }}">{{ __('Recuperar Password?') }}</a>
+                                    @endif
+
                                 </div>
                             </div>
                             <div class="form-group submit">
@@ -47,6 +46,11 @@
                                     <li><a class="google" href="{{ url('auth/google') }}"><i class="fa fa-google-plus"></i></a></li>
                                 </ul>
                             </div>
+                            @if (Session::has('info'))
+                            <div class="alert alert-danger">
+                            <strong class="">Error</strong> {{ Session::get('info') }}
+                            </div>
+                            @endif
                         </div>
                     </div>
 

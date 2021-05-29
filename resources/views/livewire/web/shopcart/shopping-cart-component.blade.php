@@ -8,7 +8,6 @@
                      <div class="alert alert-success">
                          <strong class="">Éxito</strong> {{ Session::get('info') }}
                      </div>
-
                      @endif
                     <table class="table ps-table--shopping-cart ps-table--responsive">
                         <thead>
@@ -24,7 +23,7 @@
                             @if(Cart::count() > 0)
                                 @foreach (Cart::content() as $item)
                                     <tr>
-                                        <td data-label="Product">
+                                        <td data-label="Producto">
                                             <div class="ps-product--cart">
                                                 <div class="ps-product__thumbnail">
                                                     <a href="{{ route('web.products.show', $item->model->slug) }}">
@@ -35,20 +34,20 @@
                                                     <a href="{{ route('web.products.show', $item->model->slug) }}">
                                                         {{ $item->model->name }}
                                                     </a>
-                                                    <p>Sold By:<strong> YOUNG SHOP</strong></p>
+                                                    <p>Vendedor : <a href="{{ route('web.tienda.show', $item->model->tienda->slug) }}" ><strong> {{ $item->model->tienda->name }}</strong> </a> </p>
                                                 </div>
                                             </div>
                                         </td>
-                                        <td class="price" data-label="Price">${{ $item->model->amount }}</td>
-                                        <td data-label="Quantity">
+                                        <td class="price" data-label="Precio">${{ $item->model->amount }}</td>
+                                        <td data-label="Cantidaa">
                                             <div class="form-group--number">
-                                                <button class="up">+</button>
-                                                <button class="down">-</button>
-                                                <input class="form-control" type="text" placeholder="1" value="{{ $item->qty }}">
+                                                <button class="up" wire:click.prevent="increseQty('{{ $item->rowId }}', '{{ $item->model->id }}')">+</button>
+                                                <button class="down" wire:click.prevent="decreseQty('{{ $item->rowId }}', '{{ $item->model->id }}')">-</button>
+                                                <input class="form-control" type="text"  value="{{ $item->qty }}" disabled>
                                             </div>
                                         </td>
-                                        <td data-label="Total">${{ $item->subtotal }}</td>
-                                        <td data-label="Actions"><a href="#"><i class="icon-cross"></i></a></td>
+                                        <td data-label="Total">${{ $item->subtotal }} </td>
+                                        <td data-label="Acciones"><a href="#" wire:click.prevent="destroy('{{ $item->rowId }}')"><i class="icon-cross"></i></a></td>
                                     </tr>
                                 @endforeach
                             @else

@@ -17,6 +17,7 @@
     {!! Form::open(['route' => 'admin.products.store', 'autocomplete' => 'off', 'files'=>'true' ]) !!}
 
     {!! Form::hidden('user_id', auth()->user()->id) !!}
+    {!! Form::hidden('tienda_id', auth()->user()->tienda->id ) !!}
     <div class="flex flex-col items-center mt-8 intro-y sm:flex-row">
         <h2 class="mr-auto text-lg font-medium">
             Nuevo Producto

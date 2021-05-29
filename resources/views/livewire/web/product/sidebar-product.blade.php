@@ -4,14 +4,14 @@
         @foreach ($categories as $keyIndice => $cateIndice)
             <li class="menu-item-has-children">
 
-                <a href="javascript:"> {{ $cateIndice->name }} </a>
+                <a href="{{ route('web.products.show.categories', $cateIndice ) }}"> {{ $cateIndice->name }} </a>
                 <span class="sub-toggle"><i class="fa fa-angle-down"></i></span>
 
                 <ul class="sub-menu">
                     @foreach ($tags as $keyTags => $tagList)
                         @if ($tagList->category_id == $cateIndice->id)
                             <li>
-                            <a href="javascript:">{{ $tagList->name }}</a>
+                            <a href="{{ route('web.products.show.tags', $tagList ) }}">{{ $tagList->name }}</a>
                             </li>
                         @endif
                     @endforeach

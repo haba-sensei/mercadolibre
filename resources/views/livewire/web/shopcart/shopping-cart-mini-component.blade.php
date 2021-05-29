@@ -13,11 +13,11 @@
                             </a>
                         </div>
                         <div class="ps-product__content">
-                            <a class="ps-product__remove" href="#">
+                            <a class="ps-product__remove" href="#" wire:click.prevent="destroy('{{ $item->rowId }}')">
                                 <i class="icon-cross"></i>
                             </a>
                             <a href="{{ route('web.products.show', $item->model->slug) }}"> {{ $item->model->name }}</a>
-                            <p><strong>Vendedor:</strong> YOUNG SHOP</p><small>{{ $item->qty }} x ${{ $item->model->amount }}</small>
+                            <p><strong>Vendedor:</strong> <a href="{{ route('web.tienda.show', $item->model->tienda->slug) }}" > {{ $item->model->tienda->name }} </a></p><small>{{ $item->qty }} x ${{ $item->model->amount }}</small>
                         </div>
                     </div>
                 @endforeach
@@ -29,8 +29,14 @@
         </div>
         <div class="ps-cart__footer">
             <h3>Total:<strong>${{ Cart::total() }}</strong></h3>
-            <figure><a class="ps-btn" href="{{ route('web.shopcart.index') }}">Ver Carrito</a><a
-                    class="ps-btn" href="checkout.html">Checkout</a></figure>
+            <figure>
+                <a class="ps-btn" style="padding: 12px 40px!important;" href="{{ route('web.shopcart.index') }}">
+                    Ver Carrito
+                </a>
+                <a class="ps-btn" style="padding: 12px 40px!important;" href="checkout.html">
+                    Checkout
+                </a>
+            </figure>
         </div>
     </div>
 </div>

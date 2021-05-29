@@ -30,6 +30,10 @@ class RoleSeeder extends Seeder
         Permission::create(['name' => 'dash.roles.update', 'description' => 'Actualizar Roles', 'guard_name' => 'admin'])->syncRoles([$admin_rol]);
         Permission::create(['name' => 'dash.roles.edit', 'description' => 'Editar Roles', 'guard_name' => 'admin'])->syncRoles([$admin_rol]);
 
+        Permission::create(['name' => 'dash.tienda.index', 'description' => 'Acceso para crear una tienda', 'guard_name' => 'admin'])->syncRoles([$admin_rol, $compra_rol]);
+        Permission::create(['name' => 'dash.tienda.show', 'description' => 'Acceso a la tienda', 'guard_name' => 'admin'])->syncRoles([$admin_rol, $vend_rol]);
+       
+
 
         Permission::create(['name' => 'dash.products.index', 'description' => 'Ver listado de Productos', 'guard_name' => 'admin'])->syncRoles([$admin_rol, $vend_rol]);
         Permission::create(['name' => 'dash.products.create', 'description' => 'Crear Productos', 'guard_name' => 'admin'])->syncRoles([$admin_rol, $vend_rol]);

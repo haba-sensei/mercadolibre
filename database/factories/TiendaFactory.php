@@ -23,13 +23,16 @@ class TiendaFactory extends Factory
      */
     public function definition()
     {
-        $name = $this->faker->unique()->sentence();
+        $name = $this->faker->unique()->company;
         return [
             'name' => $name,
             'slug' => Str::slug($name),
             'resumen' => $this->faker->text(250),
-            'website' => $this->faker->randomElement(['www.algo1.com','www.algo2.com', 'www.algo3.com']),
-            'user_id' => User::all()->random()->id
+            'email' => $this->faker->unique()->safeEmail,
+            'phone' => $this->faker->unique()->e164PhoneNumber,
+            'url_perfil' => 'tiendas/' . $this->faker->image('public/storage/tiendas', 300, 300, null, false),
+            'status' => $this->faker->randomElement([1,2]),
+            'user_id' => User::pluck('id')->unique()->random()
         ];
     }
 }

@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Cache;
 use Intervention\Image\ImageManagerStatic as ImagenCompress;
-use Cart;
+
 class ProductController extends Controller
 {
 
@@ -39,19 +39,6 @@ class ProductController extends Controller
                      ->get();
 
         return response()->json(array('last_page' => 6, 'data'=>$product ));
-
-    }
-
-     public function storeCart($product_id, $product_name, $product_price){
-
-        Cart::add($product_id, $product_name, 1, $product_price)
-        ->associate('App\Models\Product');
-
-        return redirect()->route('web.shopcart.index')
-        ->with([
-            'info' => 'El Producto se agrego con éxito',
-            'color' => '#63b716'
-        ]);
 
     }
 
@@ -128,7 +115,8 @@ class ProductController extends Controller
 
         $filename =  Str::random(32).".".File::extension($request->file('file')->getClientOriginalName());
         $url = "products/".$filename;
-        $product_url = '/storage/products/'.$filename;
+        $product_url =  public_path('storage/products/'.$filename);
+
 
         ImagenCompress::make($request->file('file'))
         ->resize(600, 600)
@@ -144,7 +132,7 @@ class ProductController extends Controller
 
                 $filename_bulk =  Str::random(32).".".File::extension($file->getClientOriginalName());
                 $path = 'gallery/';
-                $bulk_url = '/storage/gallery/'.$filename_bulk;
+                $bulk_url = public_path('storage/gallery/'.$filename_bulk);
 
                 ImagenCompress::make(file_get_contents($file))
                 ->resize(600, 600)
@@ -182,6 +170,20 @@ class ProductController extends Controller
      {
         $products = Product::where(['status' => 2])->get();
         return view('web.products.showAll', compact('products'));
+     }
+
+     /* {{ METODO SHOW | VISTA WEB | INSTANCIA PRODUCT }} */
+     public function showCat(Category $category)
+     {
+        $category = Category::find($category);
+        return view('web.products.showCat', compact('category'));
+     }
+
+     /* {{ METODO SHOW | VISTA WEB | INSTANCIA PRODUCT }} */
+     public function showTag(Tag $tag)
+     {
+         $tag = Tag::find($tag);
+         return view('web.products.showTag', compact('tag'));
      }
 
      /* {{ METODO EDIT | DATA MENU LATERAL | INSTANCIA PRODUCT }} */

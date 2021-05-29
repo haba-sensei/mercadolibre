@@ -8,13 +8,14 @@ window.addEventListener('closeModal', event => {
 });
 
 
+
+
 window.addEventListener('carrito-updated', event => {
     Toastify({
-
-        text: "PRODUCTO AGREGADO AL CARRITO",
+        text: event.detail.info,
         gravity: "bottom",
         position: "right",
-        backgroundColor: "#1c3faa",
+        backgroundColor: event.detail.color,
 
         duration: 1500
 

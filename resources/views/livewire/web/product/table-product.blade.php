@@ -18,35 +18,35 @@
                 <div class="ps-shopping-product">
                     <div class="row">
                         @foreach ($products as $product)
-                            <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6 col-6 ">
-                                <div class="ps-product">
+                            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-6 ">
+                                <div class="ps-product" >
                                     <div class="ps-product__thumbnail">
                                         <a href="{{ route('web.products.show', $product) }}"><img
                                                 src="{{ Storage::url($product->image->url) }}" alt=""></a>
-                                        <ul class="ps-product__actions">
+                                        <ul class="ps-product__actions" style="transform: translate(-50%, 0);">
                                             <li><a href="#" data-toggle="tooltip" data-placement="top"
-                                                    title="Add To Cart" wire:click.prevent="store({{ $product->id }}, '{{ $product->name }}', {{ $product->amount }}  )"><i class="icon-bag2"></i></a></li>
+                                                    title="Agregar" wire:click.prevent="store({{ $product->id }}, '{{ $product->name }}', {{ $product->amount }}  )"><i class="icon-bag2"></i></a></li>
                                             <li>
 
-                                                <a href="javascript:" 
+                                                <a href="javascript:"
                                                     wire:click="selectItem({{ $product->id }})">
                                                     <i class="icon-eye"></i>
                                                 </a>
                                             </li>
                                             <li><a href="#" data-toggle="tooltip" data-placement="top"
-                                                    title="Add to Whishlist"><i class="icon-heart"></i></a></li>
+                                                    title="Lista de Deseos"><i class="icon-heart"></i></a></li>
                                             <li><a href="{{ route('web.products.show', $product) }}" data-toggle="tooltip" data-placement="top"
                                                     title="Ver mas"><i class="icon-share"></i></a></li>
                                         </ul>
                                     </div>
-                                    <div class="ps-product__container"><a class="ps-product__vendor" href="#">ROBERT’S
-                                            STORE</a>
+
+                                    <div class="ps-product__container"><a class="ps-product__vendor" href="{{ route('web.tienda.show',  $product->tienda->slug  ) }}">{{ $product->tienda->name }}</a>
                                         <div class="ps-product__content"><a class="ps-product__title"
-                                                href="product-default.html">{{ $product->name }}</a>
+                                                href="{{ route('web.products.show', $product) }}">{{ $product->name }}</a>
                                             <p class="ps-product__price">${{ $product->amount }}</p>
                                         </div>
                                         <div class="ps-product__content hover"><a class="ps-product__title"
-                                                href="product-default.html">{{ $product->name }}</a>
+                                                href="{{ route('web.products.show', $product) }}">{{ $product->name }}</a>
                                             <p class="ps-product__price">${{ $product->amount }}</p>
                                         </div>
                                     </div>

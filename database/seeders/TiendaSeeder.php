@@ -14,6 +14,6 @@ class TiendaSeeder extends Seeder
      */
     public function run()
     {
-        Tienda::factory(10)->create();
+        Tienda::factory(9)->create();
     }
 }

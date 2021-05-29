@@ -21,10 +21,13 @@ class SocialiteAccess extends Controller
         try {
 
             $user = FacadesSocialite::driver('facebook')->user();
-            $userCol = User::where('id_fb', $user->id)->first();
+            $userCol = User::where('id_fb', $user->id)
+                            ->orWhere('email', $user->email)
+                            ->first();
 
             if($userCol){
                 FacadesAuth::login($userCol);
+                $user = User::where('email', $user->email)->update(['id_fb' => $user->id]);
                 return redirect('/');
             }else{
                 $addUser = User::create([
@@ -40,7 +43,8 @@ class SocialiteAccess extends Controller
             }
 
         } catch (Exception $exception) {
-            dd($exception->getMessage());
+            session()->flash('info', 'ESTE EMAIL YA SE ENCUENTRA REGISTRADO ');
+            return redirect('login');
         }
     }
 
@@ -54,10 +58,15 @@ class SocialiteAccess extends Controller
         try {
 
             $user = FacadesSocialite::driver('google')->user();
-            $userCol = User::where('id_google', $user->id)->first();
+
+            $userCol = User::where('id_google', $user->id)
+                            ->orWhere('email', $user->email)
+                            ->first();
 
             if($userCol){
                 FacadesAuth::login($userCol);
+                $user = User::where('email', $user->email)->update(['id_google' => $user->id]);
+
                 return redirect('/');
             }else{
                 $addUser = User::create([
@@ -73,7 +82,11 @@ class SocialiteAccess extends Controller
             }
 
         } catch (Exception $exception) {
-            dd($exception->getMessage());
+
+            session()->flash('info', 'ESTE EMAIL YA SE ENCUENTRA REGISTRADO ');
+            return redirect('login');
+
+
         }
     }
 }
