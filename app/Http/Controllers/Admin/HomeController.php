@@ -83,7 +83,7 @@ class HomeController extends Controller
                 'menuPrincipal' => 'si',
                 'page_name' => 'home',
                 'ruta' => 'listar',
-                'title' => 'Home',
+                'title' => 'Home Dash',
                 'can' => 'dash.home'
             ],
 

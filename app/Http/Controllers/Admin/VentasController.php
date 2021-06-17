@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Order;
+use App\Models\OrderItem;
 use App\Models\Transaction;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -44,17 +45,18 @@ class VentasController extends Controller
     }
 
 
-    public function show(Order $order)
+    public function show($reference_id)
     {
         $pageName= 'ventas';
-        $order_search = $order->get();
+        $order_search = Order::where(['reference_id' => $reference_id])->get();
+
         $response_status_transition = Http::get(env('WOMPI_SANDBOX_TRANSITION_SEARCH').$order_search[0]->transaction->transaction_id);
 
         Transaction::whereId($order_search[0]->transaction->id)->update([
             'status' => $response_status_transition->json()['data']['status']
         ]);
 
-        $order = $order->get();
+        $order = Order::where(['reference_id' => $reference_id])->get();
         $varPriceItem1 = 0;
         $varPriceItem = 0;
 

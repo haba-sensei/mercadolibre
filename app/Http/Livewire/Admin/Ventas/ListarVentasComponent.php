@@ -18,10 +18,7 @@ class ListarVentasComponent extends Component
      public $sortDirection = 'asc';
      public $perPage = 4;
      public $search = '';
-
-
-
-
+ 
     public function render()
     {
 
@@ -33,29 +30,29 @@ class ListarVentasComponent extends Component
                         ->paginate($this->perPage);
 
         }else {
+            if( isset(Auth::user()->tienda->id)){
+                $exist_item = OrderItem::query()
+                ->where(['tienda_id' => Auth::user()->tienda->id])
+                ->get();
 
-            $exist_item = OrderItem::query()
-            ->where(['tienda_id' => Auth::user()->tienda->id])
-            ->get();
+                if($exist_item->count() > 0){
 
-            if($exist_item->count() > 0){
+                    for ($i=0; $i < $exist_item->count(); $i++) {
+                        $search_id[] = $exist_item[$i]->order_id;
+                    }
 
-                for ($i=0; $i < $exist_item->count(); $i++) {
-                    $search_id[] = $exist_item[$i]->order_id;
+                    $ventas = Order::query()
+                            ->whereIn('id', $search_id)
+                            ->search($this->search)
+                            ->orderBy($this->sortBy, $this->sortDirection)
+                            ->paginate($this->perPage);
+
+                }else {
+                    $ventas = null;
                 }
-
-                $ventas = Order::query()
-                        ->whereIn('id', $search_id)
-                        ->search($this->search)
-                        ->orderBy($this->sortBy, $this->sortDirection)
-                        ->paginate($this->perPage);
-
             }else {
                 $ventas = null;
             }
-
-
-
 
         }
 

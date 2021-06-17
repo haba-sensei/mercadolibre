@@ -206,6 +206,16 @@
                                                             </span>
                                                             @enderror
                                                            <button class="ps-btn ps-btn--fullwidth">Proceder a Pagar </button>
+                                                           <div wire:loading wire:target="placeOrder">
+                                                            Procesando el Pago...
+                                                            </div>
+                                                            <br><br>
+
+                                                            @if (Session::has('info'))
+                                                            <div class="alert alert-danger">
+                                                                <strong class="">{{ Session::get('info') }}</strong>
+                                                            </div>
+                                                            @endif
                                                         </div>
 
                                                     </div>

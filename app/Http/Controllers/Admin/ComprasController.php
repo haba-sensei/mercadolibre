@@ -42,17 +42,18 @@ class ComprasController extends Controller
         ] );
     }
 
-    public function show(Order $order)
+    public function show($reference_id)
     {
         $pageName= 'compras';
-        $order_search = $order->get();
+        $order_search = Order::where(['reference_id' => $reference_id])->get();
+
         $response_status_transition = Http::get(env('WOMPI_SANDBOX_TRANSITION_SEARCH').$order_search[0]->transaction->transaction_id);
 
         Transaction::whereId($order_search[0]->transaction->id)->update([
             'status' => $response_status_transition->json()['data']['status']
         ]);
 
-        $order = $order->get();
+        $order = Order::where(['reference_id' => $reference_id])->get();
 
         foreach ($order_search[0]->orderItems as $item) {
 
@@ -80,7 +81,9 @@ class ComprasController extends Controller
         $orderUpdate->update([
             'status' => $status
         ]);
-        
+
+
+
         $activeMenu = $this->HomeController->activeMenu($pageName);
 
         return view('admin.compras.show',[

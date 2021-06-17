@@ -100,7 +100,7 @@ class CategoryController extends Controller
     /* {{ METODO SHOW | DATA MENU LATERAL | INSTANCIA CATEGORY }} */
     public function show(Category $category)
     {
-        $pageName= 'categories';
+        $pageName= 'categories'; 
 
          $activeMenu = $this->HomeController->activeMenu($pageName);
 
