@@ -11,9 +11,7 @@ class TiendaController extends Controller
 {
     public function index()
     {
-        $tiendas = Tienda::where(['status' => 2])->get();
-
-        return view('web.tienda.index', compact('tiendas'));
+        return view('web.tienda.index');
     }
 
     public function show(Tienda $tienda)

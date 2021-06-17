@@ -39,7 +39,7 @@
                                 </div>
                                 <div class="ps-product__container">
                                     <a class="ps-product__vendor" href="{{ route('web.tienda.show', $tienda) }}">{{ $tienda->name }}</a>
-
+                                  
                                     <div class="ps-product__content">
                                         <a class="ps-product__title" href="{{ route('web.products.show', $product) }}">
                                            {{ $product->name }}

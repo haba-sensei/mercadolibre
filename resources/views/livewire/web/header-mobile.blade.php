@@ -3,7 +3,7 @@
 
     <div class="navigation--mobile" style="background: {{ $background }};">
         <div class="navigation__left">
-            <a class="ps-logo" href="javascript:"><img src="{{ asset('dist/images/web/logo_light.png') }}" alt=""></a>
+            <a class="ps-logo" href="javascript:"><img style="width: 130px;" src="{{ asset('dist/images/web/logo.png') }}" alt=""></a>
         </div>
         <div class="navigation__right">
             <div class="header__actions">

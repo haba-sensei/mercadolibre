@@ -12,8 +12,8 @@ class HeaderMobile extends Component
     {
 
         $color = "#f8f9fa";
-        $background = "#1c3faa";
-        $mobilbackground = "#fcb800";
+        $background = "#42707c";
+        $mobilbackground = "#42707c";
         $mobilcolor = "#000";
 
         return view('livewire.web.header-mobile', compact(

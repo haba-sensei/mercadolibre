@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Web\Shopcart;
 
 use Livewire\Component;
 use Gloudemans\Shoppingcart\Facades\Cart as FacadesCart;
+use Illuminate\Support\Facades\Auth;
 
 class ShoppingCartMobileComponent extends Component
 {
@@ -20,6 +21,17 @@ class ShoppingCartMobileComponent extends Component
         $this->emit('updateMiniCart');
     }
 
+    public function checkout()
+    {
+        if(Auth::check())
+        {
+            return redirect()->route('web.checkout.index');
+        }
+        else
+        {
+            return redirect()->route('login');
+        }
+    }
 
     public function render()
     {

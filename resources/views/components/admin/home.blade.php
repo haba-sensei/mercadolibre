@@ -78,7 +78,9 @@
 
         <livewire:admin.tienda.listar-tiendas-component />
 
+        <livewire:admin.ordenes.listar-ordenes-component />
 
+        <livewire:admin.ventas.listar-ventas-component />
 
 
 

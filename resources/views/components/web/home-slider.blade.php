@@ -28,14 +28,6 @@
                 <img src="{{ Storage::url('sliders/slider4.png') }}" alt="">
             </a>
         </div>
-
-        <div class="ps-banner--market-1" data-background="{{ Storage::url('sliders/slider5.png') }}">
-            <a href="javascript:" style="cursor: grab;">
-                <img src="{{ Storage::url('sliders/slider5.png') }}" alt="">
-            </a>
-        </div>
-
-
-
+        
     </div>
 </div>

@@ -6,6 +6,8 @@ use App\Http\Controllers\Web\WebController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Web\SocialiteAccess;
 use App\Http\Controllers\Web\TiendaController;
+use App\Http\Livewire\Web\Checkout\CheckoutComponent;
+use App\Http\Livewire\Web\Checkout\ThankyouComponent;
 
 /* RUTAS HOME  */
 Route::get('/', [WebController::class, 'index'])->name('web.home');
@@ -26,6 +28,8 @@ Route::get('tag/{tag}', [ProductController::class, 'showTag'])->name('web.produc
 
 /* CARRITO - CHECKOUT - PAYMENT */
 Route::view('/carrito', 'web.shopcart.index')->name('web.shopcart.index');
+Route::view('/checkout', 'web.checkout.index')->name('web.checkout.index');
+Route::view('/thank-you', 'web.checkout.thankyou')->name('web.checkout.thankyou');
 
 /* TIENDAS */
 Route::get('/tiendas',  [TiendaController::class, 'index'])->name('web.tienda.index');

@@ -28,6 +28,6 @@
         <h3>Total:<strong>${{ Cart::total() }}</strong></h3>
         <figure>
             <a class="ps-btn" style="padding: 12px 30px!important; margin-right: 16px;" href="{{ route('web.shopcart.index') }}" >Ver Carrito</a>
-            <a class="ps-btn" style="padding: 12px 40px!important;" href="checkout.html">Checkout</a></figure>
+            <a class="ps-btn" style="padding: 12px 40px!important;" href="#" wire:click.prevent="checkout">Checkout</a></figure>
     </div>
 </div>

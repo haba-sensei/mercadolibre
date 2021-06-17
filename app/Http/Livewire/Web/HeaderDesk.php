@@ -8,13 +8,11 @@ use Livewire\Component;
 
 class HeaderDesk extends Component
 {
- 
+
     public function render()
     {
         $color = "#f8f9fa";
-        $background = "#1c3faa";
-        $mobilbackground = "#fcb800";
-        $mobilcolor = "#000";
+        $background = "#42707c"; 
         $categories = Category::all();
 
         return view('livewire.web.header-desk', compact(

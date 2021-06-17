@@ -5,7 +5,7 @@
         <x-admin.identidad />
 
     </a>
-    <div class="my-6 side-nav__devider"></div>
+    <div class="my-6 side-nav__devider" style="background: white;"></div>
     <ul>
 
         @foreach ($side_menu as $menu)
@@ -19,7 +19,7 @@
 
                     <a href="{{ isset($menu['menuPrincipal']) ? route('page', ['pageName' => $menu['page_name']]) : 'javascript:;' }}"
                         class="{{ $first_page_name == $menu['page_name'] ? 'side-menu side-menu--active' : 'side-menu' }}">
-                        <div class="side-menu__icon">
+                        <div class="side-menu__icon" style=" color: {{ $first_page_name == $menu['page_name'] ? '#42707c;' : 'white;' }}">
                             <i data-feather="{{ $menu['icon'] }}"></i>
                         </div>
                         <div class="side-menu__title">
@@ -30,6 +30,7 @@
                             @endif
                         </div>
                     </a>
+
                     @if (isset($menu['sub_menu']))
                         <ul class="{{ $first_page_name == $menu['page_name'] ? 'side-menu__sub-open' : '' }}">
                             @foreach ($menu['sub_menu'] as $subMenu)
@@ -73,7 +74,20 @@
             @endif
             @endcan
         @endforeach
+        <li>
+        <form method="POST" action="{{ route('logout') }}">
+            @csrf
+            <a href="{{ route('logout') }}" class="side-menu"
+               onclick="event.preventDefault(); this.closest('form').submit();">
+                <div class="side-menu__icon">
+                    <i data-feather="toggle-right"></i>
+                </div>
+                <div class="side-menu__title">
+                    Cerrar Session
 
-
+                </div>
+            </a>
+        </form>
+        </li>
     </ul>
 </nav>

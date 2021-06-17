@@ -28,12 +28,12 @@
 
         </div>
         <div class="ps-cart__footer">
-            <h3>Total:<strong>${{ Cart::total() }}</strong></h3>
+            <h3>Total:<strong>${{ Cart::subtotal() }}</strong></h3>
             <figure>
                 <a class="ps-btn" style="padding: 12px 40px!important;" href="{{ route('web.shopcart.index') }}">
                     Ver Carrito
                 </a>
-                <a class="ps-btn" style="padding: 12px 40px!important;" href="checkout.html">
+                <a class="ps-btn" style="padding: 12px 40px!important;" href="#" wire:click.prevent="checkout">
                     Checkout
                 </a>
             </figure>

@@ -32,4 +32,11 @@ class Tienda extends Model
     public function profiles(){
         return $this->belongsTo(Profiles::class);
     }
+
+    /* BUSQUEDA DE CATEGORIA */
+    public function scopeSearch($query, $val)
+    {
+        return $query
+                ->where('name', 'like', '%'.$val.'%');
+    }
 }

@@ -8,6 +8,7 @@ mix.js('resources/js/dash.js', 'public/dist/js').version()
         require('tailwindcss'),
     ])
     .postCss('resources/css/dash.css', 'public/dist/css').version()
+    .postCss('resources/css/dash_custom.css', 'public/dist/css').version()
     .postCss('resources/css/base_web.css', 'public/dist/css').version()
 
 

@@ -5519,6 +5519,17 @@ process.umask = function() { return 0; };
 
 /***/ }),
 
+/***/ "./resources/css/dash_custom.css":
+/*!***************************************!*\
+  !*** ./resources/css/dash_custom.css ***!
+  \***************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+
 /***/ "./resources/js/app.js":
 /*!*****************************!*\
   !*** ./resources/js/app.js ***!
@@ -5680,15 +5691,16 @@ var helpers = {
 /***/ }),
 
 /***/ 0:
-/*!*****************************************************************************************************************!*\
-  !*** multi ./resources/js/app.js ./resources/css/app.css ./resources/css/dash.css ./resources/css/base_web.css ***!
-  \*****************************************************************************************************************/
+/*!*************************************************************************************************************************************************!*\
+  !*** multi ./resources/js/app.js ./resources/css/app.css ./resources/css/dash.css ./resources/css/dash_custom.css ./resources/css/base_web.css ***!
+  \*************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(/*! C:\laragon\www\mercadolibre\resources\js\app.js */"./resources/js/app.js");
 __webpack_require__(/*! C:\laragon\www\mercadolibre\resources\css\app.css */"./resources/css/app.css");
 __webpack_require__(/*! C:\laragon\www\mercadolibre\resources\css\dash.css */"./resources/css/dash.css");
+__webpack_require__(/*! C:\laragon\www\mercadolibre\resources\css\dash_custom.css */"./resources/css/dash_custom.css");
 module.exports = __webpack_require__(/*! C:\laragon\www\mercadolibre\resources\css\base_web.css */"./resources/css/base_web.css");
 
 

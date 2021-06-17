@@ -13,7 +13,7 @@ class TableProduct extends Component
     protected $listeners = [
         'searching'
      ];
-
+ 
     /* PAGINACION REACTIVA */
     use WithPagination;
     /* VARIABLES SORT BY  */

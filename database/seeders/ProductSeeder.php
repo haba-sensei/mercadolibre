@@ -16,7 +16,7 @@ class ProductSeeder extends Seeder
      */
     public function run()
     {
-        $products = Product::factory(250)->create();
+        $products = Product::factory(15)->create();
 
         foreach ($products as $product ) {
 

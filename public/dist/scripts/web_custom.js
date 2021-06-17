@@ -20,4 +20,4 @@ window.addEventListener('carrito-updated', event => {
         duration: 1500
 
     }).showToast();
-})
+});

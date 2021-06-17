@@ -32,7 +32,13 @@ class RoleSeeder extends Seeder
 
         Permission::create(['name' => 'dash.tienda.index', 'description' => 'Acceso para crear una tienda', 'guard_name' => 'admin'])->syncRoles([$admin_rol, $compra_rol]);
         Permission::create(['name' => 'dash.tienda.show', 'description' => 'Acceso a la tienda', 'guard_name' => 'admin'])->syncRoles([$admin_rol, $vend_rol]);
-       
+        Permission::create(['name' => 'dash.tienda.solicitudes', 'description' => 'Aprobar o Rechazar una Tienda', 'guard_name' => 'admin'])->syncRoles([$admin_rol]);
+
+        Permission::create(['name' => 'dash.compras.index', 'description' => 'Acceso para listar Compras', 'guard_name' => 'admin'])->syncRoles([$admin_rol, $compra_rol, $vend_rol]);
+        Permission::create(['name' => 'dash.compras.show', 'description' => 'Acceso a la Compra', 'guard_name' => 'admin'])->syncRoles([$admin_rol, $compra_rol, $vend_rol]);
+
+        Permission::create(['name' => 'dash.ventas.index', 'description' => 'Acceso para listar Ventas', 'guard_name' => 'admin'])->syncRoles([$admin_rol, $vend_rol]);
+        Permission::create(['name' => 'dash.ventas.show', 'description' => 'Acceso a la Venta', 'guard_name' => 'admin'])->syncRoles([$admin_rol, $vend_rol]);
 
 
         Permission::create(['name' => 'dash.products.index', 'description' => 'Ver listado de Productos', 'guard_name' => 'admin'])->syncRoles([$admin_rol, $vend_rol]);

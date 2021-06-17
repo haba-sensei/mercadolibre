@@ -10,8 +10,8 @@ class MenuMobile extends Component
     public function render()
     {
         $color = "#f8f9fa";
-        $background = "#1c3faa";
-        $mobilbackground = "#fcb800";
+        $background = "#42707c";
+        $mobilbackground = "#42707c";
         $mobilcolor = "#000";
         $categories = Category::all();
 

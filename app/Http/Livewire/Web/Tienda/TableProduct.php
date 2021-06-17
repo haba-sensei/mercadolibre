@@ -64,7 +64,7 @@ class TableProduct extends Component
 
     public function render()
     {
-        $tienda = $this->tienda; 
+        $tienda = $this->tienda;
         $products = Product::where(['tienda_id' => $tienda->id, 'status' => 2])
                             ->orderBy($this->sortBy, $this->sortDirection)
                             ->paginate($this->perPage);

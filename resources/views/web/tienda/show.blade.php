@@ -40,8 +40,8 @@
 
 
                         @livewire('web.tienda.table-product', ['tienda' => $tienda])
-                        {{-- <livewire:web.tienda.table-product  /> --}}
- 
+
+
 
             </div>
         </div>

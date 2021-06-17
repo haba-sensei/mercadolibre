@@ -36,7 +36,7 @@ class SocialiteAccess extends Controller
                     'remember_token' => Str::random(10),
                     'id_fb' => $user->id,
                     'password' => encrypt(Str::random(10))
-                ]);
+                ])->assignRole('Comprador');
 
                 FacadesAuth::login($addUser);
                 return redirect('/');
@@ -75,7 +75,7 @@ class SocialiteAccess extends Controller
                     'remember_token' => Str::random(10),
                     'id_google' => $user->id,
                     'password' => encrypt(Str::random(10))
-                ]);
+                ])->assignRole('Comprador');
 
                 FacadesAuth::login($addUser);
                 return redirect('/');

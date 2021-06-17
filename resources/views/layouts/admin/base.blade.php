@@ -14,6 +14,7 @@
         @livewireStyles
         <!-- BEGIN: CSS Assets-->
         <link rel="stylesheet" href="{{ mix('dist/css/dash.css') }}" />
+        <link rel="stylesheet" href="{{ mix('dist/css/dash_custom.css') }}" />
         <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
         @yield('css')
         <!-- END: CSS Assets-->
