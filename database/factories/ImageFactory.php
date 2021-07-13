@@ -28,10 +28,10 @@ class ImageFactory extends Factory
         //pero no guardaremos asi si no que concateno todo el elemento a post/ AQUI <- antes de todo.
         // 'url' => 'products/' . $this->faker->image('public/storage/products', 640, 480, null, false),
 
-
+        // $this->faker->image('public/storage/products', 600, 600, null, false)
         return [
 
-        'url' => 'products/' . $this->faker->image('public/storage/products', 600, 600, null, false),
+        'url' => 'products/' . $this->faker->randomElement([  'prod_2.jpg' ]),
 
         ];
     }

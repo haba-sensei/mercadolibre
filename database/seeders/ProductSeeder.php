@@ -2,13 +2,18 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Seeder;
-use App\Models\Image;
-use App\Models\Gallery;
+use App\Models\Category;
 use App\Models\Product;
+use App\Models\Tienda;
+use Faker\Factory;
+use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 
 class ProductSeeder extends Seeder
 {
+    public $id_user;
+    public $id_tienda;
     /**
      * Run the database seeds.
      *
@@ -16,28 +21,67 @@ class ProductSeeder extends Seeder
      */
     public function run()
     {
-        $products = Product::factory(15)->create();
+        static $order = 1;
+        static $url = 1;
+        static $url_count = 1;
+        $faker = Factory::create();
 
-        foreach ($products as $product ) {
+        $name_tag = array('regalos', 'detalles', 'tendencias', 'variados', 'tazas', 'enamorate');
 
-            Image::factory(1)->create([
-                'imageable_id' => $product->id,
+        for ($j = 0; $j < 6; $j++) {
+            DB::table('tags')->insert([
+                'name' => $name_tag[0],
+                'slug' => Str::slug($name_tag[0]),
+                'color' => $faker->randomElement(['red', 'yellow', 'blue', 'indigo', 'purple', 'pink']),
+                'tag_img' => 'tags/' . $faker->randomElement(['tag_img1.jpg', 'tag_img2.jpg', 'tag_img3.jpg', 'tag_img4.jpg', 'tag_img5.jpg', 'tag_img6.jpg']),
+                'category_id' => Category::all()->random()->id,
+            ]);
+        }
+
+        for ($i = 0; $i < 15; $i++) {
+
+            $id_user = Tienda::pluck('user_id')->unique()->random();
+            $id_tienda = Tienda::where('user_id', $id_user)->value('id');
+
+            $id_prod = $order++;
+
+            DB::table('products')->insert(
+                [
+                    'name' => 'Producto ' . $id_prod,
+                    'slug' => Str::slug('producto-' . $id_prod),
+                    'extract' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis quod iusto deleniti asperiores, nam atque! Iure consequatur, atque aliquam at cum corporis dolorum totam molestias error, quaerat consequuntur dolore doloremque.',
+                    'body' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis quod iusto deleniti asperiores, nam atque! Iure consequatur, atque aliquam at cum corporis dolorum totam molestias error, quaerat consequuntur dolore doloremque. Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis quod iusto deleniti asperiores, nam atque! Iure consequatur, atque aliquam at cum corporis dolorum totam molestias error, quaerat consequuntur dolore doloremque. Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis quod iusto deleniti asperiores, nam atque! Iure consequatur, atque aliquam at cum corporis dolorum totam molestias error, quaerat consequuntur dolore doloremque.',
+                    'amount' => rand(15000, 30000),
+                    'stock' => 50,
+                    'status' => 2,
+                    'user_id' => $id_user,
+                    'category_id' => Category::all()->random()->id,
+                    'tienda_id' => $id_tienda,
+                ]
+            );
+
+            DB::table('images')->insert([
+                'url' => 'products/prod_' . $url++ . '.jpg',
+                'imageable_id' => $id_prod,
                 'imageable_type' => Product::class,
             ]);
 
-            Gallery::factory(5)->create([
-                'imageable_id' => $product->id,
-                'imageable_type' => Product::class,
-            ]);
+            $url_count = $url_count++;
 
-            $product->tags()->attach([
-                rand(1, 4),
-                rand(5, 8),
-                rand(9, 13),
-                rand(14, 18),
-                rand(19, 23)
-            ]);
+            for ($f = 0; $f < 2; $f++) {
 
+                DB::table('galleries')->insert([
+                    'url' => 'gallery/gallery_' . $url_count++ . '.jpg',
+                    'imageable_id' => $id_prod,
+                    'imageable_type' => Product::class,
+                ]);
+
+            }
+
+            // DB::table('product_tag')->insert([
+            //     'product_id' => $id_prod,
+            //     'tag_id' => rand(1, 6),
+            // ]);
         }
     }
 }

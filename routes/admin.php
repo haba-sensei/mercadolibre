@@ -2,6 +2,7 @@
 use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ComprasController;
+use App\Http\Controllers\Admin\CouponsController;
 use App\Http\Controllers\Admin\TagController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\UserController;
@@ -30,6 +31,7 @@ Route::resource('products', ProductController::class)->middleware('can:dash.prod
 Route::resource('tienda', TiendaController::class)->middleware('can:dash.tienda.index')->names('admin.tienda');
 Route::resource('compras', ComprasController::class)->middleware('can:dash.compras.index')->names('admin.compras');
 Route::resource('ventas', VentasController::class)->middleware('can:dash.ventas.index')->names('admin.ventas');
+Route::resource('coupons', CouponsController::class)->middleware('can:dash.coupons.index')->names('admin.coupons');
 
 /* MANEJADOR DE RUTAS DEL THEME  */
 

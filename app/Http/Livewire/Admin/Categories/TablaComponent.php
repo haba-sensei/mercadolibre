@@ -7,7 +7,7 @@ use Livewire\Component;
 use Livewire\WithPagination;
 
 
-class TablaComponent extends Component 
+class TablaComponent extends Component
 {
     /* PAGINACION REACTIVA */
     use WithPagination;

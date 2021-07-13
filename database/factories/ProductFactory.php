@@ -26,7 +26,7 @@ class ProductFactory extends Factory
     public function definition()
     {
         $name = $this->faker->unique()->sentence();
-
+        $randon_val_IDs= range(2, 9);
         return [
            'name' => $name,
            'slug' => Str::slug($name),
@@ -34,10 +34,10 @@ class ProductFactory extends Factory
            'body' => $this->faker->text(2000),
            'amount' => $this->faker->randomFloat(2, 0, 100),
            'stock' => $this->faker->randomElement([5,10]),
-           'status' => $this->faker->randomElement([1,2]),
-           'user_id' => User::all()->random()->id,
+           'status' => 2,
+           'user_id' => $randon_val_IDs,
            'category_id' => Category::all()->random()->id,
-           'tienda_id' => Tienda::pluck('id')->unique()->random() 
+           'tienda_id' => $randon_val_IDs
         ];
     }
 }

@@ -19,7 +19,7 @@ private static $installed = array (
     'aliases' => 
     array (
     ),
-    'reference' => '2d6a71e4e3a1ca8eb11fb5eca43c9ccf8ee30bef',
+    'reference' => 'e98147cc289f4938cd8f042e988021bea4e94550',
     'name' => 'laravel/laravel',
   ),
   'versions' => 
@@ -530,7 +530,7 @@ private static $installed = array (
       'aliases' => 
       array (
       ),
-      'reference' => '2d6a71e4e3a1ca8eb11fb5eca43c9ccf8ee30bef',
+      'reference' => 'e98147cc289f4938cd8f042e988021bea4e94550',
     ),
     'laravel/sail' => 
     array (
@@ -713,6 +713,24 @@ private static $installed = array (
       array (
       ),
       'reference' => 'f34c2b11eb9d2c9318e13540a1dbc2a3afbd939c',
+    ),
+    'paypal/paypal-checkout-sdk' => 
+    array (
+      'pretty_version' => '1.0.1',
+      'version' => '1.0.1.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => 'ed6a55075448308b87a8b59dcb7fedf04a048cb1',
+    ),
+    'paypal/paypalhttp' => 
+    array (
+      'pretty_version' => '1.0.0',
+      'version' => '1.0.0.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '1ad9b846a046f09d6135cbf2cbaa7701bbc630a3',
     ),
     'phar-io/manifest' => 
     array (

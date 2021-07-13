@@ -21,14 +21,15 @@ class PerfilesFactory extends Factory
      * @return array
      */
     public function definition()
-    {
+    { 
+        static $order = 1;
         return [
             'pais' => $this->faker->country(),
             'estado' => $this->faker->state(),
             'ciudad' => $this->faker->city(),
             'direccion' => $this->faker->address(),
             'telefono' => $this->faker->e164PhoneNumber(),
-            'user_id' => User::all()->random()->id
+            'user_id' => $order++
         ];
     }
 }

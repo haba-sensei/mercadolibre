@@ -27,7 +27,7 @@ class UserSeeder extends Seeder
 
 
         User::factory(9)->create()->each(function ($user) {
-            $user->assignRole('Comprador');
+            // $user->assignRole('Comprador');
             $user->assignRole('Vendedor');
         });
 

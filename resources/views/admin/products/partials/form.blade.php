@@ -157,7 +157,7 @@
                 @enderror
             </div>
 
-            <div class="mt-3">
+            <div class="mt-3"> 
 
                 {!! Form::label('category_id', 'Categoria') !!}
                 <div class="mt-2">

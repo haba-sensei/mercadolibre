@@ -25,12 +25,13 @@ class CategoryFactory extends Factory
 
         //ok aca uso el soporte de Str de iluminate en la linea 7 para crear un slug
         //luego almaceno en una variable unica de 20 palabras el metodo faker para ambas tablas
-
-       $name =  $this->faker->unique()->word(20);
+        // $this->faker->image('public/storage/category', 1170, 245, null, false)
+    //    $name =  $this->faker->unique()->word(20);
+        $name = $this->faker->randomElement(['tazas', 'regalos', 'combos', 'dia del padre', 'dia de la madre', 'picnic']);
         return [
           'name' => $name,
           'slug' => Str::slug($name),
-          'cat_img' => 'category/' . $this->faker->image('public/storage/category', 1170, 245, null, false)
+          'cat_img' => 'category/' .$this->faker->randomElement(['cat_img1.jpg', 'cat_img2.jpg', 'cat_img3.jpg', 'cat_img4.jpg', 'cat_img5.jpg', 'cat_img6.jpg'])
         ];
     }
 }

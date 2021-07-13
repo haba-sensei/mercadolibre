@@ -18,6 +18,7 @@ class CreateOrdersTable extends Migration
             $table->string('reference_id');
             $table->unsignedBigInteger('user_id');
             $table->decimal('subtotal', 16, 2);
+            $table->string('descuento')->nullable();
             $table->string('name');
             $table->string('phone');
             $table->string('address');

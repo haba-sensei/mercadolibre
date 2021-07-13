@@ -8,7 +8,7 @@
                      <div class="alert alert-success">
                          <strong class="">Éxito</strong> {{ Session::get('info') }}
                      </div>
-                     @endif 
+                     @endif
                     @if(Cart::count() > 0)
                         <table class="table ps-table--shopping-cart ps-table--responsive">
                             <thead>
@@ -84,8 +84,14 @@
                             <div class="ps-block__content">
 
                                 <h3>Total <span>${{ Cart::subtotal() }}</span></h3>
+
+
+
                             </div>
-                        </div><a class="ps-btn ps-btn--fullwidth" href="#" wire:click.prevent="checkout">Proceder a Pagar</a>
+
+                        </div>
+
+                        <a class="ps-btn ps-btn--fullwidth" href="#" wire:click.prevent="checkout">Proceder a Pagar</a>
                     </div>
 
 

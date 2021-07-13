@@ -29,6 +29,10 @@ Route::get('tag/{tag}', [ProductController::class, 'showTag'])->name('web.produc
 /* CARRITO - CHECKOUT - PAYMENT */
 Route::view('/carrito', 'web.shopcart.index')->name('web.shopcart.index');
 Route::view('/checkout', 'web.checkout.index')->name('web.checkout.index');
+
+Route::get('paypal/checkout-success/{order}', [CheckoutComponent::class, 'getExpressCheckoutSuccess'] )->name('paypal.success');
+Route::get('paypal/checkout-cancel',  [CheckoutComponent::class, 'cancelPage'] )->name('paypal.cancel');
+
 Route::view('/thank-you', 'web.checkout.thankyou')->name('web.checkout.thankyou');
 
 /* TIENDAS */

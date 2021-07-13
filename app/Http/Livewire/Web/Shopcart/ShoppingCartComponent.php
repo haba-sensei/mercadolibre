@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Auth;
 
 class ShoppingCartComponent extends Component
 {
-
+ 
     public function increseQty($rowId, $rowProdId)
     {
         $product = FacadesCart::get($rowId);
@@ -56,13 +56,20 @@ class ShoppingCartComponent extends Component
 
     public function setAmountForCheckout()
     {
+        $data = file_get_contents('https://www.datos.gov.co/resource/32sa-8pi3.json?$limit=1&$order=vigenciahasta%20DESC');
+        $tasa_data  = json_decode($data);
+        $tasa_cambio = $tasa_data[0]->valor;
+        $subtotal = FacadesCart::subtotal();
+        $subtotal_dolar = sprintf('%.2f', str_replace(',', '', FacadesCart::subtotal()) / $tasa_cambio);
+
         if(!FacadesCart::count() > 0)
         {
             session()->forget('checkout');
             return;
         }
          session()->put('checkout', [
-             'subtotal' => FacadesCart::subtotal()
+             'subtotal' => $subtotal,
+             'subtotal_dolar' => $subtotal_dolar
          ]);
     }
 

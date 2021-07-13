@@ -56,7 +56,7 @@
             </td>
             <td class="w-32 text-right border-b dark:border-dark-5">{{ $item->quantity }}</td>
             <td class="w-32 text-right border-b dark:border-dark-5">${{ $item->price }}</td>
-            <td class="w-32 font-medium text-right border-b dark:border-dark-5">${{ $item->price * $item->quantity }}</td>
+            <td class="w-32 font-medium text-right border-b dark:border-dark-5">${{ sprintf('%.2f', $item->price * $item->quantity ) }}</td>
             </tr>
     @endif
 @endforeach

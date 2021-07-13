@@ -56,6 +56,10 @@ class RoleSeeder extends Seeder
         Permission::create(['name' => 'dash.tags.edit', 'description' => 'Editar Etiquetas', 'guard_name' => 'admin'])->syncRoles([$admin_rol]);
         Permission::create(['name' => 'dash.tags.destroy', 'description' => 'Eliminar Etiquetas', 'guard_name' => 'admin'])->syncRoles([$admin_rol]);
 
+        Permission::create(['name' => 'dash.coupons.index', 'description' => 'Ver listado de Cupones', 'guard_name' => 'admin'])->syncRoles([$admin_rol]);
+        Permission::create(['name' => 'dash.coupons.create', 'description' => 'Crear Cupones', 'guard_name' => 'admin'])->syncRoles([$admin_rol]);
+        Permission::create(['name' => 'dash.coupons.edit', 'description' => 'Editar Cupones', 'guard_name' => 'admin'])->syncRoles([$admin_rol]);
+        Permission::create(['name' => 'dash.coupons.destroy', 'description' => 'Eliminar Cupones', 'guard_name' => 'admin'])->syncRoles([$admin_rol]);
 
 
     }

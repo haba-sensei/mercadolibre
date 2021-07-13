@@ -85,7 +85,7 @@
                             </td>
                             <td class="w-32 text-right border-b dark:border-dark-5">{{ $item->quantity }}</td>
                             <td class="w-32 text-right border-b dark:border-dark-5">${{ $item->price }}</td>
-                            <td class="w-32 font-medium text-right border-b dark:border-dark-5">${{ $item->price * $item->quantity }}</td>
+                            <td class="w-32 font-medium text-right border-b dark:border-dark-5">${{ sprintf('%.2f', $item->price * $item->quantity ) }}</td>
                             </tr>
                         @endforeach
 
@@ -122,7 +122,14 @@
 
             <div class="text-center sm:text-right sm:ml-auto">
                 <div class="text-base text-gray-600">Total Facturado</div>
-                <div class="mt-2 text-xl font-medium text-theme-1 dark:text-theme-10">${{ $order[0]->subtotal }}</div>
+                <div class="mt-2 text-xl font-medium text-theme-1 dark:text-theme-10">
+                    @if ($order[0]->transaction->mode == "card")
+                    COP ${{ $order[0]->subtotal }}
+                    @else
+                    USD ${{ $order[0]->subtotal }}
+                    @endif
+
+                   </div>
 
             </div>
 
@@ -143,7 +150,7 @@
 
 
 @else
-     
+
 @endif
 
 

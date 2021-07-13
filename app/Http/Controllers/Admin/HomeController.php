@@ -125,6 +125,16 @@ class HomeController extends Controller
 
             ],
 
+            'coupons' => [
+                'icon' => 'credit-card',
+                'menuPrincipal' => 'si',
+                'ruta' => 'listar',
+                'page_name' => 'coupons',
+                'title' => 'Cupones',
+                'can' => 'dash.coupons.index'
+
+            ],
+
             'tienda' => [
                 'icon' => 'shopping-cart',
                 'menuPrincipal' => 'si',

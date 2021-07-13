@@ -13,7 +13,7 @@
         </div>
 
 
-        @foreach ($users as $user)
+        @foreach ($users as $user) 
 
                 <div class="col-span-12 intro-y md:col-span-6">
                     <div class="box">
@@ -27,7 +27,7 @@
                             </div>
                             <div class="flex mt-4 lg:mt-0">
                                 <a href="{{ route('admin.users.edit', $user) }}" class="mr-2 text-white button button--sm bg-theme-1" >
-                                    
+
                                     Permisos
                                 </a>
 

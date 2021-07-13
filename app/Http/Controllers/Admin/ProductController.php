@@ -239,7 +239,7 @@ class ProductController extends Controller
             ->resize(600, 600)
             ->save($product_url);
 
-            if($product->image){ 
+            if($product->image){
                 Storage::disk('public_upload')->delete($product->image->url);
 
                 $product->image->update([

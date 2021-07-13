@@ -1,5 +1,5 @@
 @can('dash.tienda.solicitudes')
-    <div class="col-span-12 mt-8 sm:col-span-6 lg:col-span-6">
+    <div class="col-span-12 mt-8 sm:col-span-12 lg:col-span-12">
         <div class="flex items-center h-10 intro-y">
             <h2 class="mr-5 text-lg font-medium truncate">
                 Lista de Solicitudes de Tiendas

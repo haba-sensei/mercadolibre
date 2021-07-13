@@ -20,6 +20,7 @@ class CreateTransactionsTable extends Migration
             $table->enum('mode', ['card', 'paypal']);
             $table->string('transaction_id');
             $table->enum('status', ['pending', 'approved', 'declined', 'refunded'])->default('pending');
+            $table->decimal('tasa_cambio', 16, 2)->nullable();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('order_id')->references('id')->on('orders')->onDelete('cascade');
             $table->timestamps();

@@ -6,9 +6,14 @@ use App\Http\Controllers\Controller;
 use App\Models\Order;
 use App\Models\OrderItem;
 use App\Models\Transaction;
+use App\Services\PaypalService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Http;
+use PayPalCheckoutSdk\Core\PayPalHttpClient;
+use PayPalCheckoutSdk\Core\SandboxEnvironment;
+use PayPalCheckoutSdk\Orders\OrdersGetRequest;
 
 class VentasController extends Controller
 {
@@ -20,6 +25,10 @@ class VentasController extends Controller
     public function __construct(HomeController $HomeController)
     {
         $this->HomeController = $HomeController;
+        $paypalConfig = Config::get('paypal');
+
+        $environment = new SandboxEnvironment($paypalConfig['client_id'], $paypalConfig['secret']);
+        $this->client = new PayPalHttpClient($environment);
     }
 
 
@@ -50,11 +59,51 @@ class VentasController extends Controller
         $pageName= 'ventas';
         $order_search = Order::where(['reference_id' => $reference_id])->get();
 
-        $response_status_transition = Http::get(env('WOMPI_SANDBOX_TRANSITION_SEARCH').$order_search[0]->transaction->transaction_id);
+        switch ($order_search[0]->transaction->mode) {
+            case 'card':
 
-        Transaction::whereId($order_search[0]->transaction->id)->update([
-            'status' => $response_status_transition->json()['data']['status']
-        ]);
+                $response_status_transition = Http::get(env('WOMPI_SANDBOX_TRANSITION_SEARCH').$order_search[0]->transaction->transaction_id);
+
+                Transaction::whereId($order_search[0]->transaction->id)->update([
+                    'status' => $response_status_transition->json()['data']['status']
+                ]);
+
+                break;
+            case 'paypal':
+
+                $response = new PaypalService();
+                $request = new OrdersGetRequest($order_search[0]->transaction->transaction_id);
+                $execution = $this->client->execute($request);
+                $PaypalStatus = json_decode(json_encode($execution->result), FALSE)->status;
+
+                switch ($PaypalStatus) {
+                    case 'CREATED':
+                    case 'SAVED':
+                    case 'APPROVED':
+                    case 'PAYER_ACTION_REQUIRED':
+                        $status = "pending";
+                        break;
+
+                    case 'VOIDED':
+                        $status = "declined";
+                        break;
+
+                    case 'COMPLETED':
+                        $status = "approved";
+                        break;
+
+                }
+
+                Transaction::whereId($order_search[0]->transaction->id)->update([
+                    'status' => $status
+                ]);
+
+
+
+                break;
+
+        }
+
 
         $order = Order::where(['reference_id' => $reference_id])->get();
         $varPriceItem1 = 0;
@@ -71,7 +120,7 @@ class VentasController extends Controller
                 if ($item->tienda_id == Auth::user()->tienda->id ) {
 
                     $varPriceItem1 = $item->price * $item->quantity;
-                    $varPriceItem = $varPriceItem1 + $varPriceItem;
+                    $varPriceItem = sprintf('%.2f', $varPriceItem1 + $varPriceItem);
                     $auth = "aproved";
                 }
 
