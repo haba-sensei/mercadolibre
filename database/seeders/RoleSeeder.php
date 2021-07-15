@@ -40,7 +40,6 @@ class RoleSeeder extends Seeder
         Permission::create(['name' => 'dash.ventas.index', 'description' => 'Acceso para listar Ventas', 'guard_name' => 'admin'])->syncRoles([$admin_rol, $vend_rol]);
         Permission::create(['name' => 'dash.ventas.show', 'description' => 'Acceso a la Venta', 'guard_name' => 'admin'])->syncRoles([$admin_rol, $vend_rol]);
 
-
         Permission::create(['name' => 'dash.products.index', 'description' => 'Ver listado de Productos', 'guard_name' => 'admin'])->syncRoles([$admin_rol, $vend_rol]);
         Permission::create(['name' => 'dash.products.create', 'description' => 'Crear Productos', 'guard_name' => 'admin'])->syncRoles([$admin_rol, $vend_rol]);
         Permission::create(['name' => 'dash.products.edit', 'description' => 'Editar Productos', 'guard_name' => 'admin'])->syncRoles([$admin_rol, $vend_rol]);
@@ -61,6 +60,15 @@ class RoleSeeder extends Seeder
         Permission::create(['name' => 'dash.coupons.edit', 'description' => 'Editar Cupones', 'guard_name' => 'admin'])->syncRoles([$admin_rol]);
         Permission::create(['name' => 'dash.coupons.destroy', 'description' => 'Eliminar Cupones', 'guard_name' => 'admin'])->syncRoles([$admin_rol]);
 
+        Permission::create(['name' => 'dash.vendedores.index', 'description' => 'Ver listado de Vendedores', 'guard_name' => 'admin'])->syncRoles([$admin_rol]);
+        Permission::create(['name' => 'dash.vendedores.create', 'description' => 'Crear Vendedores', 'guard_name' => 'admin'])->syncRoles([$admin_rol]);
+        Permission::create(['name' => 'dash.vendedores.edit', 'description' => 'Editar Vendedores', 'guard_name' => 'admin'])->syncRoles([$admin_rol]);
+        Permission::create(['name' => 'dash.vendedores.destroy', 'description' => 'Eliminar Vendedores', 'guard_name' => 'admin'])->syncRoles([$admin_rol]);
+
+        Permission::create(['name' => 'dash.transactions.index', 'description' => 'Acceso a las Transacciones', 'guard_name' => 'admin'])->syncRoles([$admin_rol]);
+
+        Permission::create(['name' => 'dash.membresia.index', 'description' => 'Acceso al historial de membresia vendedor', 'guard_name' => 'admin'])->syncRoles([$admin_rol, $vend_rol]);
+        Permission::create(['name' => 'dash.membresia.create', 'description' => 'Acceso a pagar membresia', 'guard_name' => 'admin'])->syncRoles([$vend_rol]);
 
     }
 }

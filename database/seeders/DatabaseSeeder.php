@@ -3,6 +3,8 @@
 namespace Database\Seeders;
 
 use App\Models\Category;
+use App\Models\Membership;
+use App\Models\Membresia;
 use App\Models\OrderCategory;
 use App\Models\Tag;
 use App\Models\Tienda;
@@ -39,15 +41,14 @@ class DatabaseSeeder extends Seeder
         $this->call(TiendaSeeder::class);
 
         Category::factory(6)->create();
-        // Tag::factory(6)->create();
-
+        
         $this->call(OrderCategorySeeder::class);
 
         $this->call(ProductSeeder::class);
         $this->call(PerfilesSeeder::class);
         $this->call(FlutterSeeder::class);
         $this->call(CouponSeeder::class);
-
+        $this->call(PlanSeeder::class);
 
 
     }

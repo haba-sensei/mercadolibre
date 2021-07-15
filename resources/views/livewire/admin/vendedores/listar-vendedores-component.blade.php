@@ -2,16 +2,23 @@
     <div class="col-span-12 mt-8 sm:col-span-12 lg:col-span-12">
         <div class="flex items-center h-10 intro-y">
             <h2 class="mr-5 text-lg font-medium truncate">
-                Lista de Tiendas
+                Lista de Vendedores
             </h2>
 
+        </div>
+        <div class="flex flex-wrap items-center col-span-12 mt-2 intro-y sm:flex-no-wrap">
+
+            <div class="hidden mr-auto text-gray-600 md:block"> Total de Vendedores: {{ $vendedores->total() }}</div>
+            <div class="w-full mt-3 sm:w-auto sm:mt-0 sm:ml-auto md:ml-0">
+                <div class="relative w-56 text-gray-700 dark:text-gray-300">
+                    <input wire:model.debounce.300ms="search" type="text" class="w-56 pr-10 input box placeholder-theme-13" placeholder="Busqueda...">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="absolute inset-y-0 right-0 w-4 h-4 my-auto mr-3 feather feather-search"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                </div>
+            </div>
         </div>
         <div class="p-5 mt-5 intro-y box">
 
             <div class="mt-1">
-
-                @if ($vendedores)
-
                     @foreach ($vendedores as $item)
                     <div class="box">
                         <div class="flex flex-col items-center p-5 lg:flex-row">
@@ -23,8 +30,21 @@
                             <a href="{{ route('admin.users.edit', $item->user) }}" class="font-medium capitalize">{{ $item->name }}</a>
                             <div class="text-gray-600 text-xs mt-0.5">{{ $item->user->name }}</div>
                         </div>
-                        <div class="font-medium text-gray-600 capitalize">Business Año Gratuito</div>
+                        <div class="font-medium text-gray-600 capitalize">
+
+                          <span class="">Plan: {{ $item->business }}</span><br>
+                          @if ($item->business == "Gratuito")
+                          <span class="">Inicia: -</span><br>
+                          <span class="">Termina: -</span>
+                          @else
+                          <span class="">Inicia: {{ date('d/m/Y', strtotime($item->started_at)) }}</span><br>
+                          <span class="">Termina: {{ date('d/m/Y', strtotime($item->finish_at)) }}</span>
+                          @endif
+
+                        </div>
+
                     </div>
+
                     {{-- <div class="flex items-center mt-6 mb-6">
                         <div class="w-2 h-2 mr-3 rounded-full bg-theme-11"></div>
                         <span class="capitalize truncate">{{ $item->name }} </span>
@@ -40,19 +60,35 @@
                     </div> --}}
                 </div>
                     @endforeach
+                    @if($vendedores->count() == 0 )
+                    <div class="flex items-center mt-6 mb-6">
+                        <div class="w-2 h-2 mr-3 rounded-full bg-theme-11"></div>
+                        <span class="truncate">No hay solicitudes </span>
+                        <div class="flex-1 h-px mx-3 border border-r border-gray-300 border-dashed xl:hidden"></div>
 
-                @else
-                <div class="flex items-center mt-6 mb-6">
-                    <div class="w-2 h-2 mr-3 rounded-full bg-theme-11"></div>
-                    <span class="truncate">No hay solicitudes </span>
-                    <div class="flex-1 h-px mx-3 border border-r border-gray-300 border-dashed xl:hidden"></div>
-
-                </div>
-                @endif
+                    </div>
+                    @endif
 
 
+
+
+                    <div class="col-span-12 intro-y md:col-span-12">
+
+                        {{ $vendedores->links() }}
+
+                        <select wire:model="perPage" class="w-20 mt-3 input box sm:mt-0">
+
+                            <option>5</option>
+                            <option>10</option>
+                            <option>20</option>
+                            <option>50</option>
+                            <option>100</option>
+                        </select>
+               </div>
 
             </div>
+
+
         </div>
     </div>
 @endcan

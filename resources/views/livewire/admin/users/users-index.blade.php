@@ -11,9 +11,9 @@
                 </div>
             </div>
         </div>
+ 
 
-
-        @foreach ($users as $user) 
+        @foreach ($users as $user)
 
                 <div class="col-span-12 intro-y md:col-span-6">
                     <div class="box">

@@ -3,12 +3,14 @@ use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ComprasController;
 use App\Http\Controllers\Admin\CouponsController;
+use App\Http\Controllers\Admin\MembresiaController;
 use App\Http\Controllers\Admin\TagController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\TiendaController;
 use App\Http\Controllers\Admin\VentasController;
+use App\Http\Controllers\Admin\VendedoresController;
 use Illuminate\Support\Facades\Route;
 
 /* HOME DASHBOARD ROUTES PREFIX DASH */
@@ -23,6 +25,9 @@ Route::resource('users', UserController::class)->middleware('can:dash.users.inde
 /* CRUD RESOURCE'S ROLES*/
 Route::resource('roles', RoleController::class)->middleware('can:dash.roles.index')->names('admin.roles');
 
+/* CRUD RESOURCE'S MEMBRESIA*/
+Route::resource('membresia', MembresiaController::class)->middleware('can:dash.membresia.index')->names('admin.membresia');
+
 /* CRUD RESOURCE'S */
 
 Route::resource('categories', CategoryController::class)->middleware('can:dash.categories.index')->names('admin.categories');
@@ -32,6 +37,7 @@ Route::resource('tienda', TiendaController::class)->middleware('can:dash.tienda.
 Route::resource('compras', ComprasController::class)->middleware('can:dash.compras.index')->names('admin.compras');
 Route::resource('ventas', VentasController::class)->middleware('can:dash.ventas.index')->names('admin.ventas');
 Route::resource('coupons', CouponsController::class)->middleware('can:dash.coupons.index')->names('admin.coupons');
+Route::resource('vendedores', VendedoresController::class)->middleware('can:dash.vendedores.index')->names('admin.vendedores');
 
 /* MANEJADOR DE RUTAS DEL THEME  */
 

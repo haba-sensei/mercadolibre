@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\StoreProductsRequest;
 use App\Http\Requests\UpdateProductRequest;
+use App\Models\Membresia;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
@@ -84,6 +85,16 @@ class TiendaController extends Controller
 
         $tienda->update([
             'status' => 2
+        ]);
+
+        $fecha_gratuito = date('Y-m-d', strtotime(date('Y-m-d')."+ 1 year" ));
+        $fecha_inicio = date('Y-m-d');
+
+        Membresia::create([
+            'tienda_id' => $tienda->id,
+            'plan_id' => 2,
+            'started_at' => $fecha_inicio ,
+            'finish_at' => $fecha_gratuito
         ]);
 
         $owner = User::find($tienda->user_id);

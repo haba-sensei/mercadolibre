@@ -12,6 +12,7 @@ class Tienda extends Model
     /* ASIGNACION MASIVA  */
     protected $fillable = ['name', 'slug', 'resumen', 'email', 'phone', 'url_perfil', 'status', 'user_id'];
 
+   
 
     public function getRouteKeyName()
     {
@@ -32,6 +33,13 @@ class Tienda extends Model
     public function profiles(){
         return $this->belongsTo(Profiles::class);
     }
+
+     //relacion 1 a 1 inversa
+    public function membresia(){
+        return $this->hasOne(Membresia::class);
+    }
+
+
 
     /* BUSQUEDA DE CATEGORIA */
     public function scopeSearch($query, $val)

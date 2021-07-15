@@ -16,14 +16,13 @@
                 <div class="h-2 mt-1 ml-3 mr-3 rounded-full w-7 bg-theme-6"></div>Cancelado
 
             </div>
-            @if ($ventas)
-                <div class="w-full mt-1 mb-5 sm:w-auto sm:mt-0 sm:ml-auto md:ml-0">
-                    <div class="relative w-full text-gray-700 dark:text-gray-300">
-                        <input wire:model.debounce.300ms="search" type="text" class="w-full pr-10 input box placeholder-theme-13" placeholder="Busqueda...">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="absolute inset-y-0 right-0 w-4 h-4 my-auto mr-3 feather feather-search"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-                    </div>
+            <div class="w-full mt-1 mb-5 sm:w-auto sm:mt-0 sm:ml-auto md:ml-0">
+                <div class="relative w-full text-gray-700 dark:text-gray-300">
+                    <input wire:model.debounce.300ms="search" type="text" class="w-full pr-10 input box placeholder-theme-13" placeholder="Busqueda...">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="absolute inset-y-0 right-0 w-4 h-4 my-auto mr-3 feather feather-search"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
                 </div>
-
+            </div>
+            @if ($ventas) 
                     @foreach ($ventas as $item)
                         <a href="{{ route('admin.ventas.show', $item ) }}">
                         <div class="intro-x ">

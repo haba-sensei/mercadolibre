@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
+use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
@@ -12,19 +14,81 @@ class HomeController extends Controller
         $activeMenu = $this->activeMenu($pageName);
 
 
-        return view('admin/'. $pageName, [
-            'side_menu' => $this->sideMenu(),
-            'first_page_name' => $activeMenu['first_page_name'],
-            'second_page_name' => $activeMenu['second_page_name'],
-            'third_page_name' => $activeMenu['third_page_name'],
-            'page_name' => $pageName,
-            'ruta' => 'listar',
-            'theme' => $this->omega(),
-            'layout' => 'content',
-            'titulo' => $this->sideMenu(),
-            'userauth' => Auth::user(),
+        switch (Auth::user()->roles->pluck('name')[0]) {
+            case 'Alpha':
+                return view('admin/'. $pageName, [
+                    'side_menu' => $this->sideMenu(),
+                    'first_page_name' => $activeMenu['first_page_name'],
+                    'second_page_name' => $activeMenu['second_page_name'],
+                    'third_page_name' => $activeMenu['third_page_name'],
+                    'page_name' => $pageName,
+                    'ruta' => 'listar',
+                    'theme' => $this->omega(),
+                    'layout' => 'content',
+                    'titulo' => $this->sideMenu(),
+                    'userauth' => Auth::user()
+                ]);
 
-        ]);
+                break;
+
+            case 'Vendedor':
+
+                if( isset(Auth::user()->tienda->membresia) ) {
+
+                    $fecha_actual = Carbon::now();
+                    $fecha_final_membresia = Auth::user()->tienda->membresia->finish_at;
+
+                    $membresia = $fecha_actual->lessThanOrEqualTo($fecha_final_membresia);
+
+                    if(Auth::user()->tienda->membresia->plan_id == 1){
+
+                        if($membresia == false)
+                        {
+                            return view('admin/'. $pageName, [
+                                'side_menu' => $this->sideMenu(),
+                                'first_page_name' => $activeMenu['first_page_name'],
+                                'second_page_name' => $activeMenu['second_page_name'],
+                                'third_page_name' => $activeMenu['third_page_name'],
+                                'page_name' => $pageName,
+                                'ruta' => 'listar',
+                                'theme' => $this->omega(),
+                                'layout' => 'content',
+                                'titulo' => $this->sideMenu(),
+                                'userauth' => Auth::user(),
+
+                            ]);
+                        }
+                        else
+                        {
+                            return view('admin/membresia.index', [
+                                'side_menu' => $this->sideMenu(),
+                                'first_page_name' => $activeMenu['first_page_name'],
+                                'second_page_name' => $activeMenu['second_page_name'],
+                                'third_page_name' => $activeMenu['third_page_name'],
+                                'page_name' => 'membresia',
+                                'ruta' => 'listar',
+                                'theme' => $this->omega(),
+                                'layout' => 'content',
+                                'titulo' => $this->sideMenu(),
+                                'userauth' => Auth::user(),
+
+                            ]);
+                        }
+
+
+
+                    }
+                }else {
+                    dd("asdlñksd");
+                }
+
+
+
+
+            break;
+        }
+
+
 
     }
     /* MANEJADOR DE MENU ACTIVO | SUB MENUS HASTA 3 NIVELES */
@@ -105,6 +169,15 @@ class HomeController extends Controller
                 'can' => 'dash.users.index'
             ],
 
+            'vendedores' => [
+                'icon' => 'user-check',
+                'menuPrincipal' => 'si',
+                'ruta' => 'listar',
+                'page_name' => 'vendedores',
+                'title' => 'vendedores',
+                'can' => 'dash.vendedores.index'
+            ],
+
             'compras' => [
                 'icon' => 'package',
                 'menuPrincipal' => 'si',
@@ -126,7 +199,7 @@ class HomeController extends Controller
             ],
 
             'coupons' => [
-                'icon' => 'credit-card',
+                'icon' => 'book',
                 'menuPrincipal' => 'si',
                 'ruta' => 'listar',
                 'page_name' => 'coupons',
@@ -144,6 +217,16 @@ class HomeController extends Controller
                 'can' => 'dash.tienda.index'
             ],
 
+            'transactions' => [
+                'icon' => 'credit-card',
+                'menuPrincipal' => 'si',
+                'ruta' => 'listar',
+                'page_name' => 'transactions',
+                'title' => 'Transacciones',
+                'can' => 'dash.transactions.index'
+
+            ],
+
             'products' => [
                 'icon' => 'tag',
                 'menuPrincipal' => 'si',
@@ -151,6 +234,16 @@ class HomeController extends Controller
                 'page_name' => 'products',
                 'title' => 'Productos',
                 'can' => 'dash.products.index'
+
+            ],
+
+            'membresia' => [
+                'icon' => 'tag',
+                'menuPrincipal' => 'si',
+                'ruta' => 'listar',
+                'page_name' => 'membresia',
+                'title' => 'Membresia',
+                'can' => 'dash.membresia.index'
 
             ],
 
