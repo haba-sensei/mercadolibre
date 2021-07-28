@@ -74,6 +74,7 @@ class UserController extends Controller
     {
         $user->roles()->sync($request->roles);
 
+
         return redirect()->route('admin.users.edit', $user)->with(['info' => 'El rol se actualizo con éxito', 'color' => '#1c3faa']);
 
     }

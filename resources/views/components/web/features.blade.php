@@ -4,29 +4,29 @@
             <div class="ps-block__item">
                 <div class="ps-block__left"><i class="icon-rocket"></i></div>
                 <div class="ps-block__right">
-                    <h4>Free Delivery</h4>
-                    <p>For all oders over $99</p>
+                    <h4>Entregas Rapidas</h4>
+                    <p>Para cualquier compra</p>
                 </div>
             </div>
             <div class="ps-block__item">
                 <div class="ps-block__left"><i class="icon-sync"></i></div>
                 <div class="ps-block__right">
-                    <h4>90 Days Return</h4>
-                    <p>If goods have problems</p>
+                    <h4>Retorno rapido</h4>
+                    <p>Si tienes algun problema</p>
                 </div>
             </div>
             <div class="ps-block__item">
                 <div class="ps-block__left"><i class="icon-credit-card"></i></div>
                 <div class="ps-block__right">
-                    <h4>Secure Payment</h4>
-                    <p>100% secure payment</p>
+                    <h4>Pago Seguro</h4>
+                    <p>Aceptamos COP | USD</p>
                 </div>
             </div>
             <div class="ps-block__item">
                 <div class="ps-block__left"><i class="icon-bubbles"></i></div>
                 <div class="ps-block__right">
-                    <h4>24/7 Support</h4>
-                    <p>Dedicated support</p>
+                    <h4>Contactanos</h4>
+                    <p>Si tienes alguna duda</p>
                 </div>
             </div>
         </div>

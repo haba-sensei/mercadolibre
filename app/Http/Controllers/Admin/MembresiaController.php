@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use Carbon\Carbon;
+use Carbon\Factory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -24,6 +26,18 @@ class MembresiaController extends Controller
 
         $activeMenu = $this->HomeController->activeMenu($pageName);
 
+
+        
+
+        $date = Carbon::parse(Auth::user()->tienda->membresia->finish_at)->locale('es');
+
+
+        $dia_cad = $date->format('d');
+        $mes_cad = $date->getTranslatedMonthName('[в] F');
+        $year_cad = $date->format('Y');
+
+
+
         return view('admin.membresia.index',[
             'side_menu' => $this->HomeController->sideMenu(),
             'first_page_name' => $activeMenu['first_page_name'],
@@ -35,7 +49,7 @@ class MembresiaController extends Controller
             'layout' => 'content',
             'titulo' => $this->HomeController->sideMenu(),
             'userauth' => Auth::user()
-        ]);
+        ], compact('dia_cad', 'mes_cad', 'year_cad') );
     }
 
     /**

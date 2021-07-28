@@ -79,13 +79,57 @@ class HomeController extends Controller
 
                     }
                 }else {
-                    dd("asdlñksd");
+
+                    // $user = User::find(Auth::id());
+                    // $user->roles()->sync(4);
+                    // // app()->make(\Spatie\Permission\PermissionRegistrar::class)->forgetCachedPermissions();
+
+                    // return redirect()->route('admin.membresia.index')->with(['info' => 'Para Continuar debe registar una membresia.', 'color' => '#1c3faa']);
+                    return view('admin/'. $pageName, [
+                        'side_menu' => $this->sideMenu(),
+                        'first_page_name' => $activeMenu['first_page_name'],
+                        'second_page_name' => $activeMenu['second_page_name'],
+                        'third_page_name' => $activeMenu['third_page_name'],
+                        'page_name' => $pageName,
+                        'ruta' => 'listar',
+                        'theme' => $this->omega(),
+                        'layout' => 'content',
+                        'titulo' => $this->sideMenu(),
+                        'userauth' => Auth::user(),
+
+                    ]);
+                    break;
+
                 }
 
 
 
 
             break;
+
+            case 'Caducado':
+
+                return redirect()->route('admin.membresia.index')->with(['info' => 'Membresia Caducada registre otro periodo.', 'color' => '#1c3faa']);
+
+
+                break;
+
+            case 'Comprador':
+
+                return view('admin/'. $pageName, [
+                    'side_menu' => $this->sideMenu(),
+                    'first_page_name' => $activeMenu['first_page_name'],
+                    'second_page_name' => $activeMenu['second_page_name'],
+                    'third_page_name' => $activeMenu['third_page_name'],
+                    'page_name' => $pageName,
+                    'ruta' => 'listar',
+                    'theme' => $this->omega(),
+                    'layout' => 'content',
+                    'titulo' => $this->sideMenu(),
+                    'userauth' => Auth::user(),
+
+                ]);
+                break;
         }
 
 

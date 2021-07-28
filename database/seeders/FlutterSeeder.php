@@ -2,9 +2,10 @@
 
 namespace Database\Seeders;
 
-use App\Models\Flutter;
+ 
 use Illuminate\Database\Seeder;
-
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 class FlutterSeeder extends Seeder
 {
     /**
@@ -14,6 +15,8 @@ class FlutterSeeder extends Seeder
      */
     public function run()
     {
-        Flutter::factory(1)->create();
+        DB::table('flutters')->insert([
+            'access_token' => Str::random(10)
+        ]);
     }
 }

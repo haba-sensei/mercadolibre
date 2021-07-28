@@ -20,8 +20,9 @@ class RoleSeeder extends Seeder
         $admin_rol =  Role::create(['guard_name' => 'admin', 'name' => 'Alpha']);
         $vend_rol = Role::create(['guard_name' => 'admin', 'name' => 'Vendedor']);
         $compra_rol = Role::create(['guard_name' => 'admin', 'name' => 'Comprador']);
+        $caducado_rol = Role::create(['guard_name' => 'admin', 'name' => 'Caducado']);
 
-        Permission::create(['name' => 'dash.home', 'description' => 'Ver el Dashboard', 'guard_name' => 'admin'])->syncRoles([$admin_rol, $vend_rol, $compra_rol]);
+        Permission::create(['name' => 'dash.home', 'description' => 'Ver el Dashboard', 'guard_name' => 'admin'])->syncRoles([$admin_rol, $vend_rol, $compra_rol, $caducado_rol]);
 
         Permission::create(['name' => 'dash.users.index', 'description' => 'Ver listado de Usuarios', 'guard_name' => 'admin'])->syncRoles([$admin_rol]);
         Permission::create(['name' => 'dash.users.edit', 'description' => 'Asignar un Roles y Permisos', 'guard_name' => 'admin'])->syncRoles([$admin_rol]);
@@ -67,8 +68,8 @@ class RoleSeeder extends Seeder
 
         Permission::create(['name' => 'dash.transactions.index', 'description' => 'Acceso a las Transacciones', 'guard_name' => 'admin'])->syncRoles([$admin_rol]);
 
-        Permission::create(['name' => 'dash.membresia.index', 'description' => 'Acceso al historial de membresia vendedor', 'guard_name' => 'admin'])->syncRoles([$admin_rol, $vend_rol]);
-        Permission::create(['name' => 'dash.membresia.create', 'description' => 'Acceso a pagar membresia', 'guard_name' => 'admin'])->syncRoles([$vend_rol]);
+        Permission::create(['name' => 'dash.membresia.index', 'description' => 'Acceso al historial de membresia vendedor', 'guard_name' => 'admin'])->syncRoles([$admin_rol, $vend_rol, $caducado_rol]);
+        Permission::create(['name' => 'dash.membresia.create', 'description' => 'Acceso a pagar membresia', 'guard_name' => 'admin'])->syncRoles([$vend_rol, $caducado_rol]);
 
     }
 }

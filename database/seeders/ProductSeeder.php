@@ -5,7 +5,6 @@ namespace Database\Seeders;
 use App\Models\Category;
 use App\Models\Product;
 use App\Models\Tienda;
-use Faker\Factory;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
@@ -24,23 +23,11 @@ class ProductSeeder extends Seeder
         static $order = 1;
         static $url = 1;
         static $url_count = 1;
-        $faker = Factory::create();
 
-        $name_tag = array('regalos', 'detalles', 'tendencias', 'variados', 'tazas', 'enamorate');
 
-        for ($j = 0; $j < 6; $j++) {
-            DB::table('tags')->insert([
-                'name' => $name_tag[0],
-                'slug' => Str::slug($name_tag[0]),
-                'color' => $faker->randomElement(['red', 'yellow', 'blue', 'indigo', 'purple', 'pink']),
-                'tag_img' => 'tags/' . $faker->randomElement(['tag_img1.jpg', 'tag_img2.jpg', 'tag_img3.jpg', 'tag_img4.jpg', 'tag_img5.jpg', 'tag_img6.jpg']),
-                'category_id' => Category::all()->random()->id,
-            ]);
-        }
+        for ($i = 0; $i < 8; $i++) {
 
-        for ($i = 0; $i < 15; $i++) {
-
-            $id_user = Tienda::pluck('user_id')->unique()->random();
+            $id_user = Tienda::where('user_id', '!=', 1)->pluck('user_id')->unique()->random();
             $id_tienda = Tienda::where('user_id', $id_user)->value('id');
 
             $id_prod = $order++;
@@ -78,10 +65,16 @@ class ProductSeeder extends Seeder
 
             }
 
-            // DB::table('product_tag')->insert([
-            //     'product_id' => $id_prod,
-            //     'tag_id' => rand(1, 6),
-            // ]);
+            for ($j = 0; $j < 3; $j++) {
+
+                DB::table('product_tag')->insert([
+                    'product_id' => $id_prod,
+                    'tag_id' => rand(1, 6),
+                ]);
+
+            }
+
+
         }
     }
 }

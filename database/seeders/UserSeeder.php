@@ -16,7 +16,7 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-
+ 
         User::create([
             'name' => 'Haba Sensei',
             'email' => 'lycantroponatural@gmail.com',
@@ -26,11 +26,12 @@ class UserSeeder extends Seeder
         ])->assignRole('Alpha');
 
 
-        User::factory(9)->create()->each(function ($user) {
-            // $user->assignRole('Comprador');
+        User::factory(2)->create()->each(function ($user) {
             $user->assignRole('Vendedor');
         });
 
-
+        User::factory(4)->create()->each(function ($user) {
+            $user->assignRole('Comprador');
+        });
     }
 }

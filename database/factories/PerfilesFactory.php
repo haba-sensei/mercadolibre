@@ -21,7 +21,7 @@ class PerfilesFactory extends Factory
      * @return array
      */
     public function definition()
-    { 
+    {
         static $order = 1;
         return [
             'pais' => $this->faker->country(),

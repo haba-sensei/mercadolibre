@@ -21,7 +21,7 @@ class WebController extends Controller
         $mobilbackground = "#fcb800";
         $mobilcolor = "#000";
         $categories = Category::all();
-        $categoriesF = Category::all()->random(4);
+        $categoriesF = Category::all()->random(3);
         $tags = Tag::all();
 
         return view('web.home.index', compact(
