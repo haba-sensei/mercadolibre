@@ -28,6 +28,7 @@ class CreateMembresiasPagosTable extends Migration
             $table->string('transaction_id');
             $table->enum('status', ['pending', 'approved', 'declined', 'refunded'])->default('pending');
             $table->decimal('tasa_cambio', 16, 2)->nullable();
+            $table->date('fecha_at');
 
             $table->timestamps();
         });

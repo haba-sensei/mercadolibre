@@ -55,7 +55,8 @@
                         </div>
 
                         <div class="mt-5 text-center">
-
+                            {{--  --}}
+                            {{-- , $role->name == "Alpha" ? 'disabled' : '' --}}
                             {!! Form::submit('Editar Rol', ['class' => 'w-34 text-white button bg-theme-1', $role->name == "Alpha" ? 'disabled' : '']) !!}
                         </div>
 

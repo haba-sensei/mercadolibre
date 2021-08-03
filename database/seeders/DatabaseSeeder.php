@@ -23,14 +23,17 @@ class DatabaseSeeder extends Seeder
         $this->call(RoleSeeder::class);
         $this->call(UserSeeder::class);
         $this->call(PerfilesSeeder::class);
+        $this->call(PlanSeeder::class);
         $this->call(TiendaSeeder::class);
         $this->call(CategorySeeder::class);
         $this->call(OrderCategorySeeder::class);
         $this->call(TagsSeeder::class);
-        $this->call(ProductSeeder::class); 
+        $this->call(ProductSeeder::class);
         $this->call(FlutterSeeder::class);
         $this->call(CouponSeeder::class);
-        $this->call(PlanSeeder::class);
+        // $this->call(TransactionSeeder::class);
+
+
 
 
     }

@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use Carbon\Carbon;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
@@ -29,6 +30,14 @@ class TiendaSeeder extends Seeder
                 'user_id' => 2,
             ]);
 
+        DB::table('membresias')->insert(
+            [
+                'tienda_id' => '1',
+                'plan_id' => '2',
+                'started_at' =>  Carbon::now()->format('Y-m-d'),
+                'finish_at' => Carbon::now()->addMonths(6)->format('Y-m-d')
+            ]);
+
         DB::table('tiendas')->insert(
             [
                 'name' => 'regala',
@@ -41,7 +50,15 @@ class TiendaSeeder extends Seeder
                 'user_id' => 3,
             ]);
 
-        
+        DB::table('membresias')->insert(
+            [
+                'tienda_id' => '2',
+                'plan_id' => '2',
+                'started_at' =>  Carbon::now()->format('Y-m-d'),
+                'finish_at' => Carbon::now()->addMonths(6)->format('Y-m-d')
+            ]);
+
+
 
     }
 }

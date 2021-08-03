@@ -1,3 +1,4 @@
+@can('dash.tienda.index')
 <div>
     @if ($tienda)
     <div class="px-5 ">
@@ -147,5 +148,5 @@
 
     @endif
 </div>
-
+@endcan
 

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Tienda;
 use Carbon\Carbon;
 use Carbon\Factory;
 use Illuminate\Http\Request;
@@ -26,18 +27,6 @@ class MembresiaController extends Controller
 
         $activeMenu = $this->HomeController->activeMenu($pageName);
 
-
-        
-
-        $date = Carbon::parse(Auth::user()->tienda->membresia->finish_at)->locale('es');
-
-
-        $dia_cad = $date->format('d');
-        $mes_cad = $date->getTranslatedMonthName('[в] F');
-        $year_cad = $date->format('Y');
-
-
-
         return view('admin.membresia.index',[
             'side_menu' => $this->HomeController->sideMenu(),
             'first_page_name' => $activeMenu['first_page_name'],
@@ -49,7 +38,7 @@ class MembresiaController extends Controller
             'layout' => 'content',
             'titulo' => $this->HomeController->sideMenu(),
             'userauth' => Auth::user()
-        ], compact('dia_cad', 'mes_cad', 'year_cad') );
+        ]);
     }
 
     /**
@@ -79,9 +68,50 @@ class MembresiaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($tienda)
     {
-        //
+        $pageName= 'membresia';
+
+        $activeMenu = $this->HomeController->activeMenu($pageName);
+
+        $tienda_filtrada = Tienda::where(['slug' => $tienda])->first();
+
+        $date = Carbon::parse($tienda_filtrada->membresia->finish_at)->locale('es');
+
+        $dia_cad = $date->format('d');
+        $mes_cad = $date->getTranslatedMonthName('m');
+        $year_cad = $date->format('Y');
+
+        $tienda_name = $tienda_filtrada->name;
+        $tienda_pic = $tienda_filtrada->url_perfil;
+        $user_name = $tienda_filtrada->user->name;
+        $tienda_mail = $tienda_filtrada->email;
+        $tienda_phone = $tienda_filtrada->phone;
+        $membresias_activas = $tienda_filtrada->pagos;
+
+        return view('admin.membresia.show',[
+            'side_menu' => $this->HomeController->sideMenu(),
+            'first_page_name' => $activeMenu['first_page_name'],
+            'second_page_name' => $activeMenu['second_page_name'],
+            'third_page_name' => $activeMenu['third_page_name'],
+            'ruta' => 'listar',
+            'page_name' => $pageName,
+            'theme' => $this->HomeController->omega(),
+            'layout' => 'content',
+            'titulo' => $this->HomeController->sideMenu(),
+            'userauth' => Auth::user()
+        ],compact(
+            'dia_cad',
+            'mes_cad',
+            'year_cad',
+            'tienda_name',
+            'tienda_pic',
+            'user_name',
+            'tienda_mail',
+            'tienda_phone',
+            'membresias_activas'
+
+        ));
     }
 
     /**

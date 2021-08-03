@@ -133,9 +133,9 @@ class RoleController extends Controller
     public function update(Request $request, Role $role)
     {
         $request->validate([
-            'name' => 'required|not_in:Alpha',
+           'name' => 'required|not_in:Alpha',
         ]);
-
+        
         $role->update($request->all());
 
         $role->permissions()->sync($request->permissions);

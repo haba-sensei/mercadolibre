@@ -116,6 +116,7 @@ class CheckoutComponent extends Component
                     else
                     {
                         $subtotal = str_replace(',', '', $subtotal_format_cop);
+                        $razon_descuento = 0;
                     }
 
                     $reference_id = Str::random(20);
@@ -235,6 +236,7 @@ class CheckoutComponent extends Component
             else
             {
                 $subtotal = str_replace(',', '', $subtotal_format_usd);
+                $razon_descuento = 0;
             }
 
             $reference_id = Str::random(20);
@@ -285,7 +287,7 @@ class CheckoutComponent extends Component
 
 
             $response = new PaypalService();
-            $resultado = $response->createOrder($order_search[0]);
+            $resultado = $response->createOrder($order_search[0], 'normal');
 
             $PaypalID = json_decode(json_encode($resultado->result), FALSE)->id;
             $PaypalStatus = json_decode(json_encode($resultado->result), FALSE)->status;

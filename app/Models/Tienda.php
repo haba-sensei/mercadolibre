@@ -12,7 +12,7 @@ class Tienda extends Model
     /* ASIGNACION MASIVA  */
     protected $fillable = ['name', 'slug', 'resumen', 'email', 'phone', 'url_perfil', 'status', 'user_id'];
 
-   
+
 
     public function getRouteKeyName()
     {
@@ -39,7 +39,10 @@ class Tienda extends Model
         return $this->hasOne(Membresia::class);
     }
 
-
+     //relacion 1 a 1 inversa
+     public function pagos(){
+        return $this->hasMany(Pagos::class, 'membresia_id');
+    }
 
     /* BUSQUEDA DE CATEGORIA */
     public function scopeSearch($query, $val)

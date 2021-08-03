@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Models\Order;
 use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\DB;
 use PayPalCheckoutSdk\Core\PayPalHttpClient;
 use PayPalCheckoutSdk\Core\SandboxEnvironment;
 use PayPalCheckoutSdk\Orders\OrdersCreateRequest;
@@ -13,7 +14,7 @@ use PayPalCheckoutSdk\Orders\OrdersGetRequest;
 class PaypalService
 {
     private $client;
- 
+
     function __construct()
     {
         $paypalConfig = Config::get('paypal');
@@ -22,13 +23,18 @@ class PaypalService
         $this->client = new PayPalHttpClient($environment);
     }
 
-    public function createOrder($orderId)
+    public function createOrder($orderId, $tipo)
     {
 
         $request = new OrdersCreateRequest();
         $request->headers["prefer"] = "return=representation";
 
-        $request->body = $this->simpleCheckoutData($orderId);
+        if($tipo == 'normal'){
+            $request->body = $this->simpleCheckoutData($orderId);
+        }elseif($tipo == 'membresia') {
+            $request->body = $this->simpleMembresiaData($orderId);
+        }
+
 
         return $this->client->execute($request);
     }
@@ -42,9 +48,7 @@ class PaypalService
 
     private function simpleCheckoutData($orderId)
     {
-        // $data = file_get_contents('https://www.datos.gov.co/resource/32sa-8pi3.json?$limit=1&$order=vigenciahasta%20DESC');
-        // $tasa_data  = json_decode($data);
-        // $tasa_cambio = $tasa_data[0]->valor;
+
         $order = Order::find($orderId);
         $subtotal = str_replace(',', '', $order->subtotal);
 
@@ -60,6 +64,30 @@ class PaypalService
             "application_context" => [
                 "cancel_url" => route('paypal.cancel'),
                 "return_url" => route('paypal.success', $orderId)
+            ]
+            ];
+    }
+
+    private function simpleMembresiaData($orderId)
+    {
+        $order =  DB::table('membresias_pagos')->where('id', $orderId)->get();
+
+
+
+        $subtotal = str_replace(',', '', $order[0]->price_membresia);
+
+        return [
+            "intent" => "CAPTURE",
+            "purchase_units" => [[
+                "reference_id" => $order[0]->reference_id,
+                "amount" => [
+                    "value" => $subtotal,
+                    "currency_code" => "USD"
+                ]
+            ]],
+            "application_context" => [
+                "cancel_url" => route('paypal.membresia.cancel'),
+                "return_url" => route('paypal.membresia.success', $orderId)
             ]
             ];
     }

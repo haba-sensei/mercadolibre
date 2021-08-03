@@ -12,10 +12,13 @@ use App\Http\Requests\StoreProductsRequest;
 use App\Http\Requests\UpdateProductRequest;
 use App\Models\Membresia;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Cache;
 use Intervention\Image\ImageManagerStatic as ImagenCompress;
+use Spatie\Permission\Contracts\Permission;
+use Spatie\Permission\Models\Role;
 
 class TiendaController extends Controller
 {
@@ -31,8 +34,8 @@ class TiendaController extends Controller
      /* {{ METODO INDEX | DATA MENU LATERAL }} */
      public function index()
      {
-         $pageName= 'tienda';
-         $activeMenu = $this->HomeController->activeMenu($pageName);
+        $pageName= 'tienda';
+        $activeMenu = $this->HomeController->activeMenu($pageName);
 
          return view('admin.tienda.index',[
              'side_menu' => $this->HomeController->sideMenu(),
@@ -61,7 +64,7 @@ class TiendaController extends Controller
         ->save($tienda_url);
         /* creacion de datos */
 
-        Tienda::create([
+       $tienda = Tienda::create([
             'name' => $request->name,
             'slug' => $request->slug,
             'resumen' => $request->resumen,
@@ -71,6 +74,14 @@ class TiendaController extends Controller
             'status' => 1,
             'user_id' => auth()->user()->id
         ]);
+
+        DB::table('membresias')->insert(
+            [
+                'tienda_id' => $tienda->id,
+                'plan_id' => '2',
+                'started_at' =>  Carbon::now()->format('Y-m-d'),
+                'finish_at' => Carbon::now()->addDays(182)->format('Y-m-d')
+            ]);
 
        /* retorno a la vista tienda index */
        return redirect()->route('admin.tienda.index')
@@ -87,19 +98,15 @@ class TiendaController extends Controller
             'status' => 2
         ]);
 
-        $fecha_gratuito = date('Y-m-d', strtotime(date('Y-m-d')."+ 1 year" ));
-        $fecha_inicio = date('Y-m-d');
-
-        Membresia::create([
-            'tienda_id' => $tienda->id,
-            'plan_id' => 2,
-            'started_at' => $fecha_inicio ,
-            'finish_at' => $fecha_gratuito
-        ]);
-
         $owner = User::find($tienda->user_id);
         $owner->removeRole('Comprador');
         $owner->assignRole('Vendedor');
+        DB::table('role_has_permissions')->where([
+            ['permission_id', '=', '7'],
+            ['role_id', '=', $tienda->user_id],
+        ])->delete();
+
+        $owner->forgetCachedPermissions();
 
 
         return redirect()->route('dash')
@@ -108,4 +115,6 @@ class TiendaController extends Controller
             'color' => '#63b716'
         ]);
     }
+
+
 }

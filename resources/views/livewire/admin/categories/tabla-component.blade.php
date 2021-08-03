@@ -17,7 +17,7 @@
            </div>
        </div>
 
-        <div class="col-span-12 overflow-auto intro-y lg:overflow-visible">
+            <div class="col-span-12 overflow-auto intro-y lg:overflow-visible">
                 <table class="table -mt-2 table-report">
                     <thead>
                         <tr>

@@ -14,7 +14,7 @@ class ListarVendedoresComponent extends Component
     /* VARIABLES SORT BY  */
     public $sortBy='name';
     public $sortDirection = 'asc';
-    public $perPage = 5;
+    public $perPage = 2;
     public $search;
 
 
@@ -28,7 +28,7 @@ class ListarVendedoresComponent extends Component
         ->join('planes', 'planes.id', '=', 'membresias.plan_id')
         ->paginate($this->perPage);
 
-        
+
 
 
         return view('livewire.admin.vendedores.listar-vendedores-component', compact('vendedores'));

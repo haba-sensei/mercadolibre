@@ -7,7 +7,7 @@ use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Web\SocialiteAccess;
 use App\Http\Controllers\Web\TiendaController;
 use App\Http\Livewire\Web\Checkout\CheckoutComponent;
-use App\Http\Livewire\Web\Checkout\ThankyouComponent;
+use App\http\Livewire\Admin\Membresia\PasarelaPagoComponent;
 
 /* RUTAS HOME  */
 Route::get('/', [WebController::class, 'index'])->name('web.home');
@@ -32,6 +32,10 @@ Route::view('/checkout', 'web.checkout.index')->name('web.checkout.index');
 
 Route::get('paypal/checkout-success/{order}', [CheckoutComponent::class, 'getExpressCheckoutSuccess'] )->name('paypal.success');
 Route::get('paypal/checkout-cancel',  [CheckoutComponent::class, 'cancelPage'] )->name('paypal.cancel');
+ 
+Route::get('paypal/membresia-success/{order}', [PasarelaPagoComponent::class, 'getExpressCheckoutSuccess'] )->name('paypal.membresia.success');
+Route::get('paypal/membresia-cancel',  [PasarelaPagoComponent::class, 'cancelPage'] )->name('paypal.membresia.cancel');
+
 
 Route::view('/thank-you', 'web.checkout.thankyou')->name('web.checkout.thankyou');
 

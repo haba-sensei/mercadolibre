@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Admin\Membresia;
 
 use App\Models\Coupon;
+use App\Models\User;
 use App\Services\PaypalService;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -174,6 +175,8 @@ class PasarelaPagoComponent extends Component
 
                 $response_status_transition = Http::get($wompiConfig['TRANSITION_SEARCH'].$response_transation->json()['data']['id']);
 
+                $fecha_membresia_pago = Carbon::now()->format('Y-m-d');
+
                 DB::table('membresias_pagos')->insert(
                     [
                         'reference_id' => $reference_id,
@@ -184,10 +187,10 @@ class PasarelaPagoComponent extends Component
                         'transaction_id' => $response_transation->json()['data']['id'],
                         'status' => $response_status_transition->json()['data']['status'],
                         'tasa_cambio' => $tasa_cambio,
+                        'fecha_at' => $fecha_membresia_pago,
                         'created_at' => Carbon::now(),
                         'updated_at' => Carbon::now()
                     ]);
-
 
                 $this->resetCard();
             }else {
@@ -235,10 +238,15 @@ class PasarelaPagoComponent extends Component
                 $subtotal = str_replace(',', '', $subtotal_format_usd);
             }
 
+
+
+
+            $membresia_id = Auth::user()->tienda->id;
             $reference_id = Str::random(20);
+            $price_membresia = $subtotal;
+            $paymentmode= 'paypal';
+            $bono = 'libre';
 
-
-            // $order->save();
 
             if (session()->has('coupon'))
             {
@@ -249,47 +257,71 @@ class PasarelaPagoComponent extends Component
                 session()->forget('coupon');
             }
 
+            $fecha_membresia_pago = Carbon::now()->format('Y-m-d');
+
+            DB::table('membresias_pagos')->insert(
+                [
+                    'reference_id' => $reference_id,
+                    'membresia_id' => $membresia_id,
+                    'price_membresia' => $price_membresia,
+                    'mode' => $paymentmode,
+                    'bono' => $bono,
+                    'transaction_id' => '',
+                    'status' => 'pending',
+                    'tasa_cambio' => $tasa_cambio,
+                    'fecha_at' => $fecha_membresia_pago,
+                    'created_at' => Carbon::now(),
+                    'updated_at' => Carbon::now()
+                ]);
 
 
-            // $order_search = Order::where(['reference_id' =>  $reference_id])->pluck('id');
+            $order_search = DB::table('membresias_pagos')
+                        ->where(['reference_id' =>  $reference_id])->get();
 
 
-            // $response = new PaypalService();
-            // $resultado = $response->createOrder($order_search[0]);
+            $response = new PaypalService();
+            $resultado = $response->createOrder($order_search[0]->id, 'membresia');
 
-            // $PaypalID = json_decode(json_encode($resultado->result), FALSE)->id;
-            // $PaypalStatus = json_decode(json_encode($resultado->result), FALSE)->status;
+            $PaypalID = json_decode(json_encode($resultado->result), FALSE)->id;
+            $PaypalStatus = json_decode(json_encode($resultado->result), FALSE)->status;
 
-            // if($resultado->statusCode !== 201) {
-            //     abort(500);
-            // }
+            if($resultado->statusCode !== 201) {
+                abort(500);
+            }
 
-            // switch ($PaypalStatus) {
-            //     case 'CREATED':
-            //     case 'SAVED':
-            //     case 'APPROVED':
-            //     case 'PAYER_ACTION_REQUIRED':
-            //         $status = "pending";
-            //         break;
+            switch ($PaypalStatus) {
+                case 'CREATED':
+                case 'SAVED':
+                case 'APPROVED':
+                case 'PAYER_ACTION_REQUIRED':
+                    $status = "pending";
+                    break;
 
-            //     case 'VOIDED':
-            //         $status = "declined";
-            //         break;
+                case 'VOIDED':
+                    $status = "declined";
+                    break;
 
-            //     case 'COMPLETED':
-            //         $status = "approved";
-            //         break;
+                case 'COMPLETED':
+                    $status = "approved";
+                    break;
 
-            // }
+            }
 
-            // $object = json_decode(json_encode($resultado->result), FALSE);
+            DB::table('membresias_pagos')
+                    ->where('reference_id', $order_search[0]->reference_id)
+                    ->update([
+                        'transaction_id' => $PaypalID,
+                        'status' => $status
+                    ]);
 
-            // foreach ($object->links as $link) {
-            //     if($link->rel == 'approve') {
-            //         return redirect($link->href);
+            $object = json_decode(json_encode($resultado->result), FALSE);
 
-            //     }
-            // }
+            foreach ($object->links as $link) {
+                if($link->rel == 'approve') {
+                    return redirect($link->href);
+
+                }
+            }
 
 
 
@@ -297,35 +329,62 @@ class PasarelaPagoComponent extends Component
 
     }
 
-    // public function cancelPage()
-    // {
-    //     return redirect()->route('web.shopcart.index');
-    // }
+    public function cancelPage()
+    {
+        return redirect()->route('admin.membresia.index');
+    }
 
-    // public function getExpressCheckoutSuccess(Request $request, $orderId)
-    // {
-    //     $order = Order::find($orderId);
+    public function getExpressCheckoutSuccess(Request $request, $membresiaId)
+    {
 
 
-    //     $response = new PaypalService();
-    //     $resultado = $response->captureOrder($order->transaction->transaction_id);
-    //     $response_result = json_decode(json_encode($resultado->result))->status;
+        $order =  DB::table('membresias_pagos')->where('id', $membresiaId)->get();
 
-    //     if ($response_result == "COMPLETED") {
 
-    //         $order->transaction->where(['order_id' =>  $order->id])->update([
-    //             'status' => 'approved'
-    //          ]);
-
-    //          $this->resetCard();
-
-    //          return redirect()->route('web.checkout.thankyou');
-    //     }
+        $response = new PaypalService();
+        $resultado = $response->captureOrder($order[0]->transaction_id);
+        $response_result = json_decode(json_encode($resultado->result))->status;
 
 
 
+        if ($response_result == "COMPLETED") {
 
-    // }
+            $inicio_membresia = Carbon::parse(Auth::user()->tienda->membresia->started_at);
+            $fin_membresia = Carbon::parse(Auth::user()->tienda->membresia->finish_at);
+
+
+            $date_diff=$inicio_membresia->diffInDays($fin_membresia);
+
+            $dias_contables = $date_diff + 365;
+
+            $actual_membresia_init = Carbon::now()->format('Y-m-d');
+            $actual_membresia_fin = $fin_membresia->addDays($dias_contables)->format('Y-m-d');
+
+
+            DB::table('membresias')
+                ->where('tienda_id', Auth::user()->tienda->id)
+                ->update([
+                    'plan_id' => 1,
+                    'started_at' => $actual_membresia_init,
+                    'finish_at' => $actual_membresia_fin
+                ]);
+
+
+             DB::table('membresias_pagos')->where(['reference_id' =>  $order[0]->reference_id])->update([
+                'status' => 'approved'
+             ]);
+
+
+
+             session()->flash('info', 'Membresia realizada con exito');
+             $this->resetCard();
+             return redirect()->route('admin.membresia.index');
+        }
+
+
+
+
+    }
 
     public function resetCard()
     {
@@ -343,76 +402,92 @@ class PasarelaPagoComponent extends Component
 
             session()->flash('info', 'Membresia realizada con exito');
 
+            $user = User::find(Auth::id());
+            $user->roles()->sync(2);
+
             return redirect()->route('admin.membresia.index');
 
         }
     }
 
-    // public function applyCouponCode()
-    // {
-    //     $subtotal_format = sprintf('%.2f', str_replace(',', '', FacadesCart::subtotal() ));
-    //     $coupon = Coupon::where('code', $this->coupon_code)
-    //                     ->where('cart_value', '<=', $subtotal_format)
-    //                     ->where('status', '=', 1)
-    //                     ->first();
-    //     //
+    public function applyCouponCode()
+    {
+        $subtotal_format = sprintf('%.2f', str_replace(',', '', session('membresia_payment')['subtotal'] ));
+        $coupon = Coupon::where('code', $this->coupon_code)
+                        ->where('cart_value', '<=', $subtotal_format)
+                        ->where('status', '=', 1)
+                        ->first();
+        //
 
-    //     if (!$coupon) {
-    //         session()->flash('coupon_message', 'Cupon Invalido');
-    //         return;
-    //     }
+        if (!$coupon) {
+            session()->flash('coupon_message', 'Cupon Invalido');
+            return;
+        }
 
-    //     session()->put('coupon', [
-    //         'code' => $coupon->code,
-    //         'type' => $coupon->type,
-    //         'value' => $coupon->value,
-    //         'cart_value' => $coupon->cart_value
-    //     ]);
+        session()->put('coupon', [
+            'code' => $coupon->code,
+            'type' => $coupon->type,
+            'value' => $coupon->value,
+            'cart_value' => $coupon->cart_value
+        ]);
 
 
 
-    // }
+    }
 
-    // public function calculateDiscount()
-    // {
-    //     if(session()->has('coupon'))
-    //     {
-    //         $data = file_get_contents('https://www.datos.gov.co/resource/32sa-8pi3.json?$limit=1&$order=vigenciahasta%20DESC');
-    //         $tasa_data  = json_decode($data);
-    //         $tasa_cambio = $tasa_data[0]->valor;
-    //         $subtotal_format = sprintf('%.2f', str_replace(',', '', FacadesCart::subtotal() ));
+    public function calculateDiscount()
+    {
+        if(session()->has('coupon'))
+        {
+            $data = file_get_contents('https://www.datos.gov.co/resource/32sa-8pi3.json?$limit=1&$order=vigenciahasta%20DESC');
+            $tasa_data  = json_decode($data);
+            $tasa_cambio = $tasa_data[0]->valor;
+            $subtotal_format = sprintf('%.2f', str_replace(',', '', session('membresia_payment')['subtotal'] ));
 
-    //         if (session('coupon')['type'] == 'fixed')
-    //         {
-    //             $this->discount_COP = session('coupon')['value'];
-    //             $this->discount_USD = session('coupon')['value'] / $tasa_cambio;
-    //         }
-    //         else
-    //         {
+            if (session('coupon')['type'] == 'fixed')
+            {
+                $this->discount_COP = session('coupon')['value'];
+                $this->discount_USD = session('coupon')['value'] / $tasa_cambio;
+            }
+            else
+            {
 
-    //             $this->discount_COP = ($subtotal_format * session('coupon')['value']) / 100;
-    //             $this->discount_USD = sprintf('%.2f', ( ( $subtotal_format / $tasa_cambio ) * session('coupon')['value'] ) / 100);
-    //         }
-    //             $this->subtotalDesuento_COP =  number_format($subtotal_format - $this->discount_COP, 2);
-    //             $this->subtotalDesuento_USD =  number_format(($subtotal_format / $tasa_cambio)   - $this->discount_USD, 2);
-    //     }
-    // }
+                $this->discount_COP = ($subtotal_format * session('coupon')['value']) / 100;
+                $this->discount_USD = sprintf('%.2f', ( ( $subtotal_format / $tasa_cambio ) * session('coupon')['value'] ) / 100);
+            }
+                $this->subtotalDesuento_COP =  number_format($subtotal_format - $this->discount_COP, 2);
+                $this->subtotalDesuento_USD =  number_format(($subtotal_format / $tasa_cambio)   - $this->discount_USD, 2);
+        }
+    }
 
     public function render()
     {
-        // if (session()->has('coupon')) {
-        //     if(sprintf('%.2f', str_replace(',', '', FacadesCart::subtotal() )) < session('coupon')['cart_value'])
-        //     {
-        //          session()->forget('coupon');
-        //     }else
-        //     {
-        //         $this->calculateDiscount();
-        //     }
-        // }
+        if (session()->has('coupon')) {
+            if(sprintf('%.2f', str_replace(',', '', session('membresia_payment')['subtotal'] )) < session('coupon')['cart_value'])
+            {
+                 session()->forget('coupon');
+            }else
+            {
+                $this->calculateDiscount();
+            }
+        }
+
+        $this->verifyForCheckout();
 
 
+        $data = file_get_contents('https://www.datos.gov.co/resource/32sa-8pi3.json?$limit=1&$order=vigenciahasta%20DESC');
+        $tasa_data  = json_decode($data);
+        $tasa_cambio = $tasa_data[0]->valor;
 
-          $this->verifyForCheckout();
+        $planes = DB::table('planes')->where('id', '1')->first();
+
+        $precio_COP = $planes->yearly_price;
+        $precio_USD = number_format($planes->yearly_price / $tasa_cambio, 2);
+
+        session()->put('membresia_payment', [
+            'subtotal' => $precio_COP,
+            'subtotal_dolar' => $precio_USD
+        ]);
 
         return view('livewire.admin.membresia.pasarela-pago-component');
     }

@@ -40,9 +40,16 @@ class HomeController extends Controller
 
                     $membresia = $fecha_actual->lessThanOrEqualTo($fecha_final_membresia);
 
-                    if(Auth::user()->tienda->membresia->plan_id == 1){
-
                         if($membresia == false)
+                        {
+
+                            $user = User::find(Auth::id());
+                            $user->roles()->sync(4);
+
+                            return redirect()->route('admin.membresia.index')->with(['info' => 'Para Continuar debe registar una membresia.', 'color' => '#1c3faa']);
+
+                        }
+                        else
                         {
                             return view('admin/'. $pageName, [
                                 'side_menu' => $this->sideMenu(),
@@ -57,48 +64,20 @@ class HomeController extends Controller
                                 'userauth' => Auth::user(),
 
                             ]);
-                        }
-                        else
-                        {
-                            return view('admin/membresia.index', [
-                                'side_menu' => $this->sideMenu(),
-                                'first_page_name' => $activeMenu['first_page_name'],
-                                'second_page_name' => $activeMenu['second_page_name'],
-                                'third_page_name' => $activeMenu['third_page_name'],
-                                'page_name' => 'membresia',
-                                'ruta' => 'listar',
-                                'theme' => $this->omega(),
-                                'layout' => 'content',
-                                'titulo' => $this->sideMenu(),
-                                'userauth' => Auth::user(),
 
-                            ]);
+
                         }
 
 
 
-                    }
+
                 }else {
 
-                    // $user = User::find(Auth::id());
-                    // $user->roles()->sync(4);
-                    // // app()->make(\Spatie\Permission\PermissionRegistrar::class)->forgetCachedPermissions();
+                    $user = User::find(Auth::id());
+                    $user->roles()->sync(4);
 
-                    // return redirect()->route('admin.membresia.index')->with(['info' => 'Para Continuar debe registar una membresia.', 'color' => '#1c3faa']);
-                    return view('admin/'. $pageName, [
-                        'side_menu' => $this->sideMenu(),
-                        'first_page_name' => $activeMenu['first_page_name'],
-                        'second_page_name' => $activeMenu['second_page_name'],
-                        'third_page_name' => $activeMenu['third_page_name'],
-                        'page_name' => $pageName,
-                        'ruta' => 'listar',
-                        'theme' => $this->omega(),
-                        'layout' => 'content',
-                        'titulo' => $this->sideMenu(),
-                        'userauth' => Auth::user(),
+                    return redirect()->route('admin.membresia.index')->with(['info' => 'Usted no posee una membresia.', 'color' => '#1c3faa']);
 
-                    ]);
-                    break;
 
                 }
 
@@ -261,6 +240,15 @@ class HomeController extends Controller
                 'can' => 'dash.tienda.index'
             ],
 
+            'mitienda' => [
+                'icon' => 'shopping-cart',
+                'menuPrincipal' => 'si',
+                'ruta' => 'listar',
+                'page_name' => 'mitienda',
+                'title' => 'Mi Tienda',
+                'can' => 'dash.mitienda.index'
+            ],
+
             'transactions' => [
                 'icon' => 'credit-card',
                 'menuPrincipal' => 'si',
@@ -282,7 +270,7 @@ class HomeController extends Controller
             ],
 
             'membresia' => [
-                'icon' => 'tag',
+                'icon' => 'calendar',
                 'menuPrincipal' => 'si',
                 'ruta' => 'listar',
                 'page_name' => 'membresia',

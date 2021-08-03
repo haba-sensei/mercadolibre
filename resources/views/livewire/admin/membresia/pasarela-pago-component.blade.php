@@ -160,7 +160,7 @@
 
                 @case("paypal")
                 <div class="mb-10 tab-content__pane active" id="paypal">
-                    <button class="w-full mt-5 text-white button bg-theme-1">Proceder a Pagar</button>
+                    <button class="w-full mt-2 text-white button bg-theme-1">Proceder a Pagar</button>
 
                     <div wire:loading wire:target="placeMembership">
                         Procesando el Pago...
@@ -180,8 +180,8 @@
             </div>
             @if (Session::has('coupon'))
 
-            <h3>Codigo: <span>{{ session::get('coupon')['code'] }}</span></h3>
-            <h3>Descuento: <span>
+            <h3><strong class="">Codigo:</strong>  <span>{{ session::get('coupon')['code'] }}</span></h3>
+            <h3><strong class="">Descuento:</strong>  <span>
 
                     @if(session::get('coupon')['type'] == 'fixed')
                     <small>COP</small> {{ "$".session::get('coupon')['value'] }}
@@ -190,19 +190,23 @@
                     @endif
                 </span></h3>
             <small style="color: #fcb800;"><strong> Con Descuento</strong> </small>
-            <h3>Total<span> <small>COP</small>
-                    ${{ $subtotalDesuento_COP }}</span></h3>
+
+            <h1 class="text-3xl font-medium leading-none text-theme-1">Total COP
+                <span> ${{ $subtotalDesuento_COP }}  </span></h1>
 
             <small style="color: #fcb800;"><strong> Con Descuento</strong></small>
-            <h3>Total<span> <small>USD</small>
-                    ${{ $subtotalDesuento_USD }}</span></h3>
+            <h1 class="text-3xl font-medium leading-none text-theme-1">Total USD
+                <span> ${{ $subtotalDesuento_USD }} </span>
+            </h1>
+
+
 
 
             @else
             <h1 class="text-3xl font-medium leading-none text-theme-1">Total COP
-                <span>$ </span></h1>
+                <span>${{ Session::get('membresia_payment')['subtotal'] }}  </span></h1>
             <h1 class="text-3xl font-medium leading-none text-theme-1">Total USD
-                <span>$ </span>
+                <span>${{ Session::get('membresia_payment')['subtotal_dolar'] }} </span>
             </h1>
             @endif
             <div class="mt-5">Nota: Al pagar una membresia tendras acceso a la plataforma por 1 año, luego de caducado ese año deberas renovar el servicio para continuar usando la plataforma.</div>

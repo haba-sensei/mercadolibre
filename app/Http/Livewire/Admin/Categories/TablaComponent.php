@@ -9,7 +9,7 @@ use Livewire\WithPagination;
 
 class TablaComponent extends Component
 {
-    /* PAGINACION REACTIVA */
+    /* PAGINACION REACTIVA */ 
     use WithPagination;
     /* VARIABLES SORT BY  */
     public $sortBy='name';

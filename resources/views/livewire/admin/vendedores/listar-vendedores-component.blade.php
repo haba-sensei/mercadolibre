@@ -1,5 +1,5 @@
 @can('dash.tienda.solicitudes')
-    <div class="col-span-12 mt-8 sm:col-span-12 lg:col-span-12">
+    <div class="col-span-12 mt-8 sm:col-span-12 lg:col-span-6">
         <div class="flex items-center h-10 intro-y">
             <h2 class="mr-5 text-lg font-medium truncate">
                 Lista de Vendedores
@@ -16,75 +16,64 @@
                 </div>
             </div>
         </div>
-        <div class="p-5 mt-5 intro-y box">
+        <div class="p-5 mt-5 intro-y box" style="height: 76%;">
 
             <div class="mt-1">
                     @foreach ($vendedores as $item)
-                    <div class="box">
+                    <div class="mb-4 box">
                         <div class="flex flex-col items-center p-5 lg:flex-row">
 
                         <div class="w-24 h-24 lg:w-12 lg:h-12 image-fit lg:mr-1">
                             <img class="rounded-full" src="{{ asset('storage/'.$item->url_perfil) }}" >
                         </div>
                         <div class="mt-3 text-center lg:ml-2 lg:mr-auto lg:text-left lg:mt-0">
-                            <a href="{{ route('admin.users.edit', $item->user) }}" class="font-medium capitalize">{{ $item->name }}</a>
+                            <a href="{{ route('admin.membresia.show', $item) }}" class="font-medium capitalize">{{ $item->name }}</a>
                             <div class="text-gray-600 text-xs mt-0.5">{{ $item->user->name }}</div>
                         </div>
                         <div class="font-medium text-gray-600 capitalize">
 
                           <span class="">Plan: {{ $item->business }}</span><br>
-                          @if ($item->business == "Gratuito")
-                          <span class="">Inicia: -</span><br>
-                          <span class="">Termina: -</span>
-                          @else
                           <span class="">Inicia: {{ date('d/m/Y', strtotime($item->started_at)) }}</span><br>
                           <span class="">Termina: {{ date('d/m/Y', strtotime($item->finish_at)) }}</span>
-                          @endif
+
 
                         </div>
 
                     </div>
 
-                    {{-- <div class="flex items-center mt-6 mb-6">
-                        <div class="w-2 h-2 mr-3 rounded-full bg-theme-11"></div>
-                        <span class="capitalize truncate">{{ $item->name }} </span>
-                        <div class="flex-1 h-px mx-3 border border-r border-gray-300 border-dashed xl:hidden"></div>
-                        <span class="font-medium cursor-pointer xl:ml-auto">
-
-                            {!! Form::model( $item, ['route' => ['admin.tienda.update', $item], 'method' => 'put']) !!}
-
-                            {{ Form::button('<i data-feather="play" class="report-box__icon text-theme-10"></i>', ['type' => 'submit'] )  }}
-
-                            {!! Form::close() !!}
-                        </span>
-                    </div> --}}
                 </div>
                     @endforeach
                     @if($vendedores->count() == 0 )
-                    <div class="flex items-center mt-6 mb-6">
-                        <div class="w-2 h-2 mr-3 rounded-full bg-theme-11"></div>
-                        <span class="truncate">No hay solicitudes </span>
-                        <div class="flex-1 h-px mx-3 border border-r border-gray-300 border-dashed xl:hidden"></div>
-
+                    <div class="box">
+                        <div class="flex flex-col items-center lg:flex-row" style="padding: 1.6rem;">
+                            <div class="w-2 h-2 mr-3 rounded-full bg-theme-11"></div>
+                            <span class="truncate">No hay vendedores </span>
+                            <div class="flex-1 h-px mx-3 border border-r border-gray-300 border-dashed xl:hidden"></div>
+                        </div>
                     </div>
+
+
+                    @else
+                        <div class="col-span-12 mt-5 intro-y md:col-span-12">
+
+                                {{ $vendedores->links() }}
+
+                                <select wire:model="perPage" class="w-20 mt-3 input box sm:mt-0">
+
+                                    <option>2</option>
+                                    <option>10</option>
+                                    <option>20</option>
+                                    <option>50</option>
+                                    <option>100</option>
+                                </select>
+                        </div>
+
                     @endif
 
 
 
 
-                    <div class="col-span-12 intro-y md:col-span-12">
 
-                        {{ $vendedores->links() }}
-
-                        <select wire:model="perPage" class="w-20 mt-3 input box sm:mt-0">
-
-                            <option>5</option>
-                            <option>10</option>
-                            <option>20</option>
-                            <option>50</option>
-                            <option>100</option>
-                        </select>
-               </div>
 
             </div>
 

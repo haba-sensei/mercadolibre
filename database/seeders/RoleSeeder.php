@@ -35,6 +35,12 @@ class RoleSeeder extends Seeder
         Permission::create(['name' => 'dash.tienda.show', 'description' => 'Acceso a la tienda', 'guard_name' => 'admin'])->syncRoles([$admin_rol, $vend_rol]);
         Permission::create(['name' => 'dash.tienda.solicitudes', 'description' => 'Aprobar o Rechazar una Tienda', 'guard_name' => 'admin'])->syncRoles([$admin_rol]);
 
+        Permission::create(['name' => 'dash.mitienda.index', 'description' => 'Acceso a mi tienda', 'guard_name' => 'admin'])->syncRoles([$admin_rol, $vend_rol]);
+        Permission::create(['name' => 'dash.mitienda.update', 'description' => 'Actualizar mi tienda', 'guard_name' => 'admin'])->syncRoles([$admin_rol, $vend_rol]);
+        Permission::create(['name' => 'dash.mitienda.edit', 'description' => 'Editar mi tienda', 'guard_name' => 'admin'])->syncRoles([$admin_rol, $vend_rol]);
+
+        Permission::create(['name' => 'dash.graficos.index', 'description' => 'Acceso a los graficos', 'guard_name' => 'admin'])->syncRoles([$admin_rol]);
+
         Permission::create(['name' => 'dash.compras.index', 'description' => 'Acceso para listar Compras', 'guard_name' => 'admin'])->syncRoles([$admin_rol, $compra_rol, $vend_rol]);
         Permission::create(['name' => 'dash.compras.show', 'description' => 'Acceso a la Compra', 'guard_name' => 'admin'])->syncRoles([$admin_rol, $compra_rol, $vend_rol]);
 

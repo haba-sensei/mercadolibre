@@ -334,7 +334,7 @@
 
                                             @else
 
-                                                <h3>Total COP
+                                                <h3>Total COP 
                                                     <span>${{ Session::get('checkout')['subtotal'] }}</span></h3>
                                                 <h3>Total USD
                                                     <span>${{ Session::get('checkout')['subtotal_dolar'] }}</span>

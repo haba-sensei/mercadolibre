@@ -1,7 +1,7 @@
 import helper from "./helper";
 import chart, { helpers } from "chart.js";
 
-(function (cash) {
+(function(cash) {
     "use strict";
 
     // Chart
@@ -24,8 +24,7 @@ import chart, { helpers } from "chart.js";
                     "Nov",
                     "Dec",
                 ],
-                datasets: [
-                    {
+                datasets: [{
                         label: "# of Votes",
                         data: [
                             0,
@@ -75,43 +74,35 @@ import chart, { helpers } from "chart.js";
                     display: false,
                 },
                 scales: {
-                    xAxes: [
-                        {
-                            ticks: {
-                                fontSize: "12",
-                                fontColor: cash("html").hasClass("dark")
-                                    ? "#718096"
-                                    : "#777777",
-                            },
-                            gridLines: {
-                                display: false,
+                    xAxes: [{
+                        ticks: {
+                            fontSize: "12",
+                            fontColor: cash("html").hasClass("dark") ?
+                                "#718096" : "#777777",
+                        },
+                        gridLines: {
+                            display: false,
+                        },
+                    }, ],
+                    yAxes: [{
+                        ticks: {
+                            fontSize: "12",
+                            fontColor: cash("html").hasClass("dark") ?
+                                "#718096" : "#777777",
+                            callback: function(value, index, values) {
+                                return "$" + value;
                             },
                         },
-                    ],
-                    yAxes: [
-                        {
-                            ticks: {
-                                fontSize: "12",
-                                fontColor: cash("html").hasClass("dark")
-                                    ? "#718096"
-                                    : "#777777",
-                                callback: function (value, index, values) {
-                                    return "$" + value;
-                                },
-                            },
-                            gridLines: {
-                                color: cash("html").hasClass("dark")
-                                    ? "#718096"
-                                    : "#D8D8D8",
-                                zeroLineColor: cash("html").hasClass("dark")
-                                    ? "#718096"
-                                    : "#D8D8D8",
-                                borderDash: [2, 2],
-                                zeroLineBorderDash: [2, 2],
-                                drawBorder: false,
-                            },
+                        gridLines: {
+                            color: cash("html").hasClass("dark") ?
+                                "#718096" : "#D8D8D8",
+                            zeroLineColor: cash("html").hasClass("dark") ?
+                                "#718096" : "#D8D8D8",
+                            borderDash: [2, 2],
+                            zeroLineBorderDash: [2, 2],
+                            drawBorder: false,
                         },
-                    ],
+                    }, ],
                 },
             },
         });
@@ -123,17 +114,14 @@ import chart, { helpers } from "chart.js";
             type: "pie",
             data: {
                 labels: ["Yellow", "Dark"],
-                datasets: [
-                    {
-                        data: [15, 10, 65],
-                        backgroundColor: ["#FF8B26", "#FFC533", "#285FD3"],
-                        hoverBackgroundColor: ["#FF8B26", "#FFC533", "#285FD3"],
-                        borderWidth: 5,
-                        borderColor: cash("html").hasClass("dark")
-                            ? "#303953"
-                            : "#fff",
-                    },
-                ],
+                datasets: [{
+                    data: [15, 10, 65],
+                    backgroundColor: ["#FF8B26", "#FFC533", "#285FD3"],
+                    hoverBackgroundColor: ["#FF8B26", "#FFC533", "#285FD3"],
+                    borderWidth: 5,
+                    borderColor: cash("html").hasClass("dark") ?
+                        "#303953" : "#fff",
+                }, ],
             },
             options: {
                 legend: {
@@ -149,17 +137,14 @@ import chart, { helpers } from "chart.js";
             type: "doughnut",
             data: {
                 labels: ["Yellow", "Dark"],
-                datasets: [
-                    {
-                        data: [15, 10, 65],
-                        backgroundColor: ["#FF8B26", "#FFC533", "#285FD3"],
-                        hoverBackgroundColor: ["#FF8B26", "#FFC533", "#285FD3"],
-                        borderWidth: 5,
-                        borderColor: cash("html").hasClass("dark")
-                            ? "#303953"
-                            : "#fff",
-                    },
-                ],
+                datasets: [{
+                    data: [15, 10, 65],
+                    backgroundColor: ["#FF8B26", "#FFC533", "#285FD3"],
+                    hoverBackgroundColor: ["#FF8B26", "#FFC533", "#285FD3"],
+                    borderWidth: 5,
+                    borderColor: cash("html").hasClass("dark") ?
+                        "#303953" : "#fff",
+                }, ],
             },
             options: {
                 legend: {
@@ -176,17 +161,14 @@ import chart, { helpers } from "chart.js";
             type: "doughnut",
             data: {
                 labels: ["Yellow", "Dark"],
-                datasets: [
-                    {
-                        data: [15, 10, 65],
-                        backgroundColor: ["#FF8B26", "#FFC533", "#285FD3"],
-                        hoverBackgroundColor: ["#FF8B26", "#FFC533", "#285FD3"],
-                        borderWidth: 2,
-                        borderColor: cash("html").hasClass("dark")
-                            ? "#303953"
-                            : "#fff",
-                    },
-                ],
+                datasets: [{
+                    data: [15, 10, 65],
+                    backgroundColor: ["#FF8B26", "#FFC533", "#285FD3"],
+                    hoverBackgroundColor: ["#FF8B26", "#FFC533", "#285FD3"],
+                    borderWidth: 2,
+                    borderColor: cash("html").hasClass("dark") ?
+                        "#303953" : "#fff",
+                }, ],
             },
             options: {
                 legend: {
@@ -203,17 +185,14 @@ import chart, { helpers } from "chart.js";
             type: "doughnut",
             data: {
                 labels: ["Yellow", "Dark"],
-                datasets: [
-                    {
-                        data: [15, 10, 65],
-                        backgroundColor: ["#FF8B26", "#FFC533", "#285FD3"],
-                        hoverBackgroundColor: ["#FF8B26", "#FFC533", "#285FD3"],
-                        borderWidth: 2,
-                        borderColor: cash("html").hasClass("dark")
-                            ? "#303953"
-                            : "#fff",
-                    },
-                ],
+                datasets: [{
+                    data: [15, 10, 65],
+                    backgroundColor: ["#FF8B26", "#FFC533", "#285FD3"],
+                    hoverBackgroundColor: ["#FF8B26", "#FFC533", "#285FD3"],
+                    borderWidth: 2,
+                    borderColor: cash("html").hasClass("dark") ?
+                        "#303953" : "#fff",
+                }, ],
             },
             options: {
                 legend: {
@@ -225,7 +204,7 @@ import chart, { helpers } from "chart.js";
     }
 
     if (cash(".simple-line-chart-1").length) {
-        cash(".simple-line-chart-1").each(function () {
+        cash(".simple-line-chart-1").each(function() {
             let ctx = cash(this)[0].getContext("2d");
             let myChart = new chart(ctx, {
                 type: "line",
@@ -244,61 +223,51 @@ import chart, { helpers } from "chart.js";
                         "Nov",
                         "Dec",
                     ],
-                    datasets: [
-                        {
-                            label: "# of Votes",
-                            data:
-                                cash(this).data("random") !== undefined
-                                    ? helper.randomNumbers(0, 5, 12)
-                                    : [
-                                          0,
-                                          200,
-                                          250,
-                                          200,
-                                          500,
-                                          450,
-                                          850,
-                                          1050,
-                                          950,
-                                          1100,
-                                          900,
-                                          1200,
-                                      ],
-                            borderWidth: 2,
-                            borderColor:
-                                cash(this).data("line-color") !== undefined
-                                    ? cash(this).data("line-color")
-                                    : "#3160D8",
-                            backgroundColor: "transparent",
-                            pointBorderColor: "transparent",
-                        },
-                    ],
+                    datasets: [{
+                        label: "# of Votes",
+                        data: cash(this).data("random") !== undefined ?
+                            helper.randomNumbers(0, 5, 12) : [
+                                0,
+                                200,
+                                250,
+                                200,
+                                500,
+                                450,
+                                850,
+                                1050,
+                                950,
+                                1100,
+                                900,
+                                1200,
+                            ],
+                        borderWidth: 2,
+                        borderColor: cash(this).data("line-color") !== undefined ?
+                            cash(this).data("line-color") : "#3160D8",
+                        backgroundColor: "transparent",
+                        pointBorderColor: "transparent",
+                    }, ],
                 },
                 options: {
                     legend: {
                         display: false,
                     },
                     scales: {
-                        xAxes: [
-                            {
-                                ticks: {
-                                    display: false,
-                                },
-                                gridLines: {
-                                    display: false,
-                                },
+                        xAxes: [{
+                            ticks: {
+                                display: false,
                             },
-                        ],
-                        yAxes: [
-                            {
-                                ticks: {
-                                    display: false,
-                                },
-                                gridLines: {
-                                    display: false,
-                                },
+                            gridLines: {
+                                display: false,
                             },
-                        ],
+                        }, ],
+                        yAxes: [{
+                            ticks: {
+                                display: false,
+                            },
+                            gridLines: {
+                                display: false,
+                            },
+                        }, ],
                     },
                 },
             });
@@ -306,7 +275,7 @@ import chart, { helpers } from "chart.js";
     }
 
     if (cash(".simple-line-chart-2").length) {
-        cash(".simple-line-chart-2").each(function () {
+        cash(".simple-line-chart-2").each(function() {
             let ctx = cash(this)[0].getContext("2d");
             let myChart = new chart(ctx, {
                 type: "line",
@@ -325,36 +294,30 @@ import chart, { helpers } from "chart.js";
                         "Nov",
                         "Dec",
                     ],
-                    datasets: [
-                        {
-                            label: "# of Votes",
-                            data:
-                                cash(this).data("random") !== undefined
-                                    ? helper.randomNumbers(0, 5, 12)
-                                    : [
-                                          0,
-                                          300,
-                                          400,
-                                          560,
-                                          320,
-                                          600,
-                                          720,
-                                          850,
-                                          690,
-                                          805,
-                                          1200,
-                                          1010,
-                                      ],
-                            borderWidth: 2,
-                            borderDash: [2, 2],
-                            borderColor:
-                                cash(this).data("line-color") !== undefined
-                                    ? cash(this).data("line-color")
-                                    : "#cbd5e0",
-                            backgroundColor: "transparent",
-                            pointBorderColor: "transparent",
-                        },
-                    ],
+                    datasets: [{
+                        label: "# of Votes",
+                        data: cash(this).data("random") !== undefined ?
+                            helper.randomNumbers(0, 5, 12) : [
+                                0,
+                                300,
+                                400,
+                                560,
+                                320,
+                                600,
+                                720,
+                                850,
+                                690,
+                                805,
+                                1200,
+                                1010,
+                            ],
+                        borderWidth: 2,
+                        borderDash: [2, 2],
+                        borderColor: cash(this).data("line-color") !== undefined ?
+                            cash(this).data("line-color") : "#cbd5e0",
+                        backgroundColor: "transparent",
+                        pointBorderColor: "transparent",
+                    }, ],
                 },
                 options: {
                     maintainAspectRatio: false,
@@ -362,26 +325,22 @@ import chart, { helpers } from "chart.js";
                         display: false,
                     },
                     scales: {
-                        xAxes: [
-                            {
-                                ticks: {
-                                    display: false,
-                                },
-                                gridLines: {
-                                    display: false,
-                                },
+                        xAxes: [{
+                            ticks: {
+                                display: false,
                             },
-                        ],
-                        yAxes: [
-                            {
-                                ticks: {
-                                    display: false,
-                                },
-                                gridLines: {
-                                    display: false,
-                                },
+                            gridLines: {
+                                display: false,
                             },
-                        ],
+                        }, ],
+                        yAxes: [{
+                            ticks: {
+                                display: false,
+                            },
+                            gridLines: {
+                                display: false,
+                            },
+                        }, ],
                     },
                 },
             });
@@ -404,8 +363,7 @@ import chart, { helpers } from "chart.js";
                     "Jul",
                     "Aug",
                 ],
-                datasets: [
-                    {
+                datasets: [{
                         label: "Html Template",
                         barPercentage: 0.5,
                         barThickness: 6,
@@ -427,35 +385,31 @@ import chart, { helpers } from "chart.js";
             },
             options: {
                 scales: {
-                    xAxes: [
-                        {
-                            ticks: {
-                                fontSize: "12",
-                                fontColor: "#777777",
-                            },
-                            gridLines: {
-                                display: false,
+                    xAxes: [{
+                        ticks: {
+                            fontSize: "12",
+                            fontColor: "#777777",
+                        },
+                        gridLines: {
+                            display: false,
+                        },
+                    }, ],
+                    yAxes: [{
+                        ticks: {
+                            fontSize: "12",
+                            fontColor: "#777777",
+                            callback: function(value, index, values) {
+                                return "$" + value;
                             },
                         },
-                    ],
-                    yAxes: [
-                        {
-                            ticks: {
-                                fontSize: "12",
-                                fontColor: "#777777",
-                                callback: function (value, index, values) {
-                                    return "$" + value;
-                                },
-                            },
-                            gridLines: {
-                                color: "#D8D8D8",
-                                zeroLineColor: "#D8D8D8",
-                                borderDash: [2, 2],
-                                zeroLineBorderDash: [2, 2],
-                                drawBorder: false,
-                            },
+                        gridLines: {
+                            color: "#D8D8D8",
+                            zeroLineColor: "#D8D8D8",
+                            borderDash: [2, 2],
+                            zeroLineBorderDash: [2, 2],
+                            drawBorder: false,
                         },
-                    ],
+                    }, ],
                 },
             },
         });
@@ -476,8 +430,7 @@ import chart, { helpers } from "chart.js";
                     "Jul",
                     "Aug",
                 ],
-                datasets: [
-                    {
+                datasets: [{
                         label: "Html Template",
                         barPercentage: 0.5,
                         barThickness: 6,
@@ -499,35 +452,31 @@ import chart, { helpers } from "chart.js";
             },
             options: {
                 scales: {
-                    xAxes: [
-                        {
-                            ticks: {
-                                fontSize: "12",
-                                fontColor: "#777777",
-                                callback: function (value, index, values) {
-                                    return "$" + value;
-                                },
-                            },
-                            gridLines: {
-                                display: false,
+                    xAxes: [{
+                        ticks: {
+                            fontSize: "12",
+                            fontColor: "#777777",
+                            callback: function(value, index, values) {
+                                return "$" + value;
                             },
                         },
-                    ],
-                    yAxes: [
-                        {
-                            ticks: {
-                                fontSize: "12",
-                                fontColor: "#777777",
-                            },
-                            gridLines: {
-                                color: "#D8D8D8",
-                                zeroLineColor: "#D8D8D8",
-                                borderDash: [2, 2],
-                                zeroLineBorderDash: [2, 2],
-                                drawBorder: false,
-                            },
+                        gridLines: {
+                            display: false,
                         },
-                    ],
+                    }, ],
+                    yAxes: [{
+                        ticks: {
+                            fontSize: "12",
+                            fontColor: "#777777",
+                        },
+                        gridLines: {
+                            color: "#D8D8D8",
+                            zeroLineColor: "#D8D8D8",
+                            borderDash: [2, 2],
+                            zeroLineBorderDash: [2, 2],
+                            drawBorder: false,
+                        },
+                    }, ],
                 },
             },
         });
@@ -552,8 +501,7 @@ import chart, { helpers } from "chart.js";
                     "Nov",
                     "Dec",
                 ],
-                datasets: [
-                    {
+                datasets: [{
                         label: "Html Template",
                         barPercentage: 0.5,
                         barThickness: 6,
@@ -575,37 +523,33 @@ import chart, { helpers } from "chart.js";
             },
             options: {
                 scales: {
-                    xAxes: [
-                        {
-                            stacked: true,
-                            ticks: {
-                                fontSize: "12",
-                                fontColor: "#777777",
-                            },
-                            gridLines: {
-                                display: false,
+                    xAxes: [{
+                        stacked: true,
+                        ticks: {
+                            fontSize: "12",
+                            fontColor: "#777777",
+                        },
+                        gridLines: {
+                            display: false,
+                        },
+                    }, ],
+                    yAxes: [{
+                        stacked: true,
+                        ticks: {
+                            fontSize: "12",
+                            fontColor: "#777777",
+                            callback: function(value, index, values) {
+                                return "$" + value;
                             },
                         },
-                    ],
-                    yAxes: [
-                        {
-                            stacked: true,
-                            ticks: {
-                                fontSize: "12",
-                                fontColor: "#777777",
-                                callback: function (value, index, values) {
-                                    return "$" + value;
-                                },
-                            },
-                            gridLines: {
-                                color: "#D8D8D8",
-                                zeroLineColor: "#D8D8D8",
-                                borderDash: [2, 2],
-                                zeroLineBorderDash: [2, 2],
-                                drawBorder: false,
-                            },
+                        gridLines: {
+                            color: "#D8D8D8",
+                            zeroLineColor: "#D8D8D8",
+                            borderDash: [2, 2],
+                            zeroLineBorderDash: [2, 2],
+                            drawBorder: false,
                         },
-                    ],
+                    }, ],
                 },
             },
         });
@@ -617,8 +561,7 @@ import chart, { helpers } from "chart.js";
             type: "bar",
             data: {
                 labels: [...Array(16).keys()],
-                datasets: [
-                    {
+                datasets: [{
                         label: "Html Template",
                         barPercentage: 0.5,
                         barThickness: 6,
@@ -643,37 +586,33 @@ import chart, { helpers } from "chart.js";
                     display: false,
                 },
                 scales: {
-                    xAxes: [
-                        {
-                            stacked: true,
-                            ticks: {
-                                fontSize: "12",
-                                fontColor: "#777777",
-                            },
-                            gridLines: {
-                                display: false,
+                    xAxes: [{
+                        stacked: true,
+                        ticks: {
+                            fontSize: "12",
+                            fontColor: "#777777",
+                        },
+                        gridLines: {
+                            display: false,
+                        },
+                    }, ],
+                    yAxes: [{
+                        stacked: true,
+                        ticks: {
+                            fontSize: "12",
+                            fontColor: "#777777",
+                            callback: function(value, index, values) {
+                                return "$" + value;
                             },
                         },
-                    ],
-                    yAxes: [
-                        {
-                            stacked: true,
-                            ticks: {
-                                fontSize: "12",
-                                fontColor: "#777777",
-                                callback: function (value, index, values) {
-                                    return "$" + value;
-                                },
-                            },
-                            gridLines: {
-                                color: "#D8D8D8",
-                                zeroLineColor: "#D8D8D8",
-                                borderDash: [2, 2],
-                                zeroLineBorderDash: [2, 2],
-                                drawBorder: false,
-                            },
+                        gridLines: {
+                            color: "#D8D8D8",
+                            zeroLineColor: "#D8D8D8",
+                            borderDash: [2, 2],
+                            zeroLineBorderDash: [2, 2],
+                            drawBorder: false,
                         },
-                    ],
+                    }, ],
                 },
             },
         });
@@ -681,6 +620,11 @@ import chart, { helpers } from "chart.js";
 
     if (cash("#line-chart-widget").length) {
         let ctx = cash("#line-chart-widget")[0].getContext("2d");
+
+        // Livewire.on('postAdded', postId => {
+        //     console.log('A post was added with the id of: ' + postId);
+        // });
+
         let myChart = new chart(ctx, {
             type: "line",
             data: {
@@ -698,8 +642,7 @@ import chart, { helpers } from "chart.js";
                     "Nov",
                     "Dec",
                 ],
-                datasets: [
-                    {
+                datasets: [{
                         label: "Html Template",
                         data: [
                             0,
@@ -746,35 +689,31 @@ import chart, { helpers } from "chart.js";
             },
             options: {
                 scales: {
-                    xAxes: [
-                        {
-                            ticks: {
-                                fontSize: "12",
-                                fontColor: "#777777",
-                            },
-                            gridLines: {
-                                display: false,
+                    xAxes: [{
+                        ticks: {
+                            fontSize: "12",
+                            fontColor: "#777777",
+                        },
+                        gridLines: {
+                            display: false,
+                        },
+                    }, ],
+                    yAxes: [{
+                        ticks: {
+                            fontSize: "12",
+                            fontColor: "#777777",
+                            callback: function(value, index, values) {
+                                return "$" + value;
                             },
                         },
-                    ],
-                    yAxes: [
-                        {
-                            ticks: {
-                                fontSize: "12",
-                                fontColor: "#777777",
-                                callback: function (value, index, values) {
-                                    return "$" + value;
-                                },
-                            },
-                            gridLines: {
-                                color: "#D8D8D8",
-                                zeroLineColor: "#D8D8D8",
-                                borderDash: [2, 2],
-                                zeroLineBorderDash: [2, 2],
-                                drawBorder: false,
-                            },
+                        gridLines: {
+                            color: "#D8D8D8",
+                            zeroLineColor: "#D8D8D8",
+                            borderDash: [2, 2],
+                            zeroLineBorderDash: [2, 2],
+                            drawBorder: false,
                         },
-                    ],
+                    }, ],
                 },
             },
         });
@@ -786,17 +725,14 @@ import chart, { helpers } from "chart.js";
             type: "doughnut",
             data: {
                 labels: ["Html", "Vuejs", "Laravel"],
-                datasets: [
-                    {
-                        data: [15, 10, 65],
-                        backgroundColor: ["#FF8B26", "#FFC533", "#285FD3"],
-                        hoverBackgroundColor: ["#FF8B26", "#FFC533", "#285FD3"],
-                        borderWidth: 5,
-                        borderColor: cash("html").hasClass("dark")
-                            ? "#303953"
-                            : "#fff",
-                    },
-                ],
+                datasets: [{
+                    data: [15, 10, 65],
+                    backgroundColor: ["#FF8B26", "#FFC533", "#285FD3"],
+                    hoverBackgroundColor: ["#FF8B26", "#FFC533", "#285FD3"],
+                    borderWidth: 5,
+                    borderColor: cash("html").hasClass("dark") ?
+                        "#303953" : "#fff",
+                }, ],
             },
             options: {
                 cutoutPercentage: 80,
@@ -810,17 +746,14 @@ import chart, { helpers } from "chart.js";
             type: "pie",
             data: {
                 labels: ["Html", "Vuejs", "Laravel"],
-                datasets: [
-                    {
-                        data: [15, 10, 65],
-                        backgroundColor: ["#FF8B26", "#FFC533", "#285FD3"],
-                        hoverBackgroundColor: ["#FF8B26", "#FFC533", "#285FD3"],
-                        borderWidth: 5,
-                        borderColor: cash("html").hasClass("dark")
-                            ? "#303953"
-                            : "#fff",
-                    },
-                ],
+                datasets: [{
+                    data: [15, 10, 65],
+                    backgroundColor: ["#FF8B26", "#FFC533", "#285FD3"],
+                    hoverBackgroundColor: ["#FF8B26", "#FFC533", "#285FD3"],
+                    borderWidth: 5,
+                    borderColor: cash("html").hasClass("dark") ?
+                        "#303953" : "#fff",
+                }, ],
             },
         });
     }

@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ComprasController;
 use App\Http\Controllers\Admin\CouponsController;
 use App\Http\Controllers\Admin\MembresiaController;
+use App\Http\Controllers\Admin\MitiendaController;
 use App\Http\Controllers\Admin\TagController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\UserController;
@@ -11,6 +12,7 @@ use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\TiendaController;
 use App\Http\Controllers\Admin\VentasController;
 use App\Http\Controllers\Admin\VendedoresController;
+use App\Http\Controllers\Admin\TransactionsController;
 use Illuminate\Support\Facades\Route;
 
 /* HOME DASHBOARD ROUTES PREFIX DASH */
@@ -28,12 +30,16 @@ Route::resource('roles', RoleController::class)->middleware('can:dash.roles.inde
 /* CRUD RESOURCE'S MEMBRESIA*/
 Route::resource('membresia', MembresiaController::class)->middleware('can:dash.membresia.index')->names('admin.membresia');
 
-/* CRUD RESOURCE'S */
+/* CRUD RESOURCE'S TRANSACCIONES*/
+Route::resource('transactions', TransactionsController::class)->middleware('can:dash.transactions.index')->names('admin.transactions');
 
+
+/* CRUD RESOURCE'S GENERALES */
 Route::resource('categories', CategoryController::class)->middleware('can:dash.categories.index')->names('admin.categories');
 Route::resource('tags', TagController::class)->middleware('can:dash.tags.index')->names('admin.tags');
 Route::resource('products', ProductController::class)->middleware('can:dash.products.index')->names('admin.products');
 Route::resource('tienda', TiendaController::class)->middleware('can:dash.tienda.index')->names('admin.tienda');
+Route::resource('mitienda', MitiendaController::class)->middleware('can:dash.mitienda.index')->names('admin.mitienda');
 Route::resource('compras', ComprasController::class)->middleware('can:dash.compras.index')->names('admin.compras');
 Route::resource('ventas', VentasController::class)->middleware('can:dash.ventas.index')->names('admin.ventas');
 Route::resource('coupons', CouponsController::class)->middleware('can:dash.coupons.index')->names('admin.coupons');
