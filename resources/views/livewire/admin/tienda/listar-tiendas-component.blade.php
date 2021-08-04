@@ -1,4 +1,4 @@
-@can('dash.tienda.solicitudes')
+@can('dash.tienda.update')
     <div class="col-span-12 mt-8 sm:col-span-12 lg:col-span-6">
         <div class="flex items-center h-10 intro-y">
             <h2 class="mr-5 text-lg font-medium truncate">
@@ -25,7 +25,7 @@
                     @foreach ($solicitudes as $item)
                         <div class="mb-4 box">
                             <div class="flex flex-col items-center lg:flex-row" style="padding: 1.6rem;">
-                       
+
                                     <div class="w-24 h-24 lg:w-12 lg:h-12 image-fit lg:mr-1">
                                         <img class="rounded-full" src="{{ asset('storage/'.$item->url_perfil) }}" >
                                     </div>
@@ -38,7 +38,12 @@
 
                                         {!! Form::model( $item, ['route' => ['admin.tienda.update', $item], 'method' => 'put']) !!}
 
-                                        {{ Form::button('<i data-feather="play" class="report-box__icon text-theme-10" ></i>', ['type' => 'submit', 'wire:ignore'] )  }}
+                                        {{-- {{ Form::button('<span class="" wire:ignore> <i data-feather="play" class="report-box__icon text-theme-10" ></i> Aprobar </span>', ['type' => 'submit'] )  }} --}}
+
+                                        <button type="submit" class="flex items-center text-theme-7">
+                                            <img class="w-4 h-4 mr-1 shadow-inner" src="{{ asset('dist/images/aprobado.svg') }}" width="10" height="10"/>
+                                                Aprobar
+                                        </button>
 
                                         {!! Form::close() !!}
                                     </span>
@@ -60,7 +65,7 @@
                         </select>
                 </div>
                 @else
-
+ 
                 <div class="box">
                     <div class="flex flex-col items-center lg:flex-row" style="padding: 1.6rem;">
                         <div class="w-2 h-2 mr-3 rounded-full bg-theme-11"></div>

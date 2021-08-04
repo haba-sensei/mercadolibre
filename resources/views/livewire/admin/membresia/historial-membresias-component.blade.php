@@ -4,7 +4,7 @@
         <div class="flex flex-wrap items-center col-span-12 mt-2 intro-y sm:flex-no-wrap">
 
 
-            <div class="hidden mr-auto text-gray-600 md:block"> Total de Categorias: {{ $tiendas->total() }}</div>
+            <div class="hidden mr-auto text-gray-600 md:block"> Total de Membresias: {{ $tiendas->total() }}</div>
             <div class="w-full mt-3 sm:w-auto sm:mt-0 sm:ml-auto md:ml-0">
                 <div class="relative w-56 text-gray-700 dark:text-gray-300">
                     <input wire:model.debounce.300ms="search" type="text" class="w-56 pr-10 input box placeholder-theme-13" placeholder="Busqueda...">
@@ -26,7 +26,7 @@
                      <tbody>
 
                          @foreach ($tiendas as $tienda)
-                             <td class="">
+                            <td class="">
                                  <div class="flex">
                                      <div class="w-10 h-10 image-fit zoom-in">
                                          <img class="rounded-md " data-action="zoom" src="{{ Storage::url($tienda->url_perfil) }}" >
@@ -39,14 +39,21 @@
                                 </span>
                                     </div>
                              </td>
-                             <td>
+                              <td>
                              <strong class="">Desde: </strong>   {{ $tienda->membresia->started_at }}  <br>
                              <strong class="">Hasta: </strong>   {{ $tienda->membresia->finish_at }}
                                 </td>
-                             <td>{{ $tienda->membresia->plan->business }}</td>
+                             <td>
+                                @if($tienda->membresia->plan_id == 2 )
+                                Gratuito
+                                @else
+                                 Basico
+                                @endif
+
+                             </td>
                              <td>
 
-                                @if($tienda->membresia->plan->id == 2 )
+                                @if($tienda->membresia->plan_id == 2 )
                                     Nuevo Vendedor
                                 @else
                                     Vendedor Recurrente
@@ -96,3 +103,5 @@
 
 
  </div>
+
+

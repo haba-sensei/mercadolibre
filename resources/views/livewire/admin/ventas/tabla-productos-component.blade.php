@@ -7,7 +7,7 @@
             <div class="font-medium capitalize whitespace-nowrap">{{ $item->products->name }}</div>
             <div class="text-xs text-gray-600 whitespace-nowrap">{{ $item->tienda->name }}</div>
             <div class="font-medium capitalize whitespace-nowrap">Estatus: <strong class="
-                @switch($item->status)
+            @switch($item->status)
                 @case('pending')
                 text-theme-1
                 @break
@@ -21,7 +21,22 @@
                 text-theme-6
                 @break
             @endswitch
-            ">{{ $item->status }} </strong>
+            ">
+            @switch($item->status)
+            @case('pending')
+            Pendiente
+            @break
+            @case('aproved')
+            Aprobado
+            @break
+            @case('delivered')
+            Enviado
+            @break
+            @case('canceled')
+            Cancelado
+            @break
+            @endswitch
+             </strong>
 
 
             </div>

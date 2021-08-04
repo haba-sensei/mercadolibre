@@ -12,7 +12,7 @@
         <input id="colormensaje" type="hidden" value="{{ session('color') }}">
 
     @endif
- 
+
 
     {!! Form::open(['route' => 'admin.products.store', 'autocomplete' => 'off', 'files'=>'true' ]) !!}
 

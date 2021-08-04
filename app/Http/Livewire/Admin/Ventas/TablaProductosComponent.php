@@ -25,23 +25,50 @@ class TablaProductosComponent extends Component
             'status' => $status
         ]);
 
-        $list_status = $orderItem->pluck('status')->toArray();
+         $list_status = $orderItem->pluck('status')->toArray();
 
-        $count_lista_status = count($list_status);
+         $count_lista_status = count($list_status);
 
-        $count_lista_enviados = (array_count_values($list_status));
+         $count_lista_enviados = (array_count_values($list_status));
 
-        if($count_lista_enviados['delivered'] == $count_lista_status){
 
-            $orderItem->order->update([
-                'status' => 'deliver'
-            ]);
 
-        }else {
-            $orderItem->order->update([
-                'status' => 'ordered'
-            ]);
-        }
+            if(isset($count_lista_enviados['delivered']) && $count_lista_enviados['delivered'] == $count_lista_status){
+
+                $orderItem->order->update([
+                    'status' => 'deliver'
+                ]);
+
+            }elseif(isset($count_lista_enviados['canceled']) && $count_lista_enviados['canceled'] == $count_lista_status){
+
+                $orderItem->order->update([
+                    'status' => 'canceled'
+                ]);
+
+            }elseif(isset($count_lista_enviados['pending']) && $count_lista_enviados['pending'] == $count_lista_status){
+
+                $orderItem->order->update([
+                    'status' => 'ordered'
+                ]);
+
+            }elseif(isset($count_lista_enviados['aproved']) && $count_lista_enviados['aproved'] == $count_lista_status){
+
+                $orderItem->order->update([
+                    'status' => 'process'
+                ]);
+
+            }
+            else {
+                $orderItem->order->update([
+                    'status' => 'process'
+                ]);
+
+            }
+
+
+
+
+
 
         $info = 'El Producto se actualizo con éxito';
 

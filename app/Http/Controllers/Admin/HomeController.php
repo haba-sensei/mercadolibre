@@ -237,7 +237,7 @@ class HomeController extends Controller
                 'ruta' => 'listar',
                 'page_name' => 'tienda',
                 'title' => 'Crear Tienda',
-                'can' => 'dash.tienda.index'
+                'can' => 'dash.tienda.create'
             ],
 
             'mitienda' => [
@@ -295,6 +295,24 @@ class HomeController extends Controller
                 'page_name' => 'tags',
                 'title' => 'Etiquetas',
                 'can' => 'dash.tags.index'
+
+            ],
+            'perfil' => [
+                'icon' => 'sliders',
+                'menuPrincipal' => 'si',
+                'ruta' => 'listar',
+                'page_name' => 'perfil',
+                'title' => 'Perfil',
+                'can' => 'dash.perfil.index'
+
+            ],
+            'soporte' => [
+                'icon' => 'message-square',
+                'menuPrincipal' => 'si',
+                'ruta' => 'listar',
+                'page_name' => 'soporte',
+                'title' => 'Soporte',
+                'can' => 'dash.soporte.index'
 
             ]
 

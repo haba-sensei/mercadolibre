@@ -31,9 +31,10 @@ class RoleSeeder extends Seeder
         Permission::create(['name' => 'dash.roles.update', 'description' => 'Actualizar Roles', 'guard_name' => 'admin'])->syncRoles([$admin_rol]);
         Permission::create(['name' => 'dash.roles.edit', 'description' => 'Editar Roles', 'guard_name' => 'admin'])->syncRoles([$admin_rol]);
 
-        Permission::create(['name' => 'dash.tienda.index', 'description' => 'Acceso para crear una tienda', 'guard_name' => 'admin'])->syncRoles([$admin_rol, $compra_rol]);
+        Permission::create(['name' => 'dash.tienda.index', 'description' => 'Acceso estado tienda', 'guard_name' => 'admin'])->syncRoles([$admin_rol, $compra_rol]);
+        Permission::create(['name' => 'dash.tienda.create', 'description' => 'Acceso para crear tienda', 'guard_name' => 'admin'])->syncRoles([$admin_rol, $compra_rol]);
         Permission::create(['name' => 'dash.tienda.show', 'description' => 'Acceso a la tienda', 'guard_name' => 'admin'])->syncRoles([$admin_rol, $vend_rol]);
-        Permission::create(['name' => 'dash.tienda.solicitudes', 'description' => 'Aprobar o Rechazar una Tienda', 'guard_name' => 'admin'])->syncRoles([$admin_rol]);
+        Permission::create(['name' => 'dash.tienda.update', 'description' => 'Aprobar o Rechazar una Tienda', 'guard_name' => 'admin'])->syncRoles([$admin_rol]);
 
         Permission::create(['name' => 'dash.mitienda.index', 'description' => 'Acceso a mi tienda', 'guard_name' => 'admin'])->syncRoles([$admin_rol, $vend_rol]);
         Permission::create(['name' => 'dash.mitienda.update', 'description' => 'Actualizar mi tienda', 'guard_name' => 'admin'])->syncRoles([$admin_rol, $vend_rol]);
@@ -76,6 +77,14 @@ class RoleSeeder extends Seeder
 
         Permission::create(['name' => 'dash.membresia.index', 'description' => 'Acceso al historial de membresia vendedor', 'guard_name' => 'admin'])->syncRoles([$admin_rol, $vend_rol, $caducado_rol]);
         Permission::create(['name' => 'dash.membresia.create', 'description' => 'Acceso a pagar membresia', 'guard_name' => 'admin'])->syncRoles([$vend_rol, $caducado_rol]);
+
+        Permission::create(['name' => 'dash.repoadmin.index', 'description' => 'Acceso al reporte admin', 'guard_name' => 'admin'])->syncRoles([$admin_rol]);
+        Permission::create(['name' => 'dash.repovendedor.index', 'description' => 'Acceso al reporte vendedor', 'guard_name' => 'admin'])->syncRoles([$vend_rol]);
+        Permission::create(['name' => 'dash.repocomprador.index', 'description' => 'Acceso al reporte comprador', 'guard_name' => 'admin'])->syncRoles([$compra_rol]);
+
+        Permission::create(['name' => 'dash.perfil.index', 'description' => 'Acceso al perfil', 'guard_name' => 'admin'])->syncRoles([$admin_rol, $vend_rol, $compra_rol]);
+        Permission::create(['name' => 'dash.soporte.index', 'description' => 'Acceso al soporte', 'guard_name' => 'admin'])->syncRoles([$admin_rol, $vend_rol, $compra_rol]);
+
 
     }
 }

@@ -18,6 +18,8 @@ class TiendaSeeder extends Seeder
     {
         // Tienda::factory(9)->create();
 
+
+
         DB::table('tiendas')->insert(
             [
                 'name' => 'tea market',

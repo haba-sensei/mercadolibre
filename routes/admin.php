@@ -5,10 +5,12 @@ use App\Http\Controllers\Admin\ComprasController;
 use App\Http\Controllers\Admin\CouponsController;
 use App\Http\Controllers\Admin\MembresiaController;
 use App\Http\Controllers\Admin\MitiendaController;
+use App\Http\Controllers\Admin\PerfilController;
 use App\Http\Controllers\Admin\TagController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\RoleController;
+use App\Http\Controllers\Admin\SoporteController;
 use App\Http\Controllers\Admin\TiendaController;
 use App\Http\Controllers\Admin\VentasController;
 use App\Http\Controllers\Admin\VendedoresController;
@@ -48,6 +50,11 @@ Route::resource('vendedores', VendedoresController::class)->middleware('can:dash
 /* MANEJADOR DE RUTAS DEL THEME  */
 
 Route::get('{pageName}', [HomeController::class, 'render'])->name('page');
+
+/* EXTRAS */
+
+Route::resource('perfil', PerfilController::class)->middleware('can:dash.perfil.index')->names('admin.perfil');
+Route::resource('soporte', SoporteController::class)->middleware('can:dash.soporte.index')->names('admin.soporte');
 
 
 

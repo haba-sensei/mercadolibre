@@ -101,11 +101,13 @@ class TiendaController extends Controller
         $owner = User::find($tienda->user_id);
         $owner->removeRole('Comprador');
         $owner->assignRole('Vendedor');
-        DB::table('role_has_permissions')->where([
-            ['permission_id', '=', '7'],
-            ['role_id', '=', $tienda->user_id],
-        ])->delete();
 
+        DB::table('role_has_permissions')->where([
+            ['permission_id', '=', '8'],
+            ['role_id', '=', $tienda->user_id]
+        ])->delete();
+        // ->whereBetween('role_id', [$tienda->user_id, 2])->delete();
+        
         $owner->forgetCachedPermissions();
 
 

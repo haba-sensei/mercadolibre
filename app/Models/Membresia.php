@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Membresia extends Model
 {
-    use HasFactory;
+    use HasFactory; 
 
     protected $table = 'membresias';
 
@@ -24,6 +24,6 @@ class Membresia extends Model
         return $this->hasOne(Planes::class, 'id');
     }
 
-    
+
 
 }

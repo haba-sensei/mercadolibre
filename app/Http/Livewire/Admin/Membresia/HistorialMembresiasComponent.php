@@ -12,7 +12,7 @@ class HistorialMembresiasComponent extends Component
     /* VARIABLES SORT BY  */
     public $sortBy='name';
     public $sortDirection = 'asc';
-    public $perPage = 2; 
+    public $perPage = 2;
     public $search = '';
 
     public function render()
@@ -21,8 +21,7 @@ class HistorialMembresiasComponent extends Component
         ->search($this->search)
         ->where(['status' => '2'])
         ->orderBy($this->sortBy, $this->sortDirection)
-        ->paginate($this->perPage);
-
+        ->paginate($this->perPage); 
 
         return view('livewire.admin.membresia.historial-membresias-component', compact('tiendas'));
     }

@@ -8,4 +8,4 @@ window.addEventListener('ventas_status', event => {
         duration: 1500
 
     }).showToast();
-})
+});

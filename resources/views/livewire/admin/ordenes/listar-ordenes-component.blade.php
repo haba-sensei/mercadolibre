@@ -10,10 +10,10 @@
 
             <div class="mt-1">
                 <div class="inline-flex w-full mt-1 mb-5 sm:w-auto sm:mt-0 sm:ml-auto md:ml-0">
-                <div class="h-2 mt-1 mr-3 rounded-full w-7 bg-theme-1"></div>Recibido
-                <div class="h-2 mt-1 ml-3 mr-3 rounded-full w-7 bg-theme-dark-base "></div>Pendiente
-                <div class="h-2 mt-1 ml-3 mr-3 rounded-full w-7 bg-theme-dark-green"></div>Enviado
-                <div class="h-2 mt-1 ml-3 mr-3 rounded-full w-7 bg-theme-6"></div>Cancelado
+                    <div class="h-2 mt-1 mr-3 rounded-full w-7 bg-theme-1"></div>Pendiente
+                    <div class="h-2 mt-1 ml-3 mr-3 rounded-full w-7 bg-theme-dark-base "></div>Aprobado
+                    <div class="h-2 mt-1 ml-3 mr-3 rounded-full w-7 bg-theme-dark-green"></div>Enviado
+                    <div class="h-2 mt-1 ml-3 mr-3 rounded-full w-7 bg-theme-6"></div>Cancelado
 
             </div>
             @if ($compras)
@@ -33,7 +33,7 @@
                                 @case('ordered')
                                 bg-theme-1
                                 @break
-                                @case('pending')
+                                @case('process')
                                 bg-theme-dark-base
                                 @break
                                 @case('deliver')
@@ -49,7 +49,26 @@
                                 <div class="ml-4 mr-auto">
                                     <div class="font-medium text-theme-2">{{ $item->name }}</div>
                                     <div class="text-theme-2 text-xs mt-0.5">ID: <strong >{{ $item->reference_id }}</strong></div>
-                                    <div class="text-theme-2 text-xs mt-0.5">Status: <strong class="capitalize">{{ $item->status }}</strong></div>
+                                    <div class="text-theme-2 text-xs mt-0.5">Status: <strong class="capitalize">
+                                        @switch($item->status)
+                                        @case('deliver')
+                                        Enviado
+                                            @break
+
+                                        @case('ordered')
+                                       Pendiente
+                                            @break
+
+                                        @case('process')
+                                        Aprobado
+                                        @break
+
+                                        @case('canceled')
+                                        Cancelado
+                                        @break
+                                    @endswitch
+
+                                    </strong></div>
 
                                 </div>
                                 <div class="font-medium text-theme-2">${{ number_format($item->subtotal, 2) }}</div>

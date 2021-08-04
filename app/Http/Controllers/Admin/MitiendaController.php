@@ -25,24 +25,30 @@ class MitiendaController extends Controller
 
     public function index()
     {
-        $pageName= 'mitienda';
-        $activeMenu = $this->HomeController->activeMenu($pageName);
+        if(isset(auth()->user()->tienda->id)){
+            $pageName= 'mitienda';
+            $activeMenu = $this->HomeController->activeMenu($pageName);
+            $mitienda = Tienda::find(auth()->user()->tienda->id);
+
+            return view('admin.mitienda.index',[
+                'side_menu' => $this->HomeController->sideMenu(),
+                'first_page_name' => $activeMenu['first_page_name'],
+                'second_page_name' => $activeMenu['second_page_name'],
+                'third_page_name' => $activeMenu['third_page_name'],
+                'ruta' => 'listar',
+                'page_name' => $pageName,
+                'theme' => $this->HomeController->omega(),
+                'layout' => 'content',
+                'titulo' => $this->HomeController->sideMenu(),
+                'userauth' => Auth::user()
+            ], compact('mitienda') );
+        }else {
+
+            return redirect()->route('admin.tienda.index')->with(['info' => 'Usted no posee una tienda activa debe registrar una tienda', 'color' => '#1c3faa']);
+
+        }
 
 
-        $mitienda = Tienda::find(auth()->user()->tienda->id);
-
-        return view('admin.mitienda.index',[
-            'side_menu' => $this->HomeController->sideMenu(),
-            'first_page_name' => $activeMenu['first_page_name'],
-            'second_page_name' => $activeMenu['second_page_name'],
-            'third_page_name' => $activeMenu['third_page_name'],
-            'ruta' => 'listar',
-            'page_name' => $pageName,
-            'theme' => $this->HomeController->omega(),
-            'layout' => 'content',
-            'titulo' => $this->HomeController->sideMenu(),
-            'userauth' => Auth::user()
-        ], compact('mitienda') );
     }
 
     /**
