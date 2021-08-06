@@ -47,14 +47,14 @@ Route::resource('ventas', VentasController::class)->middleware('can:dash.ventas.
 Route::resource('coupons', CouponsController::class)->middleware('can:dash.coupons.index')->names('admin.coupons');
 Route::resource('vendedores', VendedoresController::class)->middleware('can:dash.vendedores.index')->names('admin.vendedores');
 
-/* MANEJADOR DE RUTAS DEL THEME  */
-
-Route::get('{pageName}', [HomeController::class, 'render'])->name('page');
-
 /* EXTRAS */
 
 Route::resource('perfil', PerfilController::class)->middleware('can:dash.perfil.index')->names('admin.perfil');
 Route::resource('soporte', SoporteController::class)->middleware('can:dash.soporte.index')->names('admin.soporte');
+
+/* MANEJADOR DE RUTAS DEL THEME  */
+
+Route::get('{pageName}', [HomeController::class, 'render'])->name('page');
 
 
 

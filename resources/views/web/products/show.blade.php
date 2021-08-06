@@ -55,26 +55,19 @@
                         <p class="mb-5">{{ $product->extract }}</p>
                     </div>
                     <div class="ps-product__desc">
-                        <p>Vendedor:<a href="javascript:"><strong> Go Pro</strong></a></p>
+                        <p>Vendedor:<a href="{{ route('web.tienda.show', $product->tienda->slug ) }}"><strong class="capitalize"> {{ $product->tienda->name }}</strong></a></p>
 
                     </div>
 
                     <div class="ps-product__shopping">
-                        <figure>
-                            <figcaption>Cantidad</figcaption>
-                            <div class="form-group--number">
-                                <button class="up"><i class="fa fa-plus"></i></button>
-                                <button class="down"><i class="fa fa-minus"></i></button>
-                                <input class="form-control" type="text" placeholder="1">
-                            </div>
-                        </figure><a class="ps-btn ps-btn--black" href="#" wire:click.prevent="storeCart({{ $product->id }}, '{{ $product->name }}', {{ $product->amount }}  )" >Add to cart</a><a class="ps-btn" href="#">Buy Now</a>
-                        <div class="ps-product__actions"><a href="#"><i class="icon-heart"></i></a> </div>
+                        @livewire('web.product.single-view-product-component', ['product_id_show' => $product->id])
+
                     </div>
                     <div class="ps-product__specification">
 
                         <p class="categories">
                             <strong> Categoria:</strong>
-                            <a href="javascript:"> {{ $product->category->name }} </a>
+                            <a href="{{ route('web.products.show.categories', $product->category->slug ) }}"> {{ $product->category->name }} </a>
                         </p>
                         <p class="categories">
                             <strong> Tags</strong>

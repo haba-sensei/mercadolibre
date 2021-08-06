@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class PerfilController extends Controller
 {
@@ -24,6 +26,11 @@ class PerfilController extends Controller
 
         $activeMenu = $this->HomeController->activeMenu($pageName);
 
+       $eje = Hash::make('12345678');
+
+
+         $user_perfil = User::find(auth()->user()->id);
+
         return view('admin.perfil.index',[
             'side_menu' => $this->HomeController->sideMenu(),
             'first_page_name' => $activeMenu['first_page_name'],
@@ -35,7 +42,7 @@ class PerfilController extends Controller
             'layout' => 'content',
             'titulo' => $this->HomeController->sideMenu(),
             'userauth' => Auth::user()
-        ] );
+        ], compact('user_perfil') );
     }
 
     /**
