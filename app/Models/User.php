@@ -64,7 +64,7 @@ class User extends Authenticatable
         'profile_photo_url',
     ];
 
-    //relacion 1 a muchos 
+    //relacion 1 a muchos
     public function posts(){
         return $this->hasMany(Post::class);
     }
@@ -73,8 +73,8 @@ class User extends Authenticatable
         return $this->hasOne(Tienda::class);
     }
      //relacion 1 a 1
-     public function profiles(){
-        return $this->hasOne(Profiles::class);
+     public function perfil(){
+        return $this->hasOne(Perfiles::class);
     }
 
     /* BUSQUEDA DE USUARIOS */

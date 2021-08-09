@@ -10,6 +10,7 @@
 
 @endif
 
+<livewire:admin.soporte.chat-soporte-component />
 
 @endsection
 
