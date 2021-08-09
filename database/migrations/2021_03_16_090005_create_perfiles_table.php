@@ -15,11 +15,11 @@ class CreatePerfilesTable extends Migration
     {
         Schema::create('perfiles', function (Blueprint $table) {
             $table->id();
-            $table->string('pais');
-            $table->string('estado');
-            $table->string('ciudad');
-            $table->string('direccion');
-            $table->string('telefono');
+            $table->string('pais')->nullable();
+            $table->string('estado')->nullable();
+            $table->string('ciudad')->nullable();
+            $table->string('direccion')->nullable();
+            $table->string('telefono')->nullable();
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();

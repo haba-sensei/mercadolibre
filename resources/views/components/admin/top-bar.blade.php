@@ -39,17 +39,17 @@
         <div class="w-56 dropdown-box">
             <div class="text-white dropdown-box__content box bg-theme-38 dark:bg-dark-6">
                 <div class="p-4 border-b border-theme-40 dark:border-dark-3">
-                    <div class="font-medium">{{ $userauth->name }}</div> 
+                    <div class="font-medium">{{ $userauth->name }}</div>
                 </div>
                 <div class="p-2">
                     <a href="{{ route('web.home') }}" class="flex items-center p-2 transition duration-300 ease-in-out rounded-md hover:bg-theme-1 dark:hover:bg-dark-3">
                         <i data-feather="home" class="w-4 h-4 mr-2"></i> Index Ecommerce
                     </a>
-                    <a href="" class="flex items-center p-2 transition duration-300 ease-in-out rounded-md hover:bg-theme-1 dark:hover:bg-dark-3">
+                    <a href="{{ route('admin.perfil.index') }}" class="flex items-center p-2 transition duration-300 ease-in-out rounded-md hover:bg-theme-1 dark:hover:bg-dark-3">
                         <i data-feather="user" class="w-4 h-4 mr-2"></i> Perfil
                     </a>
 
-                    <a href="" class="flex items-center p-2 transition duration-300 ease-in-out rounded-md hover:bg-theme-1 dark:hover:bg-dark-3">
+                    <a href="{{ route('admin.soporte.index') }}" class="flex items-center p-2 transition duration-300 ease-in-out rounded-md hover:bg-theme-1 dark:hover:bg-dark-3">
                         <i data-feather="edit" class="w-4 h-4 mr-2"></i> Soporte
                     </a>
 

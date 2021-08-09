@@ -14,7 +14,7 @@
                         </ul>
                     </div>
                 </div>
-                <a class="ps-logo" href="javascript:"><img src="{{ asset('dist/images/web/logo.png') }}" alt=""></a>
+                <a class="ps-logo" href="{{ route('web.home') }}"><img src="{{ asset('dist/images/web/logo.png') }}" alt=""></a>
             </div>
             <div class="header__content-center">
                 <form class="ps-form--quick-search" action="javascript:" method="get">

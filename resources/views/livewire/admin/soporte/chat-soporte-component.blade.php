@@ -73,7 +73,12 @@
                         <div class="relative flex items-center p-5 mt-5 cursor-pointer intro-x box" wire:click="getUser({{$user->id}})" >
 
                             <div class="flex-none w-12 h-12 mr-1 image-fit">
-                                <img alt="" class="rounded-full" src="{{ Storage::url('users/user_1.png') }}">
+                              @if (isset($user->profile_photo_path))
+                                    <img alt="" class="rounded-full" src="{{ Storage::url($user->profile_photo_path) }}">
+                              @else
+                                     <img alt="" class="rounded-full" src="{{ Storage::url('account.svg') }}" >
+                              @endif
+
                                 @if($user->is_online==true)
                                     <div class="absolute bottom-0 right-0 w-3 h-3 border-2 border-white rounded-full bg-theme-9"></div>
                                 @else
@@ -83,7 +88,7 @@
                             </div>
                             <div class="ml-2 overflow-hidden">
                                 <div class="flex items-center">
-                                    <a   class="font-medium">{{$user->name}}</a>
+                                    <a   class="font-medium capitalize">{{$user->name}}</a>
                                 </div>
                                 <div class="w-full truncate text-gray-600 mt-0.5">{{$user->roles[0]->name}}</div>
                             </div>
@@ -112,11 +117,16 @@
                 <div class="flex flex-col px-5 py-4 border-b border-gray-200 sm:flex-row dark:border-dark-5">
                     <div class="flex items-center">
                         <div class="relative flex-none w-10 h-10 sm:w-12 sm:h-12 image-fit">
-                            <img alt="" class="rounded-full" src="{{ Storage::url('users/user_1.png') }}">
+                            @if (isset($user->profile_photo_path))
+                            <img alt="" class="rounded-full" src="{{ Storage::url($user->profile_photo_path) }}">
+                      @else
+                             <img alt="" class="rounded-full" src="{{ Storage::url('account.svg') }}" >
+                      @endif
+
                         </div>
                         <div class="ml-3 mr-auto">
                             <div class="text-base font-medium"> @if(isset($sender)) {{$sender->name}}   @endif</div>
-                            <div class="text-xs text-gray-600 sm:text-sm">{{$user->roles[0]->name}} <span class="mx-1">•</span> @if($user->is_online==true) Online @else OffLine @endif</div>
+                            <div class="text-xs text-gray-600 sm:text-sm">{{$sender->roles[0]->name}} <span class="mx-1">•</span> @if($sender->is_online==true) Online @else OffLine @endif</div>
                         </div>
                     </div>
 

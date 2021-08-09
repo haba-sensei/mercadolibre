@@ -4,7 +4,12 @@
         <div class="mt-5 intro-y box">
             <div class="relative flex items-center p-5">
                 <div class="w-12 h-12 image-fit">
-                    <img alt="" class="rounded-full" src="{{ Storage::url( $user_perfil->profile_photo_path ) }}">
+                    @if (isset($user_perfil->profile_photo_path))
+                      <img alt="" class="rounded-full" src="{{ Storage::url( $user_perfil->profile_photo_path ) }}">
+                    @else
+                        <img alt="" class="rounded-full" src="{{ Storage::url('account.svg') }}" >
+                    @endif
+
                 </div>
                 <div class="ml-4 mr-auto">
                     <div class="text-base font-medium capitalize">{{ $user_perfil->name }}</div>

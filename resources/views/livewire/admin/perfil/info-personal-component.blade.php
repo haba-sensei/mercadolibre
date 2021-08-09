@@ -15,8 +15,12 @@
                     <div class="col-span-12 xl:col-span-4">
                         <div class="p-5 border border-gray-200 rounded-md dark:border-dark-5">
                             <div class="relative w-40 h-40 mx-auto cursor-pointer image-fit zoom-in">
-                                <img class="rounded-md" id="picture" alt=""
-                                    src="{{ Storage::url($info_personal->profile_photo_path) }}">
+                                @if (isset($info_personal->profile_photo_path))
+                                <img class="rounded-md" id="picture" alt="" src="{{ Storage::url($info_personal->profile_photo_path) }}">
+                              @else
+                                <img class="rounded-md" id="picture" alt="" src="{{ Storage::url('account.svg') }}">
+                              @endif
+
 
                             </div>
                             <div class="relative w-40 mx-auto mt-5 cursor-pointer">

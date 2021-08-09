@@ -19,7 +19,7 @@
 
             </ul>
             <div class="inline ps-block--header-hotline">
-                <p><i class="icon-telephone"></i>Atención al cliente:<strong> 1-800-234-5678</strong></p>
+                <p><i class="icon-telephone"></i>Atención al cliente:<strong> +57 311 3638679</strong></p>
             </div>
         </div>
     </div>

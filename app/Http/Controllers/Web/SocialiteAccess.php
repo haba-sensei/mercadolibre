@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
+use App\Models\Perfiles;
 use App\Models\User;
 use Exception;
 use Illuminate\Support\Facades\Auth as FacadesAuth;
@@ -28,8 +29,9 @@ class SocialiteAccess extends Controller
             if($userCol){
                 FacadesAuth::login($userCol);
                 $user = User::where('email', $user->email)->update(['id_fb' => $user->id]);
-                return redirect('/');
+                return redirect('/dash');
             }else{
+
                 $addUser = User::create([
                     'name' => $user->name,
                     'email' => $user->email,
@@ -38,8 +40,18 @@ class SocialiteAccess extends Controller
                     'password' => encrypt(Str::random(10))
                 ])->assignRole('Comprador');
 
+
+                Perfiles::create([
+                    'telefono' => null,
+                    'pais' => null,
+                    'estado' => null,
+                    'ciudad' => null,
+                    'direccion' => null,
+                    'user_id' => $addUser->id
+                ]);
+
                 FacadesAuth::login($addUser);
-                return redirect('/');
+                return redirect('/dash');
             }
 
         } catch (Exception $exception) {
@@ -67,7 +79,7 @@ class SocialiteAccess extends Controller
                 FacadesAuth::login($userCol);
                 $user = User::where('email', $user->email)->update(['id_google' => $user->id]);
 
-                return redirect('/');
+                return redirect('/dash');
             }else{
                 $addUser = User::create([
                     'name' => $user->name,
@@ -77,8 +89,17 @@ class SocialiteAccess extends Controller
                     'password' => encrypt(Str::random(10))
                 ])->assignRole('Comprador');
 
+                Perfiles::create([
+                    'telefono' => null,
+                    'pais' => null,
+                    'estado' => null,
+                    'ciudad' => null,
+                    'direccion' => null,
+                    'user_id' => $addUser->id
+                ]);
+
                 FacadesAuth::login($addUser);
-                return redirect('/');
+                return redirect('/dash');
             }
 
         } catch (Exception $exception) {

@@ -138,13 +138,11 @@ class PerfilController extends Controller
                 $foto_perfil = User::where(['id' => $id])->get();
 
                 if($foto_perfil[0]->profile_photo_path){
-
                     Storage::disk('public_upload')->delete($foto_perfil[0]->profile_photo_path);
-
-                    $foto_perfil[0]->profile_photo_path = $url;
-                    $foto_perfil[0]->save();
-
                 }
+
+                $foto_perfil[0]->profile_photo_path = $url;
+                $foto_perfil[0]->save();
             }
             $info = 'El Perfil se actualizo con éxito';
         }

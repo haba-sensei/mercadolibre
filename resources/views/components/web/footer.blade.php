@@ -5,7 +5,7 @@
                 <h4 class="widget-title">Contact us</h4>
                 <div class="widget_content">
                     <p>Call us 24/7</p>
-                    <h3>1800 97 97 69</h3>
+                    <h3>+57 311 3638679</h3>
                     <p>502 New Design Str, Melbourne, Australia <br><a href="mailto:contact@martfury.co">contact@martfury.co</a></p>
                     <ul class="ps-list--social">
                         <li><a class="facebook" href="#"><i class="fa fa-facebook"></i></a></li>
