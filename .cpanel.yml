@@ -1,7 +1,7 @@
 ---
 deployment:
   tasks:
-    - export DEPLOYPATH=/home/vlrrywof/public_html/mercadolibre/
+    - export DEPLOYPATH=/home/vlrrywof/repositories/mercadolibre/
     - /bin/cp -R * $DEPLOYPATH
     - cp .htaccess $DEPLOYPATH
     # - cp .env $DEPLOYPATH
