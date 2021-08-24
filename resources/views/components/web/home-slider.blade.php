@@ -28,6 +28,8 @@
                 <img src="{{ Storage::url('sliders/slider4.png') }}" alt="">
             </a>
         </div>
-        
+
     </div>
 </div>
+
+ 

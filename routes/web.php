@@ -32,7 +32,7 @@ Route::view('/checkout', 'web.checkout.index')->name('web.checkout.index');
 
 Route::get('paypal/checkout-success/{order}', [CheckoutComponent::class, 'getExpressCheckoutSuccess'] )->name('paypal.success');
 Route::get('paypal/checkout-cancel',  [CheckoutComponent::class, 'cancelPage'] )->name('paypal.cancel');
- 
+
 Route::get('paypal/membresia-success/{order}', [PasarelaPagoComponent::class, 'getExpressCheckoutSuccess'] )->name('paypal.membresia.success');
 Route::get('paypal/membresia-cancel',  [PasarelaPagoComponent::class, 'cancelPage'] )->name('paypal.membresia.cancel');
 
@@ -42,8 +42,6 @@ Route::view('/thank-you', 'web.checkout.thankyou')->name('web.checkout.thankyou'
 /* TIENDAS */
 Route::get('/tiendas',  [TiendaController::class, 'index'])->name('web.tienda.index');
 Route::get('/tiendas/{tienda}',  [TiendaController::class, 'show'])->name('web.tienda.show');
-
-
 
 // Route::get('category/{category}', [PostController::class, 'category'] )->name('posts.category');
 

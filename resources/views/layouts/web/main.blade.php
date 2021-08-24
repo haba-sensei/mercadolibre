@@ -7,7 +7,7 @@
         @yield('content')
         @yield('modals')
 
-        <script src="{{ asset('dist/plugins/jquery.min.js') }}"></script>
+        <script src="{{ asset('dist/plugins/jquery.min.js') }}"></script> 
         <script src="{{ asset('dist/plugins/nouislider/nouislider.min.js') }}"></script>
         <script src="{{ asset('dist/plugins/popper.min.js') }}"></script>
         <script src="{{ asset('dist/plugins/owl-carousel/owl.carousel.min.js') }}"></script>

@@ -34,7 +34,7 @@ class MitiendaController extends Controller
                 'side_menu' => $this->HomeController->sideMenu(),
                 'first_page_name' => $activeMenu['first_page_name'],
                 'second_page_name' => $activeMenu['second_page_name'],
-                'third_page_name' => $activeMenu['third_page_name'],
+                'third_page_name' => $activeMenu['third_page_name'], 
                 'ruta' => 'listar',
                 'page_name' => $pageName,
                 'theme' => $this->HomeController->omega(),

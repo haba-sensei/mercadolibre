@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\ComprasController;
 use App\Http\Controllers\Admin\CouponsController;
 use App\Http\Controllers\Admin\MembresiaController;
 use App\Http\Controllers\Admin\MitiendaController;
+use App\Http\Controllers\Admin\NotificacionController;
 use App\Http\Controllers\Admin\PerfilController;
 use App\Http\Controllers\Admin\TagController;
 use App\Http\Controllers\Admin\ProductController;
@@ -52,6 +53,10 @@ Route::resource('vendedores', VendedoresController::class)->middleware('can:dash
 Route::resource('perfil', PerfilController::class)->middleware('can:dash.perfil.index')->names('admin.perfil');
 Route::resource('soporte', SoporteController::class)->middleware('can:dash.soporte.index')->names('admin.soporte');
 
+ Route::resource('notificacion', NotificacionController::class)->middleware('can:dash.notificacion.index')->names('admin.notificacion');
+
+ Route::post('save_token', [NotificacionController::class, 'saveToken'])->middleware('can:dash.save_token.index')->name('admin.save_token');
+ Route::post('send_notification', [NotificacionController::class, 'sendNotification'])->middleware('can:dash.send_notification.index')->name('admin.send_notification');
 /* MANEJADOR DE RUTAS DEL THEME  */
 
 Route::get('{pageName}', [HomeController::class, 'render'])->name('page');

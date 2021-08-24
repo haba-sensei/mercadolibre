@@ -47,26 +47,37 @@ class ProductController extends Controller
      public function index(Request $request)
      {
 
-        $tokenFlutter = Flutter::find(1)->access_token;
-        $products = Product::where(['user_id' => auth()->user()->id])->get();
-        $pageName= 'products';
 
-        Cache::has('product') ? Cache::put('product', $products) : '';
 
-         $activeMenu = $this->HomeController->activeMenu($pageName);
+         if(isset(auth()->user()->tienda->id)){
+            $tokenFlutter = Flutter::find(1)->access_token;
+            $products = Product::where(['user_id' => auth()->user()->id])->get();
+            $pageName= 'products';
 
-         return view('admin.products.index',[
-             'side_menu' => $this->HomeController->sideMenu(),
-             'first_page_name' => $activeMenu['first_page_name'],
-             'second_page_name' => $activeMenu['second_page_name'],
-             'third_page_name' => $activeMenu['third_page_name'],
-             'ruta' => 'listar',
-             'page_name' => $pageName,
-             'theme' => $this->HomeController->omega(),
-             'layout' => 'content',
-             'titulo' => $this->HomeController->sideMenu(),
-             'userauth' => Auth::user()
-         ], compact('products', 'tokenFlutter'));
+            Cache::has('product') ? Cache::put('product', $products) : '';
+
+             $activeMenu = $this->HomeController->activeMenu($pageName);
+            return view('admin.products.index',[
+                'side_menu' => $this->HomeController->sideMenu(),
+                'first_page_name' => $activeMenu['first_page_name'],
+                'second_page_name' => $activeMenu['second_page_name'],
+                'third_page_name' => $activeMenu['third_page_name'],
+                'ruta' => 'listar',
+                'page_name' => $pageName,
+                'theme' => $this->HomeController->omega(),
+                'layout' => 'content',
+                'titulo' => $this->HomeController->sideMenu(),
+                'userauth' => Auth::user()
+            ], compact('products', 'tokenFlutter'));
+
+         }else {
+
+            return redirect()->route('admin.tienda.index')->with(['info' => 'Usted no posee una tienda activa debe registrar una tienda', 'color' => '#1c3faa']);
+
+        }
+
+
+
      }
 
      /* {{ METODO CREATE | DATA MENU LATERAL }} */

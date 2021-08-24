@@ -7,7 +7,7 @@
                 <a href="" class="flex ml-auto text-theme-1 dark:text-theme-10">
                     <i data-feather="refresh-ccw" class="w-4 h-4 mr-3"></i> Recargar Data
                 </a>
-            </div>
+            </div> 
             @can('dash.repoadmin.index')
                 <livewire:admin.report.admin-repo-component />
             @endcan
@@ -35,3 +35,4 @@
     <livewire:admin.ventas.listar-ventas-component />
 
 </div>
+

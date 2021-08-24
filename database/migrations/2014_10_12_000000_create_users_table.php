@@ -26,6 +26,7 @@ class CreateUsersTable extends Migration
             $table->text('profile_photo_path')->nullable();
             $table->boolean('is_online')->default(0);
             $table->string('last_activity')->nullable();
+            $table->string('device_token')->nullable();
             $table->timestamps();
         });
     }
