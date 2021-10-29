@@ -66,7 +66,7 @@ class AuthController extends Controller
             'success' => true,
             'data' => $data,
             'message' => 'El usuario ha sido autenticado'
-        ]);
+        ], 201);
     }
 
     /**
@@ -136,8 +136,9 @@ class AuthController extends Controller
         );
 
         return response()->json([
+            'success' => true,
             'message' => 'Usuario Creado con exito',
-            'user' => $user
+            'data' => $user
         ], 201);
     }
 }
