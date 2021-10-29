@@ -38,7 +38,14 @@ class ProductController extends Controller
                      ->where('user_id', $id)
                      ->get();
 
-        return response()->json(array('last_page' => 6, 'data'=>$product ));
+
+        return response()->json([
+        'success' => true,
+        'data' => $product,
+        'message' => 'lista de productos'
+        ], 201);
+
+
 
     }
 

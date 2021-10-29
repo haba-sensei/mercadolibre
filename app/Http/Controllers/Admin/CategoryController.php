@@ -6,6 +6,7 @@ use App\Models\Category;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Admin\HomeController;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
@@ -51,6 +52,8 @@ class CategoryController extends Controller
     {
         $pageName= 'categories';
         $activeMenu = $this->HomeController->activeMenu($pageName);
+
+      
 
         return view('admin.categories.create', [
             'side_menu' => $this->HomeController->sideMenu(),

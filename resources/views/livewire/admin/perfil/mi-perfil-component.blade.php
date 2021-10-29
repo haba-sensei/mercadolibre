@@ -44,7 +44,7 @@
 
 
 
-    @switch($perfil_info)
+    @switch($perfil_info) 
 
         @case("info_personal")
             <livewire:admin.perfil.info-personal-component />

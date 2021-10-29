@@ -85,10 +85,11 @@ class RoleSeeder extends Seeder
         Permission::create(['name' => 'dash.perfil.index', 'description' => 'Acceso al perfil', 'guard_name' => 'admin'])->syncRoles([$admin_rol, $vend_rol, $compra_rol]);
         Permission::create(['name' => 'dash.soporte.index', 'description' => 'Acceso al soporte', 'guard_name' => 'admin'])->syncRoles([$admin_rol, $vend_rol, $compra_rol]);
 
+        Permission::create(['name' => 'dash.save_token.index', 'description' => 'Acceso a guardar token notificacion', 'guard_name' => 'admin'])->syncRoles([$admin_rol, $vend_rol]);
         Permission::create(['name' => 'dash.notificacion.index', 'description' => 'Acceso a crear notificaciones', 'guard_name' => 'admin'])->syncRoles([$admin_rol]);
-        Permission::create(['name' => 'dash.save_token.index', 'description' => 'Acceso a guardar token notificacion', 'guard_name' => 'admin'])->syncRoles([$admin_rol]);
         Permission::create(['name' => 'dash.send_notification.index', 'description' => 'Acceso a enviar Notificacion', 'guard_name' => 'admin'])->syncRoles([$admin_rol]);
 
-
+        Permission::create(['name' => 'dash.configuracion.index', 'description' => 'Acceso a configuraciones', 'guard_name' => 'admin'])->syncRoles([$admin_rol]);
+        Permission::create(['name' => 'dash.configuracion.edit', 'description' => 'Editar configuraciones', 'guard_name' => 'admin'])->syncRoles([$admin_rol]);
     }
 }

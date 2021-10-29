@@ -31,6 +31,8 @@ class DatabaseSeeder extends Seeder
         $this->call(ProductSeeder::class);
         $this->call(FlutterSeeder::class);
         $this->call(CouponSeeder::class);
+        $this->call(ConfigDataSeeder::class);
+        $this->call(ConfigImgSeeder::class);
         // $this->call(TransactionSeeder::class);
 
 

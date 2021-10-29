@@ -1,0 +1,35 @@
+<!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-analytics.js"></script>
+
+<script>
+  // Your web app's Firebase configuration
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+  var firebaseConfig = {
+    apiKey: "AIzaSyCmF3I02OcesAK2dCmI01HS13FjU2QJQB0",
+    authDomain: "abogadosfcm.firebaseapp.com",
+    projectId: "abogadosfcm",
+    storageBucket: "abogadosfcm.appspot.com",
+    messagingSenderId: "891936953167",
+    appId: "1:891936953167:web:39beeac3ae23e5942d2b3a",
+    measurementId: "G-R6WYB6DZMY"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  firebase.analytics();
+</script>
+
+// FCM key
+
+AAAAz6uV008:APA91bF4kM_tW163McSTDJjoLNMujXeZkfAH5s-FcPNSLZZFt1mpDmwure7hXTVeTFcELHNOBC8W4_tMwgbaWAdQEiigFemFo8ZgMjhDjk875_dddYmqOGKqTKe-2UncuKOOBeRKF8ea
+
+// sender ID
+
+891936953167
+
+//
+
+fIaahGjk3Ko:APA91bHEEnvsUwlveN3fQMJgNlfvET4E0Oo455q9N9q0R06RT5OC0NKrVCsH62rSQ_R3oaAgsbt0tB_zcBVg0eLhNyzTHgQhPJ9n-wQkXpjYFtBkbsk81_q5AbhqnuIh4pMKJFD9kVLG

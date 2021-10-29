@@ -102,10 +102,10 @@ $(document).ready(function() {
             console.error(error);
         });
 
-
     document.getElementById("file").addEventListener('change', cambiarImagen);
 
     function cambiarImagen(event) {
+
         var file = event.target.files[0];
         input = $(this)[0];
         var imgPath = input.value;

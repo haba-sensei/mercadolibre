@@ -100,7 +100,7 @@ class PerfilController extends Controller
     {
           /* validacion de formulario ignorando actualizar del slug por ID */
 
-
+ 
         if ($request->name) {
 
           $request->validate([

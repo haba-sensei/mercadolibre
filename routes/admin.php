@@ -2,6 +2,7 @@
 use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ComprasController;
+use App\Http\Controllers\Admin\ConfiguracionController;
 use App\Http\Controllers\Admin\CouponsController;
 use App\Http\Controllers\Admin\MembresiaController;
 use App\Http\Controllers\Admin\MitiendaController;
@@ -47,7 +48,7 @@ Route::resource('compras', ComprasController::class)->middleware('can:dash.compr
 Route::resource('ventas', VentasController::class)->middleware('can:dash.ventas.index')->names('admin.ventas');
 Route::resource('coupons', CouponsController::class)->middleware('can:dash.coupons.index')->names('admin.coupons');
 Route::resource('vendedores', VendedoresController::class)->middleware('can:dash.vendedores.index')->names('admin.vendedores');
-
+Route::resource('configuracion', ConfiguracionController::class)->middleware('can:dash.configuracion.index')->names('admin.configuracion');
 /* EXTRAS */
 
 Route::resource('perfil', PerfilController::class)->middleware('can:dash.perfil.index')->names('admin.perfil');

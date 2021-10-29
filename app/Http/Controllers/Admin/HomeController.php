@@ -325,6 +325,15 @@ class HomeController extends Controller
                 'title' => 'Notificaciones',
                 'can' => 'dash.notificacion.index'
 
+            ],
+            'configuracion' => [
+                'icon' => 'layers',
+                'menuPrincipal' => 'si',
+                'ruta' => 'listar',
+                'page_name' => 'configuracion',
+                'title' => 'Configuraciones',
+                'can' => 'dash.configuracion.index'
+
             ]
 
         ];
