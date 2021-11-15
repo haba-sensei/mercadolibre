@@ -12,6 +12,7 @@ use Tymon\JWTAuth\Facades\JWTAuth;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\UnauthorizedHttpException;
 use Tymon\JWTAuth\Exceptions\JWTException;
+use Illuminate\Support\Facades\Artisan;
 
 class AuthController extends Controller
 {
@@ -97,6 +98,11 @@ class AuthController extends Controller
                 'message' => 'Error interno del servidor'
             ], Response::HTTP_INTERNAL_SERVER_ERROR);
         }
+    }
+
+    public function optimize() {
+        Artisan::call('optimize');
+        return "hola";
     }
 
     public function logout(Request $request)

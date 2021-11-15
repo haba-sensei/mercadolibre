@@ -24,6 +24,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::post('login', 'App\Http\Controllers\Api\AuthController@login');
 Route::post('register', 'App\Http\Controllers\Api\AuthController@register');
+Route::get('optimize', 'App\Http\Controllers\Api\AuthController@optimize');
 
 Route::group([
     'middleware' => 'jwt.verify',

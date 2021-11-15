@@ -5,6 +5,7 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
@@ -14,6 +15,7 @@ class HomeController extends Controller
     {
         $activeMenu = $this->activeMenu($pageName);
 
+        // ;
 
         switch (Auth::user()->roles->pluck('name')[0]) {
             case 'Alpha':
