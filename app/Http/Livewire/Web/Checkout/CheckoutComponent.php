@@ -27,7 +27,7 @@ class CheckoutComponent extends Component
     public $postal;
 
     public $card_no;
-    public $card_holder;
+    public $card_holder; 
     public $card_exp_month;
     public $card_exp_year;
     public $card_cvc;
