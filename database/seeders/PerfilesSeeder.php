@@ -6,6 +6,7 @@ use Illuminate\Database\Seeder;
 use Faker\Factory;
 use Illuminate\Support\Facades\DB;
 
+
 class PerfilesSeeder extends Seeder
 {
     /**

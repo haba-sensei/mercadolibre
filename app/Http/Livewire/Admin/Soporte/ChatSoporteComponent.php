@@ -31,7 +31,7 @@ class ChatSoporteComponent extends Component
     }
 
     public function mountdata()
-    {
+    { 
         if(isset($this->sender->id))
         {
               $this->allmessages=Message::where('user_id',auth()->id())->where('receiver_id',$this->sender->id)->orWhere('user_id',$this->sender->id)->where('receiver_id',auth()->id())->orderBy('id','asc')->get();

@@ -11,7 +11,7 @@
 
         <div class="tab-content">
             <div class="tab-content__pane active" id="chats">
-                <div class="pr-1">
+                <div class="pr-1"> 
                     <div class="px-5 pb-5 box lg:pb-0">
                         <div class="relative text-gray-700 dark:text-gray-300">
                             <input type="text" class="w-full pr-10 mt-5 mb-5 bg-gray-200 input input--lg placeholder-theme-13" wire:model.debounce.300ms="search" placeholder="Busqueda de chats...">
