@@ -25,6 +25,9 @@ Route::get('producto/{product}', [ProductController::class, 'show'])->name('web.
 Route::get('categoria/{category}', [ProductController::class, 'showCat'])->name('web.products.show.categories');
 Route::get('tag/{tag}', [ProductController::class, 'showTag'])->name('web.products.show.tags');
 
+/* FAQS & TERMS */
+Route::view('/faqs', 'web.faqs.index')->name('web.faqs.index');
+Route::view('/term', 'web.term.index')->name('web.term.index');
 
 /* CARRITO - CHECKOUT - PAYMENT */
 Route::view('/carrito', 'web.shopcart.index')->name('web.shopcart.index');

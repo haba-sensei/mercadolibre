@@ -9,5 +9,5 @@
 </li>
 
 <li class="menu-item">
-    <a href="{{ route('web.home') }}"><i class="icon-bullhorn" style="font-size: 23px;"></i> Faq's</a>
+    <a href="{{ route('web.faqs.index') }}"><i class="icon-bullhorn" style="font-size: 23px;"></i> Faq's</a>
 </li>

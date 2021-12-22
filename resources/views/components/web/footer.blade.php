@@ -16,13 +16,13 @@
                 </div>
             </aside>
             <aside class="widget widget_footer">
-                <h4 class="widget-title">Quick links</h4>
+                <h4 class="widget-title">Links Rapidos</h4>
                 <ul class="ps-list--link">
-                    <li><a href="#">Policy</a></li>
-                    <li><a href="#">Term & Condition</a></li>
-                    <li><a href="#">Shipping</a></li>
-                    <li><a href="#">Return</a></li>
-                    <li><a href="faqs.html">FAQs</a></li>
+                    <li><a href="{{ route('web.term.index') }}">Policy</a></li>
+                    <li><a href="{{ route('web.term.index') }}">Terminos & Condiciones</a></li>
+                    <li><a href="{{ route('web.term.index') }}">Shipping</a></li>
+                    <li><a href="{{ route('web.term.index') }}">Return</a></li>
+                    <li><a href="{{ route('web.faqs.index') }}">FAQs</a></li>
                 </ul>
             </aside>
             <aside class="widget widget_footer">
